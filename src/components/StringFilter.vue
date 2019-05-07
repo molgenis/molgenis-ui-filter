@@ -1,6 +1,8 @@
 <template>
   <div class="input-group">
-    <input type="text" class="form-control"
+    <input type="text"
+           :name="name"
+           class="form-control"
            :placeholder="placeholder"
            :aria-label="label"
            v-model.lazy="model">
@@ -16,6 +18,7 @@
 export default {
   name: 'StringFilter',
   props: {
+    name: String,
     label: String,
     placeholder: String,
     value: String
@@ -23,7 +26,7 @@ export default {
   computed: {
     model: {
       get () {
-        return this.value
+        return this.value || ''
       },
       set (value) {
         this.$emit('input', value)

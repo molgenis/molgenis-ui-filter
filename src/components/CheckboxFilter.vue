@@ -1,12 +1,19 @@
 <template>
   <div>
-    <fieldset id="__BVID__74" role="group" class="pt-2 b-form-group form-group">
+    <fieldset :name="name" role="group" class="pt-2 b-form-group form-group">
       <div role="group" tabindex="-1" class="custom-controls-stacked">
-        <div class="custom-control custom-checkbox" v-for="option in visibleOptions" :key="option.id">
-          <input :id="option.id" type="checkbox" :name="name" autocomplete="off" class="custom-control-input"
-                 :checked="value.includes(option.id)"
-                 @change="(event) => itemClick(option.id, event.target.checked)">
-          <label :for="option.id" class="custom-control-label"><span>{{option.label}}</span></label>
+        <div class="custom-control custom-checkbox" 
+          v-for="(option, index) in visibleOptions" 
+          :key="option.value"
+        >
+          <input :id="`option-${name}-${index}`"
+            type="checkbox"
+            :name="name"
+            autocomplete="off"
+            class="custom-control-input"
+            :checked="value.includes(option.value)"
+            @change="(event) => itemClick(option.value, event.target.checked)">
+          <label :for="`option-${name}-${index}`" class="custom-control-label"><span>{{option.label}}</span></label>
         </div>
       </div>
     </fieldset>
@@ -31,7 +38,10 @@ export default {
     name: String,
     label: String,
     options: Array,
-    value: Array,
+    value: {
+      type: Array,
+      default: () => []
+    },
     initiallyCollapsed: Boolean,
     maxVisibleOptions: Number
   },
@@ -50,11 +60,19 @@ export default {
     }
   },
   methods: {
-    itemClick (id, checked) {
-      this.$emit('input', checked ? [...this.value, id] : this.value.filter(it => it !== id))
+    itemClick (value, checked) {
+      if (checked) {
+        this.$emit('input', [...this.value, value])
+      } else {
+        let leftover = this.value.filter(it => it !== value)
+        if (leftover.length === 0) {
+          leftover = undefined
+        }
+        this.$emit('input', leftover)
+      }
     },
     toggleSelect () {
-      this.$emit('input', this.value && this.value.length ? [] : this.options.map(option => option.id))
+      this.$emit('input', this.value && this.value.length ? undefined : this.options.map(option => option.value))
     },
     toggleSlice () {
       this.sliceOptions = !this.sliceOptions

@@ -1,6 +1,13 @@
 <template>
-  <div id="app">
-    <FilterContainer :filters="filters" :selections="selections" />
+  <div value="app" class="container">
+    <div class="row">
+      <div class="col col-md-3">
+        <FilterContainer :filters="filters" v-model="selections" />
+      </div>
+      <div class="col col-md-8">
+        <pre>{{selections}}</pre>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,13 +20,8 @@ export default Vue.extend({
   data () {
     return {
       selections: {
-        search: '',
-        country: ['nl'],
-        materials: [],
-        biobank_quality: [],
-        collection_quality: [],
-        type: [],
-        dataType: []
+        search: 'value',
+        country: ['nl']
       },
       filters: [ {
         name: 'search',
@@ -28,6 +30,12 @@ export default Vue.extend({
         initiallyCollapsed: true,
         placeholder: 'test',
         type: 'string'
+      }, {
+        name: 'smoking',
+        label: 'Smoking',
+        initiallyCollapsed: false,
+        options: [{ value: true, label: 'Yes' }, { value: false, label: 'No' }, { value: null, label: 'N/A' }],
+        type: 'checkbox'
       }, {
         name: 'materials',
         label: 'Materials',
@@ -39,7 +47,7 @@ export default Vue.extend({
         name: 'country',
         label: 'Countries',
         initiallyCollapsed: false,
-        options: [{ id: 'id', label: 'label' }, { id: 'nl', label: 'Nederland' }, { id: 'de', label: 'Duitseland' }],
+        options: [{ value: 'value', label: 'label' }, { value: 'nl', label: 'Nederland' }, { value: 'de', label: 'Duitseland' }],
         type: 'checkbox'
       }, {
         name: 'biobank_quality',
