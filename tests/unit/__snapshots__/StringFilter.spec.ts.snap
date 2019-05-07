@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StringFilter.vue matches snapshot 1`] = `
+<div
+  class="input-group"
+  label="label"
+  role="group"
+>
+  <!---->
+  <!---->
+  <input
+    class="form-control"
+    id="__BVID__4"
+    placeholder="placeholder"
+    type="text"
+  />
+   
+  <div
+    class="input-group-append"
+  >
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+    >
+      
+      x
+    
+    </button>
+  </div>
+  <!---->
+  <!---->
+</div>
+`;

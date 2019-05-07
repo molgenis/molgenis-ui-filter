@@ -11,37 +11,7 @@ describe('StringFilter.vue', () => {
   })
 
   it('matches snapshot', () => {
-    expect(wrapper.element).toMatchInlineSnapshot(`
-<div
-  class="input-group"
-  label="label"
-  role="group"
->
-  <!---->
-  <!---->
-  <input
-    class="form-control"
-    id="__BVID__4"
-    placeholder="placeholder"
-    type="text"
-  />
-   
-  <div
-    class="input-group-append"
-  >
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-    >
-      
-      x
-    
-    </button>
-  </div>
-  <!---->
-  <!---->
-</div>
-`)
+    expect(wrapper.element).toMatchSnapshot()
   })
 
   it('Sets value property on inner input', () => {
