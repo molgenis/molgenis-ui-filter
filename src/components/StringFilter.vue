@@ -1,14 +1,18 @@
 <template>
   <b-input-group>
     <b-form-input
-      :name="name"
       v-model="model"
+      :name="name"
       :placeholder="placeholder"
       trim
-    >
-    </b-form-input>
+    />
     <b-input-group-append>
-      <b-button variant="outline-secondary" @click.prevent="model=''">x</b-button>
+      <b-button
+        variant="outline-secondary"
+        @click.prevent="model=''"
+      >
+        x
+      </b-button>
     </b-input-group-append>
   </b-input-group>
 </template>
@@ -17,9 +21,18 @@
 export default {
   name: 'StringFilter',
   props: {
-    name: String,
-    placeholder: String,
-    value: String
+    name: {
+      type: String,
+      required: true
+    },
+    placeholder: {
+      type: String,
+      default: () => undefined
+    },
+    value: {
+      type: String,
+      default: () => ''
+    }
   },
   computed: {
     model: {

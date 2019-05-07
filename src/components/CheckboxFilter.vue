@@ -1,20 +1,24 @@
 <template>
   <div>
     <b-form-checkbox-group
-      stacked
       v-model="selection"
+      stacked
       :options="visibleOptions"
       :name="name"
-    ></b-form-checkbox-group>
+    />
     <b-link
+      v-if="showToggleSlice"
       class="toggle-slice card-link"
       @click.prevent="toggleSlice"
-      v-if="showToggleSlice"
-    >{{toggleSliceText}}</b-link>
+    >
+      {{ toggleSliceText }}
+    </b-link>
     <b-link
       class="toggle-select card-link"
       @click.prevent="toggleSelect"
-    >{{toggleSelectText}}</b-link>
+    >
+      {{ toggleSelectText }}
+    </b-link>
   </div>
 </template>
 
@@ -24,22 +28,34 @@
 
 <script>
 export default {
-  data () {
-    return {
-      collapsed: this.initiallyCollapsed,
-      sliceOptions: this.maxVisibleOptions && this.options && this.maxVisibleOptions < this.options.length
-    }
-  },
   props: {
-    name: String,
-    label: String,
-    options: Array,
+    name: {
+      type: String,
+      default: () => undefined
+    },
+    label: {
+      type: String,
+      required: true
+    },
+    options: {
+      type: Array,
+      required: true
+    },
     value: {
       type: Array,
       default: () => []
     },
     initiallyCollapsed: Boolean,
-    maxVisibleOptions: Number
+    maxVisibleOptions: {
+      type: Number,
+      default: () => undefined
+    }
+  },
+  data () {
+    return {
+      collapsed: this.initiallyCollapsed,
+      sliceOptions: this.maxVisibleOptions && this.options && this.maxVisibleOptions < this.options.length
+    }
   },
   computed: {
     selection: {
@@ -63,20 +79,20 @@ export default {
       return this.sliceOptions ? `Show ${this.options.length - this.maxVisibleOptions} more` : 'Show less'
     }
   },
-  methods: {
-    toggleSelect () {
-      this.selection = this.selection && this.selection.length ? [] : this.options.map(option => option.value)
-    },
-    toggleSlice () {
-      this.sliceOptions = !this.sliceOptions
-    }
-  },
   watch: {
     options () {
       this.sliceOptions = this.showToggleSlice
     },
     maxVisibleOptions () {
       this.sliceOptions = this.showToggleSlice
+    }
+  },
+  methods: {
+    toggleSelect () {
+      this.selection = this.selection && this.selection.length ? [] : this.options.map(option => option.value)
+    },
+    toggleSlice () {
+      this.sliceOptions = !this.sliceOptions
     }
   }
 }

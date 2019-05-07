@@ -1,14 +1,25 @@
 <template>
-  <b-card no-body class="mb-2">
+  <b-card
+    no-body
+    class="filter-card mb-2"
+  >
     <b-card-header @click="collapsed = !collapsed">
-      <i class="fa fa-caret-right" aria-hidden="true" v-if="collapsed"></i>
-      <i class="fa fa-caret-down" aria-hidden="true" v-else></i>
-      {{label}}
+      <i
+        v-if="collapsed"
+        class="fa fa-caret-right"
+        aria-hidden="true"
+      />
+      <i
+        v-else
+        class="fa fa-caret-down"
+        aria-hidden="true"
+      />
+      {{ label }}
     </b-card-header>
     <b-collapse v-model="collapsed">
       <b-card-body>
         <b-form-group :description="description">
-          <slot></slot>
+          <slot />
         </b-form-group>
       </b-card-body>
     </b-collapse>
@@ -17,14 +28,20 @@
 
 <script>
 export default {
+  props: {
+    label: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      default: () => undefined
+    }
+  },
   data () {
     return {
       collapsed: this.initiallyCollapsed
     }
-  },
-  props: {
-    label: String,
-    description: String
   }
 }
 </script>

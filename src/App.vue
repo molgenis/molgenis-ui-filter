@@ -1,11 +1,17 @@
 <template>
-  <div value="app" class="container">
+  <div
+    id="app"
+    class="container"
+  >
     <div class="row">
       <div class="col col-md-3">
-        <FilterContainer :filters="filters" v-model="selections" />
+        <FilterContainer
+          v-model="selections"
+          :filters="filters"
+        />
       </div>
       <div class="col col-md-8">
-        <pre>{{selections}}</pre>
+        <pre>{{ selections }}</pre>
       </div>
     </div>
   </div>
@@ -16,7 +22,10 @@ import Vue from 'vue'
 import FilterContainer from './components/FilterContainer.vue'
 
 export default Vue.extend({
-  name: 'app',
+  name: 'App',
+  components: {
+    FilterContainer
+  },
   data () {
     return {
       selections: {
@@ -79,9 +88,6 @@ export default Vue.extend({
         type: 'checkbox'
       }]
     }
-  },
-  components: {
-    FilterContainer
   }
 })
 </script>
