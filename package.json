@@ -10,6 +10,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
+    "@molgenis/molgenis-api-client": "^3.1.0",
+    "@molgenis/molgenis-i18n-js": "^0.1.1",
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },
