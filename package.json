@@ -1,6 +1,7 @@
 {
   "name": "molgenis-ui-filter",
   "version": "0.1.0",
+  "license": "LGPL-3.0",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name filters src/components/index.ts",
