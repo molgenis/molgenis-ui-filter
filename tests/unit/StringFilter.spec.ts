@@ -33,7 +33,9 @@ describe('StringFilter.vue', () => {
       class="btn btn-outline-secondary"
       type="button"
     >
+      
       x
+    
     </button>
   </div>
   <!---->
