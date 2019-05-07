@@ -1,17 +1,16 @@
 <template>
-  <div class="input-group">
-    <input type="text"
-           :name="name"
-           class="form-control"
-           :placeholder="placeholder"
-           :aria-label="label"
-           v-model.lazy="model">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary"
-              type="button"
-              @click.prevent="model=''">x</button>
-    </div>
-  </div>
+  <b-input-group>
+    <b-form-input
+      :name="name"
+      v-model="model"
+      :placeholder="placeholder"
+      trim
+    >
+    </b-form-input>
+    <b-input-group-append>
+      <b-button variant="outline-secondary" @click.prevent="model=''">x</b-button>
+    </b-input-group-append>
+  </b-input-group>
 </template>
 
 <script>
@@ -19,7 +18,6 @@ export default {
   name: 'StringFilter',
   props: {
     name: String,
-    label: String,
     placeholder: String,
     value: String
   },
@@ -29,7 +27,7 @@ export default {
         return this.value || ''
       },
       set (value) {
-        this.$emit('input', value)
+        this.$emit('input', value === '' ? undefined : value)
       }
     }
   }

@@ -34,7 +34,7 @@ export default Vue.extend({
         name: 'smoking',
         label: 'Smoking',
         initiallyCollapsed: false,
-        options: [{ value: true, label: 'Yes' }, { value: false, label: 'No' }, { value: null, label: 'N/A' }],
+        options: [{ value: true, text: 'Yes' }, { value: false, text: 'No' }, { value: null, text: 'N/A' }],
         type: 'checkbox'
       }, {
         name: 'materials',
@@ -47,7 +47,7 @@ export default Vue.extend({
         name: 'country',
         label: 'Countries',
         initiallyCollapsed: false,
-        options: [{ value: 'value', label: 'label' }, { value: 'nl', label: 'Nederland' }, { value: 'de', label: 'Duitseland' }],
+        options: [{ value: 'value', text: 'label' }, { value: 'nl', text: 'Nederland' }, { value: 'de', text: 'Duitseland' }],
         type: 'checkbox'
       }, {
         name: 'biobank_quality',

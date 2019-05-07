@@ -1,22 +1,22 @@
 <template>
-  <div class="card filter-card">
-    <div class="card-header filter-header" @click.prevent="collapsed = !collapsed">
+  <b-card no-body class="mb-2">
+    <b-card-header @click="collapsed = !collapsed">
       <i class="fa fa-caret-right" aria-hidden="true" v-if="collapsed"></i>
       <i class="fa fa-caret-down" aria-hidden="true" v-else></i>
       {{label}}
-    </div>
-    <div class="card-body" v-if="!collapsed">
-      <div class="input-group">
-        <slot></slot>
-      </div>
-      <small v-if="description" class="form-text text-muted">{{description}}</small>
-    </div>
-  </div>
+    </b-card-header>
+    <b-collapse v-model="collapsed">
+      <b-card-body>
+        <b-form-group :description="description">
+          <slot></slot>
+        </b-form-group>
+      </b-card-body>
+    </b-collapse>
+  </b-card>
 </template>
 
 <script>
 export default {
-  name: 'FilterCard',
   data () {
     return {
       collapsed: this.initiallyCollapsed
@@ -28,9 +28,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .card{
-    margin-bottom:20px;
-  }
-</style>

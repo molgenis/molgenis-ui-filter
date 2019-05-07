@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import StringFilter from '@/components/StringFilter.vue'
+import { StringFilter } from '@/components'
 
 describe('StringFilter.vue', () => {
   const wrapper = mount(StringFilter, {
@@ -14,10 +14,14 @@ describe('StringFilter.vue', () => {
     expect(wrapper.element).toMatchInlineSnapshot(`
 <div
   class="input-group"
+  label="label"
+  role="group"
 >
+  <!---->
+  <!---->
   <input
-    aria-label="label"
     class="form-control"
+    id="__BVID__4"
     placeholder="placeholder"
     type="text"
   />
@@ -32,6 +36,8 @@ describe('StringFilter.vue', () => {
       x
     </button>
   </div>
+  <!---->
+  <!---->
 </div>
 `)
   })
@@ -41,8 +47,8 @@ describe('StringFilter.vue', () => {
     expect(inputElement.value).toBe('value')
   })
 
-  it('Emits empty string when button is clicked', () => {
+  it('Emits undefined when button is clicked', () => {
     wrapper.find('button').trigger('click')
-    expect(wrapper.emitted().input[0]).toEqual([''])
+    expect(wrapper.emitted().input[0]).toEqual([undefined])
   })
 })
