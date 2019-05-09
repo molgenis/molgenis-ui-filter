@@ -15,6 +15,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "@molgenis/molgenis-api-client": "^3.1.0",
     "@molgenis/molgenis-i18n-js": "^0.1.1",
+    "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },
@@ -33,6 +34,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "geckodriver": "^1.16.2",
     "ts-jest": "^23.0.0",
     "typescript": "^3.4.3",
     "vue-template-compiler": "^2.5.21"
@@ -43,7 +45,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/recommended",
       "@vue/standard",
       "@vue/typescript"
     ],
@@ -98,6 +100,9 @@
       }
     },
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.{js,vue}", "!**/node_modules/**"]
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!**/node_modules/**"
+    ]
   }
 }

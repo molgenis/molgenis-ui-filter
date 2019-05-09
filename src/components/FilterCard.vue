@@ -1,36 +1,47 @@
 <template>
-  <div class="card filter-card">
-    <div class="card-header filter-header" @click.prevent="collapsed = !collapsed">
-      <i class="fa fa-caret-right" aria-hidden="true" v-if="collapsed"></i>
-      <i class="fa fa-caret-down" aria-hidden="true" v-else></i>
-      {{label}}
-    </div>
-    <div class="card-body" v-if="!collapsed">
-      <div class="input-group">
-        <slot></slot>
-      </div>
-      <small v-if="description" class="form-text text-muted">{{description}}</small>
-    </div>
-  </div>
+  <b-card
+    no-body
+    class="filter-card mb-2"
+  >
+    <b-card-header @click="collapsed = !collapsed">
+      <i
+        v-if="collapsed"
+        class="fa fa-caret-right"
+        aria-hidden="true"
+      />
+      <i
+        v-else
+        class="fa fa-caret-down"
+        aria-hidden="true"
+      />
+      {{ label }}
+    </b-card-header>
+    <b-collapse v-model="collapsed">
+      <b-card-body>
+        <b-form-group :description="description">
+          <slot />
+        </b-form-group>
+      </b-card-body>
+    </b-collapse>
+  </b-card>
 </template>
 
 <script>
 export default {
-  name: 'FilterCard',
+  props: {
+    label: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      default: () => undefined
+    }
+  },
   data () {
     return {
       collapsed: this.initiallyCollapsed
     }
-  },
-  props: {
-    label: String,
-    description: String
   }
 }
 </script>
-
-<style scoped>
-  .card{
-    margin-bottom:20px;
-  }
-</style>
