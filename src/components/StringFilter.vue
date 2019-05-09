@@ -11,7 +11,7 @@
         variant="outline-secondary"
         @click.prevent="model=''"
       >
-        x
+        <font-awesome-icon icon="times" />
       </b-button>
     </b-input-group-append>
   </b-input-group>
