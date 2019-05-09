@@ -5,15 +5,9 @@
       :key="filter.name"
       v-bind="filter"
     >
-      <string-filter
-        v-if="filter.type === 'string'"
+      <component
+        :is="filter.type"
         :name="name"
-        :value="value[filter.name]"
-        v-bind="filter"
-        @input="(value) => selectionChange(filter.name, value)"
-      />
-      <checkbox-filter
-        v-if="filter.type === 'checkbox'"
         :value="value[filter.name]"
         v-bind="filter"
         @input="(value) => selectionChange(filter.name, value)"
