@@ -19,9 +19,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import FilterContainer from './components/FilterContainer.vue'
-import CheckboxFilter from './components/CheckboxFilter.vue'
-import StringFilter from './components/StringFilter.vue'
+import { FilterContainer, StringFilter, CheckboxFilter } from './components'
 
 export default Vue.extend({
   name: 'App',
