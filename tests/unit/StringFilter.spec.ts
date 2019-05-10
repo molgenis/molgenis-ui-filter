@@ -3,7 +3,11 @@ import { StringFilter } from '@/components'
 
 describe('StringFilter.vue', () => {
   const wrapper = mount(StringFilter, {
+    stubs: {
+      'font-awesome-icon': '<div />'
+    },
     propsData: {
+      name: 'name',
       label: 'label',
       placeholder: 'placeholder',
       value: 'value'
