@@ -16,7 +16,10 @@
       />
       {{ label }}
     </b-card-header>
-    <b-collapse :id="name" v-model="initiallyCollapsed">
+    <b-collapse
+      :id="name"
+      v-model="initiallyCollapsed"
+    >
       <b-card-body>
         <b-form-group :description="description">
           <slot />

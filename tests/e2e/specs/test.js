@@ -7,8 +7,8 @@ module.exports = {
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.filter-container')
-      .assert.containsText('pre', '"search": "value"')
-      .assert.elementCount('.filter-card', 8)
+      .assert.containsText('pre', '"string": ""')
+      .assert.elementCount('.filter-card', 2)
       .end()
   }
 }

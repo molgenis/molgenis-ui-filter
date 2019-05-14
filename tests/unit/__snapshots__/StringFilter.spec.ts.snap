@@ -11,6 +11,7 @@ exports[`StringFilter.vue matches snapshot 1`] = `
   <input
     class="form-control"
     id="__BVID__4"
+    name="name"
     placeholder="placeholder"
     type="text"
   />

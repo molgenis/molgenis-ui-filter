@@ -4,6 +4,7 @@ import { StringFilter } from '@/components'
 describe('StringFilter.vue', () => {
   const wrapper = mount(StringFilter, {
     propsData: {
+      name: 'name',
       label: 'label',
       placeholder: 'placeholder',
       value: 'value'
