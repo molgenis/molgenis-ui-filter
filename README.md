@@ -18,13 +18,13 @@ filters: [ {
     name: 'search',
     label: 'Search',
     description: 'search by name',
-    initiallyCollapsed: true,
+    collapsed: true,
     placeholder: 'test',
     type: SearchFilterVueObject
 }, {
     name: 'country',
     label: 'Countries',
-    initiallyCollapsed: false,
+    collapsed: false,
     options: [{ value: 'nl', text: 'Nederland' }, { value: 'de', text: 'Duitsland' }, { value: 'be', text: 'België' }],
     type: CheckboxVueObject
 }]
@@ -32,13 +32,13 @@ filters: [ {
 
 Every filter will have the following global properties:
 
-| name | required | description | 
-|------|----------|-------------|
-| name | true | string: name and id of the filter |
-| label | false | string: Name of the filter as used by the UI |
-| description | false |Descriptive text that is used by the UI |
-| initiallyCollapsed | true | boolean: Open/Closed state of the card that holds the filter |
-| type | true | Vue Object that renders the filter |
+| name        | required | default value | description | 
+|-------------|----------|---------------|-------------|
+| name        | true     | nvt           | string: name and id of the filter |
+| label       | false    |               | string: Name of the filter as used by the UI |
+| description | false    |               | Descriptive text that is used by the UI |
+| collapsed   | false    | true          | boolean: Open/Closed state of the card that holds the filter |
+| type        | true     | nvt           | Vue Object that renders the filter |
 
 The `type` field takes a VUE object that renders a filter. Note that every object can have additional filter properties
 

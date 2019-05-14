@@ -3,9 +3,9 @@
     no-body
     class="filter-card mb-2"
   >
-    <b-card-header @click="collapsed = !collapsed">
+    <b-card-header @click="initiallyCollapsed = !initiallyCollapsed">
       <i
-        v-if="collapsed"
+        v-if="initiallyCollapsed"
         class="fa fa-caret-right"
         aria-hidden="true"
       />
@@ -16,7 +16,7 @@
       />
       {{ label }}
     </b-card-header>
-    <b-collapse v-model="collapsed">
+    <b-collapse :id="name" v-model="initiallyCollapsed">
       <b-card-body>
         <b-form-group :description="description">
           <slot />
@@ -29,9 +29,18 @@
 <script>
 export default {
   props: {
+    name: {
+      type: String,
+      required: true
+    },
     label: {
       type: String,
       required: true
+    },
+    collapsed: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     description: {
       type: String,
@@ -40,7 +49,7 @@ export default {
   },
   data () {
     return {
-      collapsed: this.initiallyCollapsed
+      initiallyCollapsed: !this.collapsed
     }
   }
 }
