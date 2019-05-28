@@ -34,53 +34,53 @@ export default Vue.extend({
         name: 'search',
         label: 'Search',
         description: 'search by name',
-        initiallyCollapsed: true,
+        collapsed: true,
         placeholder: 'test',
         type: 'string-filter'
       }, {
         name: 'smoking',
         label: 'Smoking',
-        initiallyCollapsed: false,
+        collapsed: false,
         options: [{ value: true, text: 'Yes' }, { value: false, text: 'No' }, { value: null, text: 'N/A' }],
         type: 'checkbox-filter'
       }, {
         name: 'materials',
         label: 'Materials',
-        initiallyCollapsed: false,
+        collapsed: false,
         options: [],
         maxVisibleOptions: 4,
         type: 'checkbox-filter'
       }, {
         name: 'country',
         label: 'Countries',
-        initiallyCollapsed: false,
+        collapsed: false,
         options: [{ value: 'value', text: 'label' }, { value: 'nl', text: 'Nederland' }, { value: 'de', text: 'Duitseland' }],
         type: 'checkbox-filter'
       }, {
         name: 'biobank_quality',
         label: 'Biobank quality marks',
-        initiallyCollapsed: false,
+        collapsed: false,
         options: [],
         maxVisibleOptions: 4,
         type: 'checkbox-filter'
       }, {
         name: 'collection_quality',
         label: 'Collection quality marks',
-        initiallyCollapsed: false,
+        collapsed: false,
         options: [],
         maxVisibleOptions: 4,
         type: 'checkbox-filter'
       }, {
         name: 'type',
         label: 'Collection Types',
-        initiallyCollapsed: false,
+        collapsed: false,
         options: [],
         maxVisibleOptions: 4,
         type: 'checkbox-filter'
       }, {
         name: 'dataType',
         label: 'Data types',
-        initiallyCollapsed: false,
+        collapsed: false,
         options: [],
         maxVisibleOptions: 4,
         type: 'checkbox-filter'

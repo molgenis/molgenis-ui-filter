@@ -45,7 +45,6 @@ export default {
       type: Array,
       default: () => []
     },
-    initiallyCollapsed: Boolean,
     maxVisibleOptions: {
       type: Number,
       default: () => undefined
@@ -53,7 +52,6 @@ export default {
   },
   data () {
     return {
-      collapsed: this.initiallyCollapsed,
       sliceOptions: this.maxVisibleOptions && this.options && this.maxVisibleOptions < this.options.length
     }
   },

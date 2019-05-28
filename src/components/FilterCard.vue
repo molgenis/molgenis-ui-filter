@@ -3,7 +3,7 @@
     no-body
     class="filter-card mb-2"
   >
-    <b-card-header @click="collapsed = !collapsed">
+    <b-card-header @click="isOpen = !isOpen">
       <font-awesome-icon
         icon="caret-right"
         :style="iconStyle"
@@ -13,7 +13,7 @@
     </b-card-header>
     <b-collapse
       :id="name"
-      v-model="collapsed"
+      v-model="isOpen"
     >
       <b-card-body>
         <b-form-group :description="description">
@@ -35,6 +35,11 @@ export default {
       type: String,
       required: true
     },
+    collapsed: {
+      type: Boolean,
+      required: false,
+      default: () => true
+    },
     description: {
       type: String,
       default: () => undefined
@@ -42,7 +47,7 @@ export default {
   },
   data () {
     return {
-      collapsed: this.initiallyCollapsed
+      isOpen: !this.collapsed
     }
   },
   computed: {
