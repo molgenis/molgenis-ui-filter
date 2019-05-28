@@ -11,6 +11,7 @@ exports[`StringFilter.vue matches snapshot 1`] = `
   <input
     class="form-control"
     id="__BVID__4"
+    name="name"
     placeholder="placeholder"
     type="text"
   />
@@ -22,9 +23,9 @@ exports[`StringFilter.vue matches snapshot 1`] = `
       class="btn btn-outline-secondary"
       type="button"
     >
-      
-      x
-    
+      <div
+        icon="times"
+      />
     </button>
   </div>
   <!---->

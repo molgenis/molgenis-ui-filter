@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterCard.vue matches snapshot 1`] = `
+<div
+  class="card filter-card mb-2"
+>
+  <!---->
+  <!---->
+  <div
+    class="card-header"
+  >
+    <div
+      class="mr-2"
+      icon="caret-right"
+      style="transform: rotate(0deg); transition: transform 0.2s;"
+    />
+    
+    label
+  
+  </div>
+   
+  <div
+    class="collapse"
+    id="name"
+    style="display: none;"
+  >
+    <div
+      class="card-body"
+    >
+      <!---->
+      <!---->
+      <fieldset
+        aria-describedby="__BVID__7__BV_description_"
+        class="form-group"
+        id="__BVID__7"
+      >
+        <!---->
+        <div
+          role="group"
+          tabindex="-1"
+        >
+          <!---->
+          <!---->
+          <!---->
+          <small
+            class="form-text text-muted"
+            id="__BVID__7__BV_description_"
+            tabindex="-1"
+          >
+            description
+          </small>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <!---->
+  <!---->
+</div>
+`;
