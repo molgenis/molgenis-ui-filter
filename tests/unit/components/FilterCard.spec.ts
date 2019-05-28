@@ -3,6 +3,9 @@ import { FilterCard } from '@/components'
 
 describe('FilterCard.vue', () => {
   const wrapper = mount(FilterCard, {
+    stubs: {
+      'font-awesome-icon': '<div />'
+    },
     propsData: {
       name: 'name',
       label: 'label',
