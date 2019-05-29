@@ -49,6 +49,7 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
 | options              | true     | -             | Describe the checkboxes. The value property is used as key and the text property is used as label by the UI |
+| bulkOperation        | false    | true          | Adds 'select all' and or 'Deselect all' button |
 
 *Options example*
 ```

@@ -6,19 +6,21 @@
       :options="visibleOptions"
       :name="name"
     />
-    <b-link
-      v-if="showToggleSlice"
-      class="toggle-slice card-link"
-      @click.prevent="toggleSlice"
-    >
-      {{ toggleSliceText }}
-    </b-link>
-    <b-link
-      class="toggle-select card-link"
-      @click.prevent="toggleSelect"
-    >
-      {{ toggleSelectText }}
-    </b-link>
+    <span v-if="bulkOperation">
+      <b-link
+        v-if="showToggleSlice"
+        class="toggle-slice card-link"
+        @click.prevent="toggleSlice"
+      >
+        {{ toggleSliceText }}
+      </b-link>
+      <b-link
+        class="toggle-select card-link"
+        @click.prevent="toggleSelect"
+      >
+        {{ toggleSelectText }}
+      </b-link>
+    </span>
   </div>
 </template>
 
@@ -45,6 +47,11 @@ export default {
     value: {
       type: Array,
       default: () => []
+    },
+    bulkOperation: {
+      type: Boolean,
+      required: false,
+      default: () => true
     },
     maxVisibleOptions: {
       type: Number,
