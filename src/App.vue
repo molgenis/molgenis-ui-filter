@@ -42,7 +42,7 @@ export default Vue.extend({
         label: 'Checkbox',
         collapsed: true,
         bulkOperation: true,
-        options: [{ value: true, text: 'Yes' }, { value: false, text: 'No' }, { value: null, text: 'N/A' }],
+        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
         type: 'checkbox-filter'
       }]
     }
