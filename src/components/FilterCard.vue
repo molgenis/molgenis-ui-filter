@@ -3,8 +3,12 @@
     no-body
     class="filter-card mb-2"
   >
-    <b-card-header @click="isOpen = !isOpen">
+    <b-card-header
+      :class="collapsable ? 'collapsable' : ''"
+      @click="toggleState"
+    >
       <font-awesome-icon
+        v-if="collapsable"
         icon="caret-right"
         :style="iconStyle"
         class="mr-2"
@@ -40,6 +44,11 @@ export default {
       required: false,
       default: () => true
     },
+    collapsable: {
+      type: Boolean,
+      required: false,
+      default: () => true
+    },
     description: {
       type: String,
       default: () => undefined
@@ -47,22 +56,34 @@ export default {
   },
   data () {
     return {
-      isOpen: !this.collapsed
+      isOpen: this.collapsable ? !this.collapsed : true
     }
   },
   computed: {
     iconStyle () {
       return {
-        transform: `rotate(${this.collapsed ? 90 : 0}deg)`,
+        transform: `rotate(${this.isOpen ? 90 : 0}deg)`,
         transition: 'transform 0.2s'
       }
+    }
+  },
+  methods: {
+    toggleState () {
+      if (this.collapsable) {
+        this.isOpen = !this.isOpen
+        return this.isOpen
+      }
+      return false
     }
   }
 }
 </script>
 
 <style scoped>
-  .card-header {
+  .card-header.collapsable {
     cursor: pointer;
+  }
+  .form-group {
+    margin-bottom:0;
   }
 </style>

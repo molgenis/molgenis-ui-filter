@@ -27,62 +27,21 @@ export default Vue.extend({
   data () {
     return {
       selections: {
-        search: 'value',
-        country: ['nl']
+        string: '',
+        name: ['value2']
       },
       filters: [ {
-        name: 'search',
-        label: 'Search',
-        description: 'search by name',
+        name: 'string',
+        label: 'String',
+        description: 'search by string',
+        placeholder: 'placeholder',
+        type: 'string-filter',
+        collapsable: false
+      }, {
+        name: 'checkbox',
+        label: 'Checkbox',
         collapsed: true,
-        placeholder: 'test',
-        type: 'string-filter'
-      }, {
-        name: 'smoking',
-        label: 'Smoking',
-        collapsed: false,
         options: [{ value: true, text: 'Yes' }, { value: false, text: 'No' }, { value: null, text: 'N/A' }],
-        type: 'checkbox-filter'
-      }, {
-        name: 'materials',
-        label: 'Materials',
-        collapsed: false,
-        options: [],
-        maxVisibleOptions: 4,
-        type: 'checkbox-filter'
-      }, {
-        name: 'country',
-        label: 'Countries',
-        collapsed: false,
-        options: [{ value: 'value', text: 'label' }, { value: 'nl', text: 'Nederland' }, { value: 'de', text: 'Duitseland' }],
-        type: 'checkbox-filter'
-      }, {
-        name: 'biobank_quality',
-        label: 'Biobank quality marks',
-        collapsed: false,
-        options: [],
-        maxVisibleOptions: 4,
-        type: 'checkbox-filter'
-      }, {
-        name: 'collection_quality',
-        label: 'Collection quality marks',
-        collapsed: false,
-        options: [],
-        maxVisibleOptions: 4,
-        type: 'checkbox-filter'
-      }, {
-        name: 'type',
-        label: 'Collection Types',
-        collapsed: false,
-        options: [],
-        maxVisibleOptions: 4,
-        type: 'checkbox-filter'
-      }, {
-        name: 'dataType',
-        label: 'Data types',
-        collapsed: false,
-        options: [],
-        maxVisibleOptions: 4,
         type: 'checkbox-filter'
       }]
     }

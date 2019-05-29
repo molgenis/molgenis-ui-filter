@@ -31,11 +31,12 @@ export default {
   props: {
     name: {
       type: String,
-      default: () => undefined
+      required: true
     },
     label: {
       type: String,
-      required: true
+      required: false,
+      default: () => ''
     },
     options: {
       type: Array,
