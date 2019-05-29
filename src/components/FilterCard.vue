@@ -37,7 +37,8 @@ export default {
     },
     label: {
       type: String,
-      required: true
+      required: false,
+      default: () => ''
     },
     collapsed: {
       type: Boolean,
@@ -51,7 +52,8 @@ export default {
     },
     description: {
       type: String,
-      default: () => undefined
+      required: false,
+      default: () => ''
     }
   },
   data () {
