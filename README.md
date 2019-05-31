@@ -37,11 +37,12 @@ Every filter will have the following global properties:
 
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
-| name                 | true     | *nvt*         | string: name and id of the filter |
-| label                | true     |               | string: Name of the filter as used by the UI |
+| name                 | true     | *na*          | string: name and id of the filter |
+| label                | false    |               | string: Name of the filter as used by the UI |
 | description          | false    |               | Descriptive text that is used by the UI |
-| initiallyCollapsed   | false    | true          | boolean: Open/Closed state of the card that holds the filter |
-| type                 | true     | *nvt*         | Vue Object that renders the filter |
+| collapsed            | false    | true          | boolean: Open/Closed state of the card that holds the filter |
+| collapsable          | false    | true          | boolean: Can the card be collapsed. This will force the card to be open by default if set to false |
+| type                 | true     | *na*          | Vue Object that renders the filter |
 
 The `type` field takes a VUE object that renders a filter. Note that every object can have additional filter properties
 
@@ -50,7 +51,8 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
-| options              | true     | *nvt*         | Describe the checkboxes. The value property is used as key and the text property is used as label by the UI |
+| options              | true     | *na*          | Describe the checkboxes. The value property is used as key and the text property is used as label by the UI |
+| bulkOperation        | false    | true          | Adds 'select all' and or 'Deselect all' button |
 
 *Options example*
 ```
@@ -60,7 +62,7 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 #### StringFilter
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
-| placeholder          | false    | *undefined*   | Placeholder in the input field |
+| placeholder          | false    |               | Placeholder in the input field |
 
 
 ### Resulting output object

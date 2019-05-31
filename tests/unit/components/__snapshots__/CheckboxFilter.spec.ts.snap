@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxFilter.vue matches snapshot 1`] = `
+<div>
+  <div
+    class=""
+    id="__BVID__4"
+    role="group"
+    tabindex="-1"
+  >
+    <div
+      class="custom-control custom-checkbox"
+    >
+      <input
+        autocomplete="off"
+        class="custom-control-input"
+        id="__BVID__4__BV_option_0_"
+        name="name"
+        type="checkbox"
+        value="foo"
+      />
+      <label
+        class="custom-control-label"
+        for="__BVID__4__BV_option_0_"
+      >
+        <span>
+          Foo
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-control custom-checkbox"
+    >
+      <input
+        autocomplete="off"
+        class="custom-control-input"
+        id="__BVID__4__BV_option_1_"
+        name="name"
+        type="checkbox"
+        value="bar"
+      />
+      <label
+        class="custom-control-label"
+        for="__BVID__4__BV_option_1_"
+      >
+        <span>
+          Bar
+        </span>
+      </label>
+    </div>
+    <div
+      class="custom-control custom-checkbox"
+    >
+      <input
+        autocomplete="off"
+        class="custom-control-input"
+        id="__BVID__4__BV_option_2_"
+        name="name"
+        type="checkbox"
+        value="baz"
+      />
+      <label
+        class="custom-control-label"
+        for="__BVID__4__BV_option_2_"
+      >
+        <span>
+          Baz
+        </span>
+      </label>
+    </div>
+  </div>
+   
+  <span>
+    <!---->
+     
+    <a
+      class="toggle-select card-link"
+      href="#"
+      target="_self"
+    >
+      
+      Select all
+    
+    </a>
+  </span>
+</div>
+`;

@@ -7,7 +7,7 @@ exports[`FilterCard.vue matches snapshot 1`] = `
   <!---->
   <!---->
   <div
-    class="card-header"
+    class="card-header collapsable"
   >
     <div
       class="mr-2"
@@ -30,9 +30,9 @@ exports[`FilterCard.vue matches snapshot 1`] = `
       <!---->
       <!---->
       <fieldset
-        aria-describedby="__BVID__7__BV_description_"
+        aria-describedby="__BVID__13__BV_description_"
         class="form-group"
-        id="__BVID__7"
+        id="__BVID__13"
       >
         <!---->
         <div
@@ -44,7 +44,7 @@ exports[`FilterCard.vue matches snapshot 1`] = `
           <!---->
           <small
             class="form-text text-muted"
-            id="__BVID__7__BV_description_"
+            id="__BVID__13__BV_description_"
             tabindex="-1"
           >
             description

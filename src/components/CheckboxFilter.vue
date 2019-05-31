@@ -6,19 +6,21 @@
       :options="visibleOptions"
       :name="name"
     />
-    <b-link
-      v-if="showToggleSlice"
-      class="toggle-slice card-link"
-      @click.prevent="toggleSlice"
-    >
-      {{ toggleSliceText }}
-    </b-link>
-    <b-link
-      class="toggle-select card-link"
-      @click.prevent="toggleSelect"
-    >
-      {{ toggleSelectText }}
-    </b-link>
+    <span v-if="bulkOperation">
+      <b-link
+        v-if="showToggleSlice"
+        class="toggle-slice card-link"
+        @click.prevent="toggleSlice"
+      >
+        {{ toggleSliceText }}
+      </b-link>
+      <b-link
+        class="toggle-select card-link"
+        @click.prevent="toggleSelect"
+      >
+        {{ toggleSelectText }}
+      </b-link>
+    </span>
   </div>
 </template>
 
@@ -31,11 +33,12 @@ export default {
   props: {
     name: {
       type: String,
-      default: () => undefined
+      required: true
     },
     label: {
       type: String,
-      required: true
+      required: false,
+      default: () => ''
     },
     options: {
       type: Array,
@@ -45,7 +48,11 @@ export default {
       type: Array,
       default: () => []
     },
-    initiallyCollapsed: Boolean,
+    bulkOperation: {
+      type: Boolean,
+      required: false,
+      default: () => true
+    },
     maxVisibleOptions: {
       type: Number,
       default: () => undefined
@@ -53,7 +60,6 @@ export default {
   },
   data () {
     return {
-      collapsed: this.initiallyCollapsed,
       sliceOptions: this.maxVisibleOptions && this.options && this.maxVisibleOptions < this.options.length
     }
   },
