@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterContainer.vue matches snapshot 1`] = `
+<div
+  class="filter-container"
+  selections="[object Object]"
+>
+  <filter-card-stub
+    collapsed="true"
+    description="search by string"
+    label="String"
+    name="string"
+    placeholder="placeholder"
+    type="string-filter"
+  >
+    <string-filter-stub
+      description="search by string"
+      label="String"
+      name="string"
+      placeholder="placeholder"
+      type="string-filter"
+      value=""
+    />
+  </filter-card-stub>
+  <filter-card-stub
+    bulkoperation="true"
+    collapsable="true"
+    collapsed="true"
+    description=""
+    label="Checkbox"
+    name="checkbox"
+    options="[object Object],[object Object],[object Object]"
+    type="checkbox-filter"
+  >
+    <checkbox-filter-stub
+      bulkoperation="true"
+      collapsed="true"
+      label="Checkbox"
+      name="checkbox"
+      options="[object Object],[object Object],[object Object]"
+      type="checkbox-filter"
+      value=""
+    />
+  </filter-card-stub>
+</div>
+`;
