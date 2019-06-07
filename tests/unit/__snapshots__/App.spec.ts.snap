@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StringFilter.vue matches snapshot 1`] = `
+<div
+  class="container"
+  id="app"
+>
+  <div
+    class="row"
+  >
+    <div
+      class="col col-md-3"
+    >
+      <filtercontainer-stub
+        filters="[object Object],[object Object]"
+        value="[object Object]"
+      />
+    </div>
+     
+    <div
+      class="col col-md-8"
+    >
+      <pre>
+        {
+  "string": "",
+  "name": [
+    "value2"
+  ]
+}
+      </pre>
+    </div>
+  </div>
+</div>
+`;

@@ -9,7 +9,6 @@ describe('StringFilter.vue', () => {
     propsData: {
       name: 'name',
       label: 'label',
-      placeholder: 'placeholder',
       value: 'value'
     }
   })

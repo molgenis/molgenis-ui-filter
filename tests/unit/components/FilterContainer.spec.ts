@@ -1,8 +1,8 @@
-import { shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { FilterContainer } from '@/components'
 
 describe('FilterContainer.vue', () => {
-  const wrapper = shallowMount(FilterContainer, {
+  const wrapper = mount(FilterContainer, {
     stubs: {
       'font-awesome-icon': '<div />'
     },
@@ -21,7 +21,7 @@ describe('FilterContainer.vue', () => {
       }, {
         name: 'checkbox',
         label: 'Checkbox',
-        collapsed: true,
+        collapsed: false,
         bulkOperation: true,
         options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
         type: 'checkbox-filter'
@@ -29,14 +29,13 @@ describe('FilterContainer.vue', () => {
     }
   })
 
-  it('matches snapshot', () => {
+  it('creates Filters from the `filters` definition', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('Creates Filters from the `filters` definition', () => {
-    expect(wrapper.contains("filter-card-stub[name='string']")).toBe(true)
-    expect(wrapper.contains("filter-card-stub[name='checkbox']")).toBe(true)
-    expect(wrapper.contains("string-filter-stub[label='String']")).toBe(true)
-    expect(wrapper.contains("checkbox-filter-stub[label='Checkbox']")).toBe(true)
+  it('consolidates all filter output and sends them via input event', () => {
+    wrapper.find('input[name="string"]').setValue('test')
+    wrapper.find('input[value="red"]').trigger('click')
+    expect(wrapper.emitted().input).toEqual([ [ { string: 'test' } ], [ { checkbox: [ 'red' ] } ] ])
   })
 })

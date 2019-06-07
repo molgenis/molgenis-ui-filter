@@ -11,6 +11,7 @@ module.exports = {
       .assert.elementCount('.filter-card', 2)
       .end()
   },
+
   'String filter': browser => {
     browser.url(process.env.VUE_DEV_SERVER_URL)
     browser.waitForElementVisible('input[name="string"]', 5000)
@@ -22,6 +23,7 @@ module.exports = {
     browser.assert.value('input[name="string"]', '')
     browser.end()
   },
+
   'Checkbox filter': browser => {
     browser.url(process.env.VUE_DEV_SERVER_URL)
     browser.waitForElementVisible('[type="checkbox-filter"]', 5000)
