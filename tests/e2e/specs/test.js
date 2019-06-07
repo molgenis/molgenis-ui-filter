@@ -12,18 +12,6 @@ module.exports = {
       .end()
   },
 
-  'String filter': browser => {
-    browser.url(process.env.VUE_DEV_SERVER_URL)
-    browser.waitForElementVisible('input[name="string"]', 5000)
-    browser.setValue('input[name="string"]', 'test')
-    browser.pause(300)
-    browser.assert.value('input[name="string"]', 'test')
-    browser.click('[type="string-filter"] button.btn')
-    browser.pause(300)
-    browser.assert.value('input[name="string"]', '')
-    browser.end()
-  },
-
   'Checkbox filter': browser => {
     browser.url(process.env.VUE_DEV_SERVER_URL)
     browser.waitForElementVisible('[type="checkbox-filter"]', 5000)
