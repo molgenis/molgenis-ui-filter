@@ -10,20 +10,5 @@ module.exports = {
       .assert.containsText('pre', '"string": ""')
       .assert.elementCount('.filter-card', 2)
       .end()
-  },
-
-  'Checkbox filter': browser => {
-    browser.url(process.env.VUE_DEV_SERVER_URL)
-    browser.waitForElementVisible('[type="checkbox-filter"]', 5000)
-    browser.click('[type="checkbox-filter"] .card-header.collapsable')
-    browser.pause(300)
-    browser.expect.element('[type="checkbox-filter"] input[value="red"]').is.not.selected
-    browser.click('[type="checkbox-filter"] a.toggle-select')
-    browser.pause(300)
-    browser.expect.element('[type="checkbox-filter"] input[value="red"]').is.selected
-    browser.click('[type="checkbox-filter"] a.toggle-select')
-    browser.pause(300)
-    browser.expect.element('[type="checkbox-filter"] input[value="red"]').is.not.selected
-    browser.end()
   }
 }
