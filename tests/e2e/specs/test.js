@@ -28,13 +28,13 @@ module.exports = {
     browser.url(process.env.VUE_DEV_SERVER_URL)
     browser.waitForElementVisible('[type="checkbox-filter"]', 5000)
     browser.click('[type="checkbox-filter"] .card-header.collapsable')
-    browser.pause(200)
+    browser.pause(400)
     browser.expect.element('[type="checkbox-filter"] input[value="red"]').is.not.selected
     browser.click('[type="checkbox-filter"] a.toggle-select')
-    browser.pause(100)
+    browser.pause(200)
     browser.expect.element('[type="checkbox-filter"] input[value="red"]').is.selected
     browser.click('[type="checkbox-filter"] a.toggle-select')
-    browser.pause(100)
+    browser.pause(200)
     browser.expect.element('[type="checkbox-filter"] input[value="red"]').is.not.selected
     browser.end()
   }
