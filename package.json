@@ -36,7 +36,8 @@
     "@molgenis/molgenis-i18n-js": "^0.1.1",
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vuedraggable": "^2.21.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",

@@ -5,9 +5,11 @@
   >
     <div class="row">
       <div class="col col-md-3">
-        <FilterContainer
+        <filter-container
           v-model="selections"
           :filters="filters"
+          :filters-shown="filtersShown"
+          :can-edit="true"
         />
       </div>
       <div class="col col-md-8">
@@ -19,20 +21,28 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import * as components from './components'
+import * as components from './components/filters'
+import { FilterContainer } from './components/'
 
 export default Vue.extend({
   name: 'App',
-  components,
+  'components': { FilterContainer, ...components },
   data () {
     return {
       selections: {
-        string: '',
-        name: ['value2']
+        string: 'test'
       },
+      filtersShown: ['string', 'checkbox'],
       filters: [ {
         name: 'string',
-        label: 'String',
+        label: 'String String String String String',
+        description: 'search by string',
+        placeholder: 'placeholder',
+        type: 'string-filter',
+        collapsable: false
+      }, {
+        name: 'string2',
+        label: 'String2',
         description: 'search by string',
         placeholder: 'placeholder',
         type: 'string-filter',
