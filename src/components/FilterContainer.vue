@@ -9,6 +9,7 @@
       :class="canEdit?(drag?'dragdrop dragging':'dragdrop'):''"
       @choose="drag=true"
       @end="drag=false"
+      @input="selectionUpdate"
     >
       <transition-group>
         <filter-card
@@ -32,7 +33,7 @@
       v-if="listOfInvisibleFilters.length>0"
       v-model="filtersToShow"
       :filters="listOfInvisibleFilters"
-      @input="addFilter"
+      @input="selectionUpdate"
     />
   </div>
 </template>
@@ -90,11 +91,11 @@ export default {
       delete selections[name]
       this.$emit('input', selections)
     },
-    addFilter () {
-      this.$emit('update', this.filtersToShow)
-    },
     selectionChange (name, value) {
       this.$emit('input', { ...this.value, [name]: value })
+    },
+    selectionUpdate () {
+      this.$emit('update', this.filtersToShow)
     }
   }
 }

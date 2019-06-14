@@ -10,16 +10,20 @@
           :filters="filters"
           :filters-shown="filtersShown"
           :can-edit="true"
+          @update="updateState"
         />
       </div>
       <div class="col col-md-8">
-        <pre>{{ selections }}</pre>
+        <pre><strong>selections:</strong>
+{{ selections }}</pre>
+        <pre><strong>visibility:</strong>
+{{ filtersShown }}</pre>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import * as components from './components/filters'
 import { FilterContainer } from './components/'
@@ -30,23 +34,41 @@ export default Vue.extend({
   data () {
     return {
       selections: {
-        string: 'test'
+        search: 'test'
       },
-      filtersShown: ['string', 'checkbox'],
+      filtersShown: ['search', 'color', 'name', 'price'],
       filters: [ {
-        name: 'string',
-        label: 'String String String String String',
+        name: 'search',
+        label: 'Search',
         description: 'search by string',
         placeholder: 'placeholder',
         type: 'string-filter',
         collapsable: false
       }, {
-        name: 'string2',
-        label: 'String2',
+        name: 'color',
+        label: 'Color',
+        collapsed: false,
+        bulkOperation: true,
+        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        type: 'checkbox-filter'
+      }, {
+        name: 'name',
+        label: 'Name',
+        description: 'Name of object',
+        type: 'string-filter',
+        collapsed: false
+      }, {
+        name: 'price',
+        label: 'Price',
+        type: 'string-filter'
+      }, {
+        name: 'string',
+        label: 'String',
         description: 'search by string',
         placeholder: 'placeholder',
         type: 'string-filter',
-        collapsable: false
+        collapsable: true,
+        collapsed: false
       }, {
         name: 'checkbox',
         label: 'Checkbox',
@@ -54,7 +76,19 @@ export default Vue.extend({
         bulkOperation: true,
         options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
         type: 'checkbox-filter'
+      }, {
+        name: 'long-name',
+        label: 'Way to long name to really fit in the user interface',
+        collapsed: true,
+        bulkOperation: true,
+        options: [{ value: 'yes', text: 'Yes' }, { value: 'no', text: 'No' }],
+        type: 'checkbox-filter'
       }]
+    }
+  },
+  methods: {
+    updateState (newState) {
+      this.filtersShown = newState
     }
   }
 })
