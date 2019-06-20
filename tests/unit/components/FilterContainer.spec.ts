@@ -29,7 +29,7 @@ describe('FilterContainer.vue', () => {
     }
   })
 
-  it('creates Filters from the `filters` definition', () => {
+  it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 

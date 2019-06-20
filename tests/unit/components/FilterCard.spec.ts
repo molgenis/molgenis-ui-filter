@@ -38,7 +38,7 @@ describe('FilterCard.vue', () => {
     }
   })
 
-  it('matches snapshot', () => {
+  it('matches the snapshot', () => {
     expect(startClosed.element).toMatchSnapshot()
   })
 

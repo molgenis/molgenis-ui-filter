@@ -13,16 +13,16 @@ describe('StringFilter.vue', () => {
     }
   })
 
-  it('matches snapshot', () => {
+  it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('Sets value property on inner input', () => {
+  it('sets value property on inner input', () => {
     const inputElement = wrapper.find('input').element as HTMLInputElement
     expect(inputElement.value).toBe('value')
   })
 
-  it('Emits undefined when button is clicked', () => {
+  it('emits undefined when button is clicked', () => {
     wrapper.find('button').trigger('click')
     expect(wrapper.emitted().input[0]).toEqual([undefined])
   })

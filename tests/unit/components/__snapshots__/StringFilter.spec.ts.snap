@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StringFilter.vue matches snapshot 1`] = `
+exports[`StringFilter.vue matches the snapshot 1`] = `
 <div
   class="input-group"
   label="label"

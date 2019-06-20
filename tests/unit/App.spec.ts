@@ -4,7 +4,7 @@ import App from '@/App.vue'
 describe('StringFilter.vue', () => {
   const wrapper = shallowMount(App)
 
-  it('matches snapshot', () => {
+  it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 })

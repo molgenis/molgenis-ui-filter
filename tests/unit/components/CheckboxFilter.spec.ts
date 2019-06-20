@@ -4,34 +4,32 @@ import { CheckboxFilter } from '@/components'
 describe('CheckboxFilter.vue', () => {
   const options = [{ value: 'foo', text: 'Foo' }, { value: 'bar', text: 'Bar' }, { value: 'baz', text: 'Baz' }]
 
-  describe('snapshot and values', () => {
-    const wrapper = mount(CheckboxFilter, {
-      stubs: {
-        'font-awesome-icon': '<div />'
-      },
-      propsData: {
-        name: 'name',
-        label: 'label',
-        value: [],
-        options
-      }
-    })
-    const inputElements = wrapper.findAll('input')
+  const wrapper = mount(CheckboxFilter, {
+    stubs: {
+      'font-awesome-icon': '<div />'
+    },
+    propsData: {
+      name: 'name',
+      label: 'label',
+      value: [],
+      options
+    }
+  })
+  const inputElements = wrapper.findAll('input')
 
-    it('matches snapshot', () => {
-      expect(wrapper.element).toMatchSnapshot()
-    })
-
-    it('Can set and unset values', () => {
-      inputElements.at(0).trigger('click') // select foo
-      inputElements.at(1).trigger('click') // select bar
-      inputElements.at(2).trigger('click') // select baz
-      inputElements.at(1).trigger('click') // deselect bar
-      expect(wrapper.emitted('input')[3]).toEqual([['foo', 'baz']])
-    })
+  it('matches the snapshot', () => {
+    expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('Can select all and deselect all', () => {
+  it('can set and unset values', () => {
+    inputElements.at(0).trigger('click') // select foo
+    inputElements.at(1).trigger('click') // select bar
+    inputElements.at(2).trigger('click') // select baz
+    inputElements.at(1).trigger('click') // deselect bar
+    expect(wrapper.emitted('input')[3]).toEqual([['foo', 'baz']])
+  })
+
+  it('can select all and deselect all', () => {
     const unselected = mount(CheckboxFilter, {
       stubs: {
         'font-awesome-icon': '<div />'
