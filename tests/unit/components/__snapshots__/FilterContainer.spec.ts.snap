@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FilterContainer.vue creates Filters from the \`filters\` definition 1`] = `
+exports[`FilterContainer.vue matches the snapshot 1`] = `
 <div
   class="filter-container"
   selections="[object Object]"
