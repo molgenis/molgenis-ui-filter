@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FilterCard.vue matches snapshot 1`] = `
+exports[`FilterCard.vue matches the snapshot 1`] = `
 <div
   class="card filter-card mb-2"
 >
