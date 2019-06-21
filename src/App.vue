@@ -17,7 +17,7 @@
         <pre><strong>selections:</strong>
 {{ selections }}</pre>
         <pre><strong>visibility:</strong>
-{{ filtersShown }}</pre>
+        {{ filtersShown }}</pre>
       </div>
     </div>
   </div>
