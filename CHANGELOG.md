@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.0.1...v1.1.0) (2019-06-24)
+
+
+### Features
+
+* Added crud operations to filters ([b72a450](https://github.com/molgenis/molgenis-ui-filter/commit/b72a450))
+
 ## [1.0.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.0.0...v1.0.1) (2019-06-07)
 
 
