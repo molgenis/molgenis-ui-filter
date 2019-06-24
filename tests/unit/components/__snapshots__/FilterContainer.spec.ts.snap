@@ -3,7 +3,6 @@
 exports[`FilterContainer.vue matches the snapshot 1`] = `
 <div
   class="filter-container"
-  selections="[object Object]"
 >
   <div
     class=""
@@ -41,9 +40,9 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
             <!---->
             <!---->
             <fieldset
-              aria-describedby="__BVID__9__BV_description_"
+              aria-describedby="__BVID__30__BV_description_"
               class="form-group"
-              id="__BVID__9"
+              id="__BVID__30"
             >
               <!---->
               <div
@@ -61,7 +60,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                   <!---->
                   <input
                     class="form-control"
-                    id="__BVID__11"
+                    id="__BVID__32"
                     name="string"
                     placeholder="placeholder"
                     type="text"
@@ -86,7 +85,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                 <!---->
                 <small
                   class="form-text text-muted"
-                  id="__BVID__9__BV_description_"
+                  id="__BVID__30__BV_description_"
                   tabindex="-1"
                 >
                   search by string
@@ -136,7 +135,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
             <!---->
             <fieldset
               class="form-group"
-              id="__BVID__17"
+              id="__BVID__38"
             >
               <!---->
               <div
@@ -148,7 +147,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                 >
                   <div
                     class=""
-                    id="__BVID__19"
+                    id="__BVID__40"
                     role="group"
                     tabindex="-1"
                   >
@@ -158,14 +157,14 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="custom-control-input"
-                        id="__BVID__19__BV_option_0_"
+                        id="__BVID__40__BV_option_0_"
                         name="checkbox"
                         type="checkbox"
                         value="red"
                       />
                       <label
                         class="custom-control-label"
-                        for="__BVID__19__BV_option_0_"
+                        for="__BVID__40__BV_option_0_"
                       >
                         <span>
                           Red
@@ -178,14 +177,14 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="custom-control-input"
-                        id="__BVID__19__BV_option_1_"
+                        id="__BVID__40__BV_option_1_"
                         name="checkbox"
                         type="checkbox"
                         value="green"
                       />
                       <label
                         class="custom-control-label"
-                        for="__BVID__19__BV_option_1_"
+                        for="__BVID__40__BV_option_1_"
                       >
                         <span>
                           Green
@@ -198,14 +197,14 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                       <input
                         autocomplete="off"
                         class="custom-control-input"
-                        id="__BVID__19__BV_option_2_"
+                        id="__BVID__40__BV_option_2_"
                         name="checkbox"
                         type="checkbox"
                         value="blue"
                       />
                       <label
                         class="custom-control-label"
-                        for="__BVID__19__BV_option_2_"
+                        for="__BVID__40__BV_option_2_"
                       >
                         <span>
                           Blue
@@ -223,7 +222,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                       target="_self"
                     >
                       
-      Select all
+      Deselect all
     
                     </a>
                   </span>
