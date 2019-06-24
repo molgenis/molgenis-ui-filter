@@ -17,7 +17,7 @@
           :key="filter.name"
           v-bind="filter"
           :can-remove="canEdit"
-          @removeFilter="removeFilter"
+          @removeFilter="removeFilter(filter.name)"
         >
           <component
             :is="filter.type"
@@ -31,7 +31,7 @@
     </draggable>
 
     <add-filter-modal
-      v-if="listOfInvisibleFilters.length>0"
+      v-if="canEdit && listOfInvisibleFilters.length > 0"
       v-model="filtersToShow"
       :filters="listOfInvisibleFilters"
       @input="selectionUpdate"
