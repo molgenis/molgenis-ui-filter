@@ -78,7 +78,7 @@ export default Vue.extend({
         type: 'checkbox-filter'
       }, {
         name: 'long-name',
-        label: 'Way to long name to really fit in the user interface',
+        label: 'Way too long name to really fit in the user interface',
         collapsed: true,
         bulkOperation: true,
         options: [{ value: 'yes', text: 'Yes' }, { value: 'no', text: 'No' }],
