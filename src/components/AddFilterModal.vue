@@ -3,7 +3,7 @@
     <b-button
       v-b-modal.modal-add-filter
       variant="outline-secondary"
-      class="w-100 mt-2"
+      class="w-100 mt-2 add-button"
     >
       Add a filter
     </b-button>
@@ -14,20 +14,11 @@
       @ok="addFilter"
       @show="resetModal"
     >
-      <div class="form-group input-group">
-        <select
-          v-model="selected"
-          class="custom-select"
-        >
-          <option
-            v-for="filter in filters"
-            :key="filter.name"
-            :value="filter.name"
-          >
-            {{ filter.label }}
-          </option>
-        </select>
-      </div>
+      <b-form-select
+        v-model="selected"
+        name="filter"
+        :options="options"
+      />
     </b-modal>
   </div>
 </template>
@@ -48,6 +39,14 @@ export default {
   data () {
     return {
       selected: null
+    }
+  },
+  computed: {
+    options () {
+      return this.filters.map(it => ({
+        value: it.name,
+        text: it.label
+      }))
     }
   },
   methods: {
