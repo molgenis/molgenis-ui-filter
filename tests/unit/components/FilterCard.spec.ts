@@ -65,4 +65,23 @@ describe('FilterCard.vue', () => {
     noCollapsable.find('.card-header').trigger('click')
     expect(noCollapsable.find('small.form-text').isVisible()).toBeTruthy() // Closed again
   })
+
+  it('Warns if the close button is clicked', () => {
+    const close = mount(FilterCard, {
+      stubs: {
+        'font-awesome-icon': '<div />'
+      },
+      propsData: {
+        name: 'name',
+        label: 'label',
+        description: 'description',
+        collapsable: false,
+        collapsed: true,
+        canRemove: true
+      }
+    })
+    expect(close.emitted().removeFilter).toBeUndefined()
+    close.find('.remove-button').trigger('click')
+    expect(close.emitted().removeFilter[0]).toEqual(['name'])
+  })
 })

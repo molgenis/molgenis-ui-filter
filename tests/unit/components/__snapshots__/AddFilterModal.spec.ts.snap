@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddFilterModal.vue matches snapshot 1`] = `
+<div>
+  <button
+    class="btn w-100 mt-2 add-button btn-outline-secondary"
+    type="button"
+  >
+    
+    Add a filter
+  
+  </button>
+   
+  <div>
+    <div
+      id="modal-add-filter___BV_modal_outer_"
+      style="position: absolute; z-index: 1040;"
+    >
+      <div
+        aria-hidden="true"
+        class="modal fade"
+        id="modal-add-filter"
+        role="dialog"
+        style="display: none;"
+        tabindex="-1"
+      >
+        <div
+          class="modal-dialog modal-md"
+        >
+          <div
+            aria-describedby="modal-add-filter___BV_modal_body_"
+            aria-labelledby="modal-add-filter___BV_modal_header_"
+            class="modal-content"
+            id="modal-add-filter___BV_modal_content_"
+            role="document"
+          >
+            <header
+              class="modal-header"
+              id="modal-add-filter___BV_modal_header_"
+            >
+              <h5
+                class="modal-title"
+              >
+                Add filter
+              </h5>
+              <button
+                aria-label="Close"
+                class="close"
+                type="button"
+              >
+                ×
+              </button>
+            </header>
+            <div
+              class="modal-body"
+              id="modal-add-filter___BV_modal_body_"
+            >
+              <select
+                class="custom-select"
+                id="__BVID__6"
+                name="filter"
+              >
+                <option
+                  value="string"
+                >
+                  String String String String String
+                </option>
+                <option
+                  value="checkbox"
+                >
+                  Checkbox
+                </option>
+              </select>
+            </div>
+            <footer
+              class="modal-footer"
+              id="modal-add-filter___BV_modal_footer_"
+            >
+              <button
+                class="btn btn-secondary"
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                class="btn btn-primary"
+                type="button"
+              >
+                OK
+              </button>
+            </footer>
+          </div>
+        </div>
+      </div>
+      <!---->
+      <!---->
+    </div>
+  </div>
+</div>
+`;

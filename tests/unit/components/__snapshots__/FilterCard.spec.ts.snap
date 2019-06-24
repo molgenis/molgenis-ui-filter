@@ -10,13 +10,19 @@ exports[`FilterCard.vue matches the snapshot 1`] = `
     class="card-header collapsable"
   >
     <div
-      class="mr-2"
-      icon="caret-right"
-      style="transform: rotate(0deg); transition: transform 0.2s;"
-    />
-    
-    label
-  
+      class="title mr-3"
+      title="label"
+    >
+      <div
+        class="mr-2"
+        icon="caret-right"
+        style="transform: rotate(0deg); transition: transform 0.2s;"
+      />
+      
+      label
+      
+      <!---->
+    </div>
   </div>
    
   <div

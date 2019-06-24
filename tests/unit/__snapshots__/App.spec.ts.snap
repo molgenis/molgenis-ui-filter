@@ -11,8 +11,10 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
     <div
       class="col col-md-3"
     >
-      <filtercontainer-stub
-        filters="[object Object],[object Object]"
+      <filter-container-stub
+        canedit="true"
+        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+        filtersshown="search,color,name,price"
         value="[object Object]"
       />
     </div>
@@ -21,12 +23,26 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
       class="col col-md-8"
     >
       <pre>
-        {
-  "string": "",
-  "name": [
-    "value2"
-  ]
+        <strong>
+          selections:
+        </strong>
+        
+{
+  "search": "test"
 }
+      </pre>
+       
+      <pre>
+        <strong>
+          visibility:
+        </strong>
+        
+        [
+  "search",
+  "color",
+  "name",
+  "price"
+]
       </pre>
     </div>
   </div>

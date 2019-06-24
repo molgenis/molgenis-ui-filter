@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { StringFilter } from '@/components'
+import { StringFilter } from '@/components/filters/'
 
 describe('StringFilter.vue', () => {
   const wrapper = mount(StringFilter, {

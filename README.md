@@ -8,11 +8,23 @@
 The filter container takes a descriptive input array to create a set of filters. It will also require a 2 way bound output object to receive the filters state
 
 ```
-<FilterContainer
+<filter-container
   v-model="selections"
   :filters="filters"
+  :filters-shown="filtersShown"
+  :can-edit="true"
 />
 ```
+### Properties
+
+- `selections`: Will hold the settings set in filters.
+- `filters`: A definition list of all possible filters.
+- `filtersShown`: A array of filter names that will be shown.
+- `can-edit`: if true you will be able to add, move and remove filters.
+
+### Events
+
+- `update`: this event is fired when filtersShown is updated, it will return a new list of selected filters
 
 ### Filter input object specifications
 
@@ -90,11 +102,6 @@ yarn run serve
 ### Compiles and minifies for production
 ```
 yarn run build
-```
-
-### Run your tests
-```
-yarn run test
 ```
 
 ### Lints and fixes files

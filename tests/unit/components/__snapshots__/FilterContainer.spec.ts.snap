@@ -3,224 +3,243 @@
 exports[`FilterContainer.vue matches the snapshot 1`] = `
 <div
   class="filter-container"
-  selections="[object Object]"
 >
   <div
-    class="card filter-card mb-2"
-    placeholder="placeholder"
-    type="string-filter"
+    class=""
   >
-    <!---->
-    <!---->
-    <div
-      class="card-header"
-    >
-      <!---->
-      
-    String
-  
-    </div>
-     
-    <div
-      class="collapse show"
-      id="string"
-    >
+    <span>
       <div
-        class="card-body"
+        class="card filter-card mb-2"
+        placeholder="placeholder"
+        type="string-filter"
       >
         <!---->
         <!---->
-        <fieldset
-          aria-describedby="__BVID__7__BV_description_"
-          class="form-group"
-          id="__BVID__7"
+        <div
+          class="card-header"
         >
-          <!---->
           <div
-            role="group"
-            tabindex="-1"
+            class="title mr-3"
+            title="String"
           >
-            <div
-              class="input-group"
-              description="search by string"
-              label="String"
-              role="group"
-              type="string-filter"
-            >
-              <!---->
-              <!---->
-              <input
-                class="form-control"
-                id="__BVID__9"
-                name="string"
-                placeholder="placeholder"
-                type="text"
-              />
-               
-              <div
-                class="input-group-append"
-              >
-                <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                >
-                  <div
-                    icon="times"
-                  />
-                </button>
-              </div>
-              <!---->
-              <!---->
-            </div>
             <!---->
+            
+      String
+      
             <!---->
-            <small
-              class="form-text text-muted"
-              id="__BVID__7__BV_description_"
-              tabindex="-1"
-            >
-              search by string
-            </small>
           </div>
-        </fieldset>
-      </div>
-    </div>
-    <!---->
-    <!---->
-  </div>
-  <div
-    bulkoperation="true"
-    class="card filter-card mb-2"
-    options="[object Object],[object Object],[object Object]"
-    type="checkbox-filter"
-  >
-    <!---->
-    <!---->
-    <div
-      class="card-header collapsable"
-    >
-      <div
-        class="mr-2"
-        icon="caret-right"
-        style="transform: rotate(90deg); transition: transform 0.2s;"
-      />
-      
-    Checkbox
-  
-    </div>
-     
-    <div
-      class="collapse show"
-      id="checkbox"
-    >
-      <div
-        class="card-body"
-      >
-        <!---->
-        <!---->
-        <fieldset
-          class="form-group"
-          id="__BVID__15"
+        </div>
+         
+        <div
+          class="collapse show"
+          id="string"
         >
-          <!---->
           <div
-            role="group"
-            tabindex="-1"
+            class="card-body"
           >
-            <div
-              type="checkbox-filter"
+            <!---->
+            <!---->
+            <fieldset
+              aria-describedby="__BVID__30__BV_description_"
+              class="form-group"
+              id="__BVID__30"
             >
+              <!---->
               <div
-                class=""
-                id="__BVID__17"
                 role="group"
                 tabindex="-1"
               >
                 <div
-                  class="custom-control custom-checkbox"
+                  class="input-group"
+                  description="search by string"
+                  label="String"
+                  role="group"
+                  type="string-filter"
                 >
+                  <!---->
+                  <!---->
                   <input
-                    autocomplete="off"
-                    class="custom-control-input"
-                    id="__BVID__17__BV_option_0_"
-                    name="checkbox"
-                    type="checkbox"
-                    value="red"
+                    class="form-control"
+                    id="__BVID__32"
+                    name="string"
+                    placeholder="placeholder"
+                    type="text"
                   />
-                  <label
-                    class="custom-control-label"
-                    for="__BVID__17__BV_option_0_"
+                   
+                  <div
+                    class="input-group-append"
                   >
-                    <span>
-                      Red
-                    </span>
-                  </label>
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                    >
+                      <div
+                        icon="times"
+                      />
+                    </button>
+                  </div>
+                  <!---->
+                  <!---->
                 </div>
-                <div
-                  class="custom-control custom-checkbox"
-                >
-                  <input
-                    autocomplete="off"
-                    class="custom-control-input"
-                    id="__BVID__17__BV_option_1_"
-                    name="checkbox"
-                    type="checkbox"
-                    value="green"
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="__BVID__17__BV_option_1_"
-                  >
-                    <span>
-                      Green
-                    </span>
-                  </label>
-                </div>
-                <div
-                  class="custom-control custom-checkbox"
-                >
-                  <input
-                    autocomplete="off"
-                    class="custom-control-input"
-                    id="__BVID__17__BV_option_2_"
-                    name="checkbox"
-                    type="checkbox"
-                    value="blue"
-                  />
-                  <label
-                    class="custom-control-label"
-                    for="__BVID__17__BV_option_2_"
-                  >
-                    <span>
-                      Blue
-                    </span>
-                  </label>
-                </div>
-              </div>
-               
-              <span>
                 <!---->
-                 
-                <a
-                  class="toggle-select card-link"
-                  href="#"
-                  target="_self"
+                <!---->
+                <small
+                  class="form-text text-muted"
+                  id="__BVID__30__BV_description_"
+                  tabindex="-1"
                 >
-                  
-      Select all
-    
-                </a>
-              </span>
-            </div>
-            <!---->
-            <!---->
+                  search by string
+                </small>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <!---->
+        <!---->
+      </div>
+      <div
+        bulkoperation="true"
+        class="card filter-card mb-2"
+        options="[object Object],[object Object],[object Object]"
+        type="checkbox-filter"
+      >
+        <!---->
+        <!---->
+        <div
+          class="card-header collapsable"
+        >
+          <div
+            class="title mr-3"
+            title="Checkbox"
+          >
+            <div
+              class="mr-2"
+              icon="caret-right"
+              style="transform: rotate(90deg); transition: transform 0.2s;"
+            />
+            
+      Checkbox
+      
             <!---->
           </div>
-        </fieldset>
+        </div>
+         
+        <div
+          class="collapse show"
+          id="checkbox"
+        >
+          <div
+            class="card-body"
+          >
+            <!---->
+            <!---->
+            <fieldset
+              class="form-group"
+              id="__BVID__38"
+            >
+              <!---->
+              <div
+                role="group"
+                tabindex="-1"
+              >
+                <div
+                  type="checkbox-filter"
+                >
+                  <div
+                    class=""
+                    id="__BVID__40"
+                    role="group"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="custom-control custom-checkbox"
+                    >
+                      <input
+                        autocomplete="off"
+                        class="custom-control-input"
+                        id="__BVID__40__BV_option_0_"
+                        name="checkbox"
+                        type="checkbox"
+                        value="red"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="__BVID__40__BV_option_0_"
+                      >
+                        <span>
+                          Red
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      class="custom-control custom-checkbox"
+                    >
+                      <input
+                        autocomplete="off"
+                        class="custom-control-input"
+                        id="__BVID__40__BV_option_1_"
+                        name="checkbox"
+                        type="checkbox"
+                        value="green"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="__BVID__40__BV_option_1_"
+                      >
+                        <span>
+                          Green
+                        </span>
+                      </label>
+                    </div>
+                    <div
+                      class="custom-control custom-checkbox"
+                    >
+                      <input
+                        autocomplete="off"
+                        class="custom-control-input"
+                        id="__BVID__40__BV_option_2_"
+                        name="checkbox"
+                        type="checkbox"
+                        value="blue"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="__BVID__40__BV_option_2_"
+                      >
+                        <span>
+                          Blue
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                   
+                  <span>
+                    <!---->
+                     
+                    <a
+                      class="toggle-select card-link"
+                      href="#"
+                      target="_self"
+                    >
+                      
+      Deselect all
+    
+                    </a>
+                  </span>
+                </div>
+                <!---->
+                <!---->
+                <!---->
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <!---->
+        <!---->
       </div>
-    </div>
-    <!---->
-    <!---->
+    </span>
   </div>
+   
+  <!---->
 </div>
 `;

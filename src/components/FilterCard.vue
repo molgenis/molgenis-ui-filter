@@ -7,13 +7,25 @@
       :class="collapsable ? 'collapsable' : ''"
       @click="toggleState"
     >
-      <font-awesome-icon
-        v-if="collapsable"
-        icon="caret-right"
-        :style="iconStyle"
-        class="mr-2"
-      />
-      {{ label }}
+      <div
+        class="title mr-3"
+        :title="label"
+      >
+        <font-awesome-icon
+          v-if="collapsable"
+          icon="caret-right"
+          :style="iconStyle"
+          class="mr-2"
+        />
+        {{ label }}
+        <span
+          v-if="canRemove"
+          class="remove-button"
+          @click.stop="removeFilter"
+        >
+          <font-awesome-icon icon="times" />
+        </span>
+      </div>
     </b-card-header>
     <b-collapse
       :id="name"
@@ -54,6 +66,11 @@ export default {
       type: String,
       required: false,
       default: () => ''
+    },
+    canRemove: {
+      type: Boolean,
+      required: false,
+      default: () => false
     }
   },
   data () {
@@ -70,6 +87,9 @@ export default {
     }
   },
   methods: {
+    removeFilter () {
+      this.$emit('removeFilter', this.name)
+    },
     toggleState () {
       if (this.collapsable) {
         this.isOpen = !this.isOpen
@@ -87,5 +107,33 @@ export default {
   }
   .form-group {
     margin-bottom:0;
+  }
+  .title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .remove-button{
+    transition: opacity 0.2s, color 0.2s;
+    opacity: 0;
+    height: inherit;
+    width: 1.5em;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+  .remove-button:hover{
+    color: var(--danger);
+  }
+  .filter-card:hover .remove-button{
+    opacity: 1;
+  }
+  .sortable-ghost{
+    border-style: dashed;
+  }
+  .sortable-ghost > div{
+    opacity: 0.2;
   }
 </style>

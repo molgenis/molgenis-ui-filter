@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { CheckboxFilter } from '@/components'
+import { CheckboxFilter } from '@/components/filters/'
 
 describe('CheckboxFilter.vue', () => {
   const options = [{ value: 'foo', text: 'Foo' }, { value: 'bar', text: 'Bar' }, { value: 'baz', text: 'Baz' }]
