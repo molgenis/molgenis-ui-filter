@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.1.0...v1.1.1) (2019-07-19)
+
+
+### Bug Fixes
+
+* Move icons to component ([1bb0648](https://github.com/molgenis/molgenis-ui-filter/commit/1bb0648))
+
 # [1.1.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.0.1...v1.1.0) (2019-06-24)
 
 
