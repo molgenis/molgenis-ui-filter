@@ -6,6 +6,10 @@
       class="w-100 mt-2 add-button"
     >
       Add a filter
+      <font-awesome-icon
+        class="ml-1"
+        icon="plus"
+      />
     </b-button>
 
     <b-modal
@@ -24,8 +28,16 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faPlus)
+
+export default Vue.extend({
   name: 'AddFilterModal',
+  components: { FontAwesomeIcon },
   props: {
     filters: {
       type: Array,
@@ -59,5 +71,5 @@ export default {
       }
     }
   }
-}
+})
 </script>

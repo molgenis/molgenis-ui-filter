@@ -3,9 +3,6 @@ import { FilterCard } from '@/components'
 
 describe('FilterCard.vue', () => {
   const startOpen = mount(FilterCard, {
-    stubs: {
-      'font-awesome-icon': '<div />'
-    },
     propsData: {
       name: 'name',
       label: 'label',
@@ -15,9 +12,6 @@ describe('FilterCard.vue', () => {
   })
 
   const startClosed = mount(FilterCard, {
-    stubs: {
-      'font-awesome-icon': '<div />'
-    },
     propsData: {
       name: 'name',
       label: 'label',
@@ -26,9 +20,6 @@ describe('FilterCard.vue', () => {
   })
 
   const noCollapsable = mount(FilterCard, {
-    stubs: {
-      'font-awesome-icon': '<div />'
-    },
     propsData: {
       name: 'name',
       label: 'label',
@@ -68,9 +59,6 @@ describe('FilterCard.vue', () => {
 
   it('Warns if the close button is clicked', () => {
     const close = mount(FilterCard, {
-      stubs: {
-        'font-awesome-icon': '<div />'
-      },
       propsData: {
         name: 'name',
         label: 'label',

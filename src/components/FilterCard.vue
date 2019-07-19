@@ -41,7 +41,16 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCaretRight, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faCaretRight, faTimes)
+
+export default Vue.extend({
+  name: 'FilterCard',
+  components: { FontAwesomeIcon },
   props: {
     name: {
       type: String,
@@ -98,7 +107,7 @@ export default {
       return false
     }
   }
-}
+})
 </script>
 
 <style scoped>

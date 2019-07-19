@@ -27,7 +27,7 @@ describe('AddFilterModal.vue', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('matches snapshot', (done) => {
+  it('can add filter', (done) => {
     wrapper.find('button.btn-outline-secondary').trigger('click')
     wrapper.vm.$nextTick(() => {
       wrapper.find('.modal-footer button.btn-primary').trigger('click')
