@@ -19,7 +19,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
           class="card-header"
         >
           <div
-            class="title mr-3"
+            class="title mr-3 px-1"
             title="String"
           >
             <!---->
@@ -109,7 +109,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
           class="card-header collapsable"
         >
           <div
-            class="title mr-3"
+            class="title mr-3 px-1"
             title="Checkbox"
           >
             <div

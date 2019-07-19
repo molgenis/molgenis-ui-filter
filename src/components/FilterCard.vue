@@ -8,7 +8,7 @@
       @click="toggleState"
     >
       <div
-        class="title mr-3"
+        class="title mr-3 px-1"
         :title="label"
       >
         <font-awesome-icon
