@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.1.1...v1.1.2) (2019-07-19)
+
+
+### Bug Fixes
+
+* Filter card item partial rendering ([8a7508b](https://github.com/molgenis/molgenis-ui-filter/commit/8a7508b))
+
 ## [1.1.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.1.0...v1.1.1) (2019-07-19)
 
 
