@@ -3,9 +3,6 @@ import { StringFilter } from '@/components/filters/'
 
 describe('StringFilter.vue', () => {
   const wrapper = mount(StringFilter, {
-    stubs: {
-      'font-awesome-icon': '<div />'
-    },
     propsData: {
       name: 'name',
       label: 'label',

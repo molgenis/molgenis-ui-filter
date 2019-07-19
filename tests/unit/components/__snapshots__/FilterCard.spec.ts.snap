@@ -13,11 +13,23 @@ exports[`FilterCard.vue matches the snapshot 1`] = `
       class="title mr-3"
       title="label"
     >
-      <div
-        class="mr-2"
-        icon="caret-right"
+      <svg
+        aria-hidden="true"
+        class="mr-2 svg-inline--fa fa-caret-right fa-w-6"
+        data-icon="caret-right"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
         style="transform: rotate(0deg); transition: transform 0.2s;"
-      />
+        viewBox="0 0 192 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class=""
+          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"
+          fill="currentColor"
+        />
+      </svg>
       
       label
       
@@ -36,9 +48,9 @@ exports[`FilterCard.vue matches the snapshot 1`] = `
       <!---->
       <!---->
       <fieldset
-        aria-describedby="__BVID__13__BV_description_"
+        aria-describedby="__BVID__11__BV_description_"
         class="form-group"
-        id="__BVID__13"
+        id="__BVID__11"
       >
         <!---->
         <div
@@ -50,7 +62,7 @@ exports[`FilterCard.vue matches the snapshot 1`] = `
           <!---->
           <small
             class="form-text text-muted"
-            id="__BVID__13__BV_description_"
+            id="__BVID__11__BV_description_"
             tabindex="-1"
           >
             description
