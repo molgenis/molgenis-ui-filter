@@ -3,39 +3,53 @@
     class="filter-container"
     @mouseup="drag=false"
   >
-    <draggable
-      v-model="filtersToShow"
-      :disabled="!canEdit"
-      :class="canEdit?(drag?'dragdrop dragging':'dragdrop'):''"
-      @choose="drag=true"
-      @end="drag=false"
-      @input="selectionUpdate"
+    <b-collapse
+      id="mobile-button-toggle"
+      :visible="this.doCollapse"
     >
-      <transition-group>
-        <filter-card
-          v-for="filter in listOfVisibleFilters"
-          :key="filter.name"
-          v-bind="filter"
-          :can-remove="canEdit"
-          @removeFilter="removeFilter(filter.name)"
-        >
-          <component
-            :is="filter.type"
-            :name="filter.name"
-            :value="value[filter.name]"
-            v-bind="filter"
-            @input="value => selectionChange(filter.name, value)"
-          />
-        </filter-card>
-      </transition-group>
-    </draggable>
+      <button class="btn w-100 my-2 btn-outline-secondary" @click="mobileToggle=!mobileToggle">
+        {{mobileToggle?'Hide filters':'Show filters'}}
+      </button>
+    </b-collapse>
 
-    <add-filter-modal
-      v-if="canEdit && listOfInvisibleFilters.length > 0"
-      v-model="filtersToShow"
-      :filters="listOfInvisibleFilters"
-      @input="selectionUpdate"
-    />
+    <b-collapse
+      id="mobile-toggle"
+      :visible="!this.doCollapse ||mobileToggle"
+    >
+      <!-- !this.doCollapse || -->
+      <draggable
+        v-model="filtersToShow"
+        :disabled="!doDragDrop"
+        :class="{'dragdrop': doDragDrop, 'dragging': drag}"
+        @choose="drag=true"
+        @end="drag=false"
+        @input="selectionUpdate"
+      >
+        <transition-group>
+          <filter-card
+            v-for="filter in listOfVisibleFilters"
+            :key="filter.name"
+            v-bind="filter"
+            :can-remove="canEdit"
+            @removeFilter="removeFilter(filter.name)"
+          >
+            <component
+              :is="filter.type"
+              :name="filter.name"
+              :value="value[filter.name]"
+              v-bind="filter"
+              @input="value => selectionChange(filter.name, value)"
+            />
+          </filter-card>
+        </transition-group>
+      </draggable>
+      <add-filter-modal
+        v-if="canEdit && listOfInvisibleFilters.length > 0"
+        v-model="filtersToShow"
+        :filters="listOfInvisibleFilters"
+        @input="selectionUpdate"
+      />
+    </b-collapse>
   </div>
 </template>
 
@@ -72,10 +86,19 @@ export default {
     return {
       filtersToShow: this.filtersShown,
       filterToAdd: null,
-      drag: false
+      drag: false,
+      width: 0,
+      mobileToggle: false
     }
   },
   computed: {
+    doCollapse () {
+      // Bootstrap's mobile collapse width
+      return this.width <= 576
+    },
+    doDragDrop () {
+      return this.canEdit && !this.doCollapse
+    },
     listOfVisibleFilters () {
       return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id))
     },
@@ -83,7 +106,17 @@ export default {
       return this.filters.filter(filter => !this.filtersToShow.includes(filter.name))
     }
   },
+  created () {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.handleResize)
+  },
   methods: {
+    handleResize () {
+      this.width = window.innerWidth
+    },
     removeFilter (name) {
       this.filtersToShow = this.filtersToShow.filter(filter => name !== filter)
       this.$emit('update', this.filtersToShow)
