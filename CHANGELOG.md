@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.1.2...v1.2.0) (2019-08-06)
+
+
+### Features
+
+* **FilterContainer:** show/hide filters on mobile ([8b929d5](https://github.com/molgenis/molgenis-ui-filter/commit/8b929d5))
+
 ## [1.1.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.1.1...v1.1.2) (2019-07-19)
 
 
