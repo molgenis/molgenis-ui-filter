@@ -2,7 +2,7 @@
 
 exports[`FilterCard.vue matches the snapshot 1`] = `
 <div
-  class="card filter-card mb-2"
+  class="card filter-card mb-3"
 >
   <!---->
   <!---->

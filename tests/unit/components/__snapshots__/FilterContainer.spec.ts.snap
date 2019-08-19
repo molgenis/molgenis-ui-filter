@@ -9,7 +9,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
   >
     <span>
       <div
-        class="card filter-card mb-2"
+        class="card filter-card mb-3"
         placeholder="placeholder"
         type="string-filter"
       >
@@ -99,7 +99,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
       </div>
       <div
         bulkoperation="true"
-        class="card filter-card mb-2"
+        class="card filter-card mb-3"
         options="[object Object],[object Object],[object Object]"
         type="checkbox-filter"
       >

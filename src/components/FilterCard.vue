@@ -1,7 +1,7 @@
 <template>
   <b-card
     no-body
-    class="filter-card mb-2"
+    class="filter-card mb-3"
   >
     <b-card-header
       :class="collapsable ? 'collapsable' : ''"
