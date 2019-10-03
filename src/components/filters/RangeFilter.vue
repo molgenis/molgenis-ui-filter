@@ -1,0 +1,89 @@
+
+<template>
+  <div>
+    <b-input-group>
+      <b-form-input
+        v-model="sliderValue[0]"
+        placeholder="From"
+        type="number"
+        :min="min"
+        :max="max"
+        :step="step"
+        class="text-center"
+        @change="handleFromChange"
+      />
+      <b-form-input
+        v-model="sliderValue[1]"
+        placeholder="To"
+        type="number"
+        :min="min"
+        :max="max"
+        :step="step"
+        class="text-center"
+        @change="handleUntilChange"
+      />
+    </b-input-group>
+    <vue-slider
+      v-model="sliderValue"
+      :min="min"
+      :max="max"
+      :interval="step"
+      class="mt-2"
+      @change="handleSliderChange"
+    />
+  </div>
+</template>
+
+<script>
+import Vue from 'vue'
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+
+export default Vue.extend({
+  name: 'RangeFilter',
+  components: { VueSlider },
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    min: {
+      type: Number,
+      default: () => Number.MIN_VALUE
+    },
+    max: {
+      type: Number,
+      default: () => Number.MAX_VALUE
+    },
+    step: {
+      type: Number,
+      default: () => 'any'
+    },
+    value: {
+      type: Array,
+      default: () => [0, 0]
+    }
+  },
+  data: function () {
+    return {
+      sliderValue: [this.min, this.max]
+    }
+  },
+  methods: {
+    handleSliderChange (data) {
+      // clone to break reactive loop
+      this.$emit('input', [parseInt(data[0], 10), parseInt(data[1], 10)])
+    },
+    handleFromChange (data) {
+      this.sliderValue[0] = parseInt(data.currentTarget.value, 10)
+      // clone to break reactive loop
+      this.$emit('input', [...this.sliderValue])
+    },
+    handleUntilChange (data) {
+      this.sliderValue[1] = parseInt(data.currentTarget.value, 10)
+      // clone to break reactive loop
+      this.$emit('input', [...this.sliderValue])
+    }
+  }
+})
+</script>

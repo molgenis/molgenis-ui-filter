@@ -5,18 +5,20 @@
   >
     <b-collapse
       id="mobile-button-toggle"
-      :visible="this.doCollapse"
+      :visible="doCollapse"
     >
-      <button class="btn w-100 my-2 btn-outline-secondary" @click="mobileToggle=!mobileToggle">
-        {{mobileToggle?'Hide filters':'Show filters'}}
+      <button
+        class="btn w-100 my-2 btn-outline-secondary"
+        @click="mobileToggle=!mobileToggle"
+      >
+        {{ mobileToggle?'Hide filters':'Show filters' }}
       </button>
     </b-collapse>
 
     <b-collapse
       id="mobile-toggle"
-      :visible="!this.doCollapse ||mobileToggle"
+      :visible="!doCollapse ||mobileToggle"
     >
-      <!-- !this.doCollapse || -->
       <draggable
         v-model="filtersToShow"
         :disabled="!doDragDrop"
@@ -56,12 +58,12 @@
 <script>
 import AddFilterModal from './AddFilterModal.vue'
 import { FilterCard } from '.'
-import { StringFilter, CheckboxFilter } from './filters/'
+import { StringFilter, CheckboxFilter, NumberFilter, RangeFilter } from './filters/'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'FilterContainer',
-  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, draggable },
+  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, NumberFilter, RangeFilter, draggable },
   props: {
     filters: {
       type: Array,

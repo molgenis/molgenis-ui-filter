@@ -37,6 +37,7 @@
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
+    "vue-slider-component": "^3.0.41",
     "vuedraggable": "^2.21.0"
   },
   "devDependencies": {
