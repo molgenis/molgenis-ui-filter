@@ -9,7 +9,7 @@
           v-model="selections"
           :filters="filters"
           :filters-shown="filtersShown"
-          :can-edit="false"
+          :can-edit="true"
           @update="updateState"
         />
       </div>

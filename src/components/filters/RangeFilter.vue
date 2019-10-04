@@ -4,7 +4,6 @@
     <b-input-group>
       <b-form-input
         v-model="sliderValue[0]"
-        placeholder="From"
         type="number"
         :min="min"
         :max="max"
@@ -14,7 +13,6 @@
       />
       <b-form-input
         v-model="sliderValue[1]"
-        placeholder="To"
         type="number"
         :min="min"
         :max="max"
