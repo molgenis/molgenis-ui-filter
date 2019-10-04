@@ -65,7 +65,7 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 |----------------------|----------|---------------|-------------|
 | options              | true     | *na*          | Describe the checkboxes. The value property is used as key and the text property is used as label by the UI |
 | bulkOperation        | false    | true          | Adds 'select all' and or 'Deselect all' button |
-| maxVisibleOptions    | false    | *show all options* | Limit the amount of initially shown options | 
+| maxVisibleOptions    | false    | undefined *(show all options)* | Limit the amount of initially shown options | 
 
 *Options example*
 ```
