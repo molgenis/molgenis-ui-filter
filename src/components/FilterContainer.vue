@@ -17,7 +17,7 @@
 
     <b-collapse
       id="mobile-toggle"
-      :visible="!doCollapse ||mobileToggle"
+      :visible="!doCollapse || mobileToggle"
     >
       <draggable
         v-model="filtersToShow"
