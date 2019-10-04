@@ -9,7 +9,7 @@
         :max="max"
         :step="step"
         class="text-center range-from"
-        @change="handleFromChange"
+        @change="handleChange"
       />
       <b-form-input
         v-model="sliderValue[1]"
@@ -18,7 +18,7 @@
         :max="max"
         :step="step"
         class="text-center range-to"
-        @change="handleToChange"
+        @change="handleChange"
       />
     </b-input-group>
     <vue-slider
@@ -27,7 +27,7 @@
       :max="max"
       :interval="step"
       class="mt-2"
-      @change="handleSliderChange"
+      @change="handleChange"
     />
   </div>
 </template>
@@ -68,17 +68,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleSliderChange () {
-      this.sliderValue = [parseFloat(this.sliderValue[0]), parseFloat(this.sliderValue[1])]
-      // clone to break reactive loop
-      this.$emit('input', [...this.sliderValue])
-    },
-    handleFromChange () {
-      this.sliderValue = [parseFloat(this.sliderValue[0]), parseFloat(this.sliderValue[1])]
-      // clone to break reactive loop
-      this.$emit('input', [...this.sliderValue])
-    },
-    handleToChange () {
+    handleChange () {
       this.sliderValue = [parseFloat(this.sliderValue[0]), parseFloat(this.sliderValue[1])]
       // clone to break reactive loop
       this.$emit('input', [...this.sliderValue])
