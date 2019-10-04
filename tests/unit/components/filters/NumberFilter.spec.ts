@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { NumberFilter } from '@/components/filters/'
 
-describe('RangeFilter.vue', () => {
+describe('NumberFilter.vue', () => {
   const wrapper = mount(NumberFilter, {
     propsData: {
       name: 'name',
