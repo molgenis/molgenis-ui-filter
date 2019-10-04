@@ -15,7 +15,6 @@ exports[`RangeFilter.vue matches the snapshot 1`] = `
       id="__BVID__4"
       max="9007199254740991"
       min="-9007199254740991"
-      placeholder="From"
       step="1"
       type="number"
     />
@@ -25,7 +24,6 @@ exports[`RangeFilter.vue matches the snapshot 1`] = `
       id="__BVID__5"
       max="9007199254740991"
       min="-9007199254740991"
-      placeholder="To"
       step="1"
       type="number"
     />
