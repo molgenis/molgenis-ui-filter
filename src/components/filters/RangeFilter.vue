@@ -69,9 +69,13 @@ export default Vue.extend({
   },
   methods: {
     handleChange () {
-      this.sliderValue = [parseFloat(Math.max(this.min, this.sliderValue[0])), Math.min(this.max, parseFloat(this.sliderValue[1]))]
-      // clone to break reactive loop
-      this.$emit('input', [...this.sliderValue])
+      if (this.sliderValue[0] === this.min && this.sliderValue[1] === this.max) {
+        this.$emit('input', undefined)
+      } else {
+        this.sliderValue = [parseFloat(Math.max(this.min, this.sliderValue[0])), parseFloat(Math.min(this.max, this.sliderValue[1]))]
+        // clone to break reactive loop
+        this.$emit('input', [...this.sliderValue])
+      }
     }
   }
 })
