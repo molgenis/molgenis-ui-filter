@@ -59,7 +59,7 @@ export default Vue.extend({
     },
     value: {
       type: Array,
-      default: () => [0, 0]
+      default: () => [null, null]
     }
   },
   data: function () {
@@ -69,7 +69,7 @@ export default Vue.extend({
   },
   methods: {
     handleChange () {
-      this.sliderValue = [parseFloat(this.sliderValue[0]), parseFloat(this.sliderValue[1])]
+      this.sliderValue = [parseFloat(Math.max(this.min, this.sliderValue[0])), Math.min(this.max, parseFloat(this.sliderValue[1]))]
       // clone to break reactive loop
       this.$emit('input', [...this.sliderValue])
     }

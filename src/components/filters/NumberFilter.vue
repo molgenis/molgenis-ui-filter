@@ -46,7 +46,7 @@ export default Vue.extend({
     },
     value: {
       type: Number,
-      default: () => 0
+      default: () => null
     }
   },
   computed: {
