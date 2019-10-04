@@ -9,7 +9,7 @@
         :min="min"
         :max="max"
         :step="step"
-        class="text-center"
+        class="text-center range-from"
         @change="handleFromChange"
       />
       <b-form-input
@@ -19,8 +19,8 @@
         :min="min"
         :max="max"
         :step="step"
-        class="text-center"
-        @change="handleUntilChange"
+        class="text-center range-to"
+        @change="handleToChange"
       />
     </b-input-group>
     <vue-slider
@@ -49,15 +49,15 @@ export default Vue.extend({
     },
     min: {
       type: Number,
-      default: () => Number.MIN_VALUE
+      default: () => Number.MIN_SAFE_INTEGER
     },
     max: {
       type: Number,
-      default: () => Number.MAX_VALUE
+      default: () => Number.MAX_SAFE_INTEGER
     },
     step: {
       type: Number,
-      default: () => 'any'
+      default: () => 1
     },
     value: {
       type: Array,
@@ -72,15 +72,15 @@ export default Vue.extend({
   methods: {
     handleSliderChange (data) {
       // clone to break reactive loop
-      this.$emit('input', [parseInt(data[0], 10), parseInt(data[1], 10)])
+      this.$emit('input', [parseFloat(data[0]), parseFloat(data[1])])
     },
     handleFromChange (data) {
-      this.sliderValue[0] = parseInt(data.currentTarget.value, 10)
+      this.sliderValue = [parseFloat(this.sliderValue[0]), parseFloat(this.sliderValue[1])]
       // clone to break reactive loop
       this.$emit('input', [...this.sliderValue])
     },
-    handleUntilChange (data) {
-      this.sliderValue[1] = parseInt(data.currentTarget.value, 10)
+    handleToChange (data) {
+      this.sliderValue = [parseFloat(this.sliderValue[0]), parseFloat(this.sliderValue[1])]
       // clone to break reactive loop
       this.$emit('input', [...this.sliderValue])
     }

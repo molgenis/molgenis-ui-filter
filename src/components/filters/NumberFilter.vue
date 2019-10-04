@@ -34,15 +34,15 @@ export default Vue.extend({
     },
     min: {
       type: Number,
-      default: () => Number.MIN_VALUE
+      default: () => Number.MIN_SAFE_INTEGER
     },
     max: {
       type: Number,
-      default: () => Number.MAX_VALUE
+      default: () => Number.MAX_SAFE_INTEGER
     },
     step: {
       type: Number,
-      default: () => 'any'
+      default: () => 1
     },
     value: {
       type: Number,
@@ -55,7 +55,7 @@ export default Vue.extend({
         return this.value
       },
       set (value) {
-        this.$emit('input', value)
+        this.$emit('input', parseFloat(value))
       }
     }
   }

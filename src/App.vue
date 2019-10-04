@@ -55,9 +55,6 @@ export default Vue.extend({
         name: 'number',
         label: 'Number',
         collapsed: false,
-        min: -10,
-        max: 10,
-        step: 0.01,
         type: 'number-filter'
       }, {
         name: 'age',
