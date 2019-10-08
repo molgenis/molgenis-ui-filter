@@ -17,9 +17,8 @@
 
     <b-collapse
       id="mobile-toggle"
-      :visible="!doCollapse ||mobileToggle"
+      :visible="!doCollapse || mobileToggle"
     >
-      <!-- !this.doCollapse || -->
       <draggable
         v-model="filtersToShow"
         :disabled="!doDragDrop"
@@ -59,12 +58,12 @@
 <script>
 import AddFilterModal from './AddFilterModal.vue'
 import { FilterCard } from '.'
-import { StringFilter, CheckboxFilter, SelectFilter } from './filters/'
+import { StringFilter, CheckboxFilter, NumberFilter, RangeFilter, SelectFilter } from './filters/'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'FilterContainer',
-  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, SelectFilter, draggable },
+  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, NumberFilter, RangeFilter, SelectFilter, draggable },
   props: {
     filters: {
       type: Array,

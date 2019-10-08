@@ -13,8 +13,8 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
     >
       <filter-container-stub
         canedit="true"
-        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
-        filtersshown="search,color,select,price"
+        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+        filtersshown="search,color,name,age,number"
         value="[object Object]"
       />
     </div>
@@ -40,8 +40,9 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
         [
   "search",
   "color",
-  "select",
-  "price"
+  "name",
+  "age",
+  "number"
 ]
       </pre>
     </div>

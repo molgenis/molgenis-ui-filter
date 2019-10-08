@@ -5,6 +5,13 @@ const buildName = packageJson.name + '#PR-' + process.env.CHANGE_ID + '-build-' 
 module.exports = {
 
   test_settings: {
+    chrome: {
+      selenium: {
+        cli_args: {
+          'webdriver.chrome.driver': require('chromedriver').path
+        }
+      }
+    },
     ci_chrome: {
       launch_url: 'http://ondemand.saucelabs.com:80',
       selenium_port: 80,
