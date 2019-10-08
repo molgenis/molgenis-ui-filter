@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RangeFilter.vue matches the snapshot 1`] = `
+exports[`NumberFilter.vue matches the snapshot 1`] = `
 <div
   label="label"
 >
@@ -31,11 +31,11 @@ exports[`RangeFilter.vue matches the snapshot 1`] = `
     >
       <div
         class="vue-slider-process"
-        style="height: 100%; top: 0px; left: 0%; width: 50.0000439269778%; transition-property: width,left; transition-duration: 0.5s;"
+        style="height: 100%; top: 0px; left: 0%; width: 50.00004392697804%; transition-property: width,left; transition-duration: 0.5s;"
       />
       <div
         class="vue-slider-dot"
-        style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 50.0000439269778%; transition: left 0.5s;"
+        style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 50.00004392697804%; transition: left 0.5s;"
       >
         <div
           class="vue-slider-dot-handle"
@@ -49,7 +49,7 @@ exports[`RangeFilter.vue matches the snapshot 1`] = `
             <span
               class="vue-slider-dot-tooltip-text"
             >
-              0
+              42
             </span>
           </div>
         </div>

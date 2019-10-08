@@ -5,7 +5,8 @@ describe('NumberFilter.vue', () => {
   const wrapper = mount(NumberFilter, {
     propsData: {
       name: 'name',
-      label: 'label'
+      label: 'label',
+      value: 42
     }
   })
 
@@ -15,11 +16,12 @@ describe('NumberFilter.vue', () => {
 
   it('sets value property on inner input', () => {
     const inputElement = wrapper.find('input').element as HTMLInputElement
-    expect(inputElement.value).toBe('0')
+    expect(inputElement.value).toBe('42')
   })
 
   it('triggers event after value change', () => {
     wrapper.find('input').setValue(20)
+    wrapper.find('input').trigger('change')
     expect(wrapper.emitted()).toEqual({ input: [ [ 20 ] ] })
   })
 })

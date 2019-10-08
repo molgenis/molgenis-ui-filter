@@ -55,11 +55,11 @@ export default Vue.extend({
         return this.value
       },
       set (value) {
-        if (typeof value === 'number'){
+        if (typeof value === 'string' && value === '') {
+          this.$emit('input', undefined)
+        } else {
           value = Math.min(Math.max(value, this.min), this.max)
           this.$emit('input', parseFloat(value))
-        } else {
-          this.$emit('input', undefined)
         }
       }
     }
