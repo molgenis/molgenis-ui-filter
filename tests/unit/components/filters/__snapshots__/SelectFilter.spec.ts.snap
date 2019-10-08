@@ -25,7 +25,9 @@ exports[`SelectFilter.vue matches the snapshot 1`] = `
     <option
       value=""
     >
+      
       Please select an option
+    
     </option>
   </select>
   <!---->
