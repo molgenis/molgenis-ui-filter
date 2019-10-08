@@ -10,6 +10,7 @@
       />
     </b-input-group>
     <vue-slider
+      v-if="useSlider"
       v-model="model"
       :min="min"
       :max="max"
@@ -47,6 +48,10 @@ export default Vue.extend({
     value: {
       type: Number,
       default: () => null
+    },
+    useSlider: {
+      type: Boolean,
+      default: () => false
     }
   },
   computed: {
