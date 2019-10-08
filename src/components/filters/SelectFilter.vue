@@ -1,7 +1,12 @@
 <template>
   <b-input-group>
-    <b-form-select v-model="selection" :options="options">
-      <option :value="null">{{placeholder}}</option>
+    <b-form-select
+      v-model="selection"
+      :options="options"
+    >
+      <option :value="null">
+        {{ placeholder }}
+      </option>
     </b-form-select>
   </b-input-group>
 </template>
