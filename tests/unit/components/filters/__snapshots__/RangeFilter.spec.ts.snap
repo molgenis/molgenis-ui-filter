@@ -31,60 +31,6 @@ exports[`RangeFilter.vue matches the snapshot 1`] = `
     <!---->
   </div>
    
-  <div
-    class="mt-2 vue-slider vue-slider-ltr"
-    style="padding: 7px 0px; width: auto; height: 4px;"
-  >
-    <div
-      class="vue-slider-rail"
-    >
-      <div
-        class="vue-slider-process"
-        style="height: 100%; top: 0px; left: 0%; width: 100%; transition-property: width,left; transition-duration: 0.5s;"
-      />
-      <div
-        class="vue-slider-dot"
-        style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 0%; transition: left 0.5s;"
-      >
-        <div
-          class="vue-slider-dot-handle"
-        />
-        <div
-          class="vue-slider-dot-tooltip vue-slider-dot-tooltip-top"
-        >
-          <div
-            class="vue-slider-dot-tooltip-inner vue-slider-dot-tooltip-inner-top"
-          >
-            <span
-              class="vue-slider-dot-tooltip-text"
-            >
-              -9007199254740991
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        class="vue-slider-dot"
-        style="width: 14px; height: 14px; transform: translate(-50%, -50%); top: 50%; left: 100%; transition: left 0.5s;"
-      >
-        <div
-          class="vue-slider-dot-handle"
-        />
-        <div
-          class="vue-slider-dot-tooltip vue-slider-dot-tooltip-top"
-        >
-          <div
-            class="vue-slider-dot-tooltip-inner vue-slider-dot-tooltip-inner-top"
-          >
-            <span
-              class="vue-slider-dot-tooltip-text"
-            >
-              9007199254740991
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!---->
 </div>
 `;

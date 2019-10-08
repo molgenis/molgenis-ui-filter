@@ -50,11 +50,11 @@ Every filter will have the following global properties:
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
 | name                 | true     | *na*          | string: name and id of the filter |
-| label                | false    |               | string: Name of the filter as used by the UI |
-| description          | false    |               | Descriptive text that is used by the UI |
+| label                | false    |               | string: name of the filter as used by the UI |
+| description          | false    |               | descriptive text that is used by the UI |
 | collapsed            | false    | true          | boolean: Open/Closed state of the card that holds the filter |
 | collapsable          | false    | true          | boolean: Can the card be collapsed. This will force the card to be open by default if set to false |
-| type                 | true     | *na*          | Vue Object that renders the filter |
+| type                 | true     | *na*          | vue object that renders the filter |
 
 The `type` field takes a VUE object that renders a filter. Note that every object can have additional filter properties
 
@@ -63,9 +63,9 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
-| options              | true     | *na*          | Describe the checkboxes. The value property is used as key and the text property is used as label by the UI |
-| bulkOperation        | false    | true          | Adds 'select all' and or 'Deselect all' button |
-| maxVisibleOptions    | false    | undefined *(show all options)* | Limit the amount of initially shown options | 
+| options              | true     | *na*          | describe the checkboxes. The value property is used as key and the text property is used as label by the UI |
+| bulkOperation        | false    | true          | adds 'select all' and or 'Deselect all' button |
+| maxVisibleOptions    | false    | undefined *(show all options)* | limit the amount of initially shown options | 
 
 *Options example*
 ```
@@ -83,6 +83,7 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 | min                  | false    |               | minimal posible value |
 | max                  | false    |               | maximal posible value |
 | step                 | false    | 1             | step size of slider and up/down buttons |
+| useSlider            | false    | false         | show a slider to help pick a number |
 
 ### Resulting output object
 
