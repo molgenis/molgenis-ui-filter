@@ -36,7 +36,7 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['search', 'color', 'name', 'price'],
+      filtersShown: ['search', 'color', 'name', 'age', 'number'],
       filters: [ {
         name: 'search',
         label: 'Search',
@@ -52,15 +52,24 @@ export default Vue.extend({
         options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
         type: 'checkbox-filter'
       }, {
+        name: 'number',
+        label: 'Number',
+        collapsed: false,
+        type: 'number-filter'
+      }, {
+        name: 'age',
+        label: 'Age',
+        collapsed: false,
+        min: -10,
+        max: 10,
+        step: 0.01,
+        type: 'range-filter'
+      }, {
         name: 'name',
         label: 'Name',
         description: 'Name of object',
         type: 'string-filter',
         collapsed: false
-      }, {
-        name: 'price',
-        label: 'Price',
-        type: 'string-filter'
       }, {
         name: 'string',
         label: 'String',

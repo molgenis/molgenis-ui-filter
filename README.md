@@ -77,6 +77,12 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 |----------------------|----------|---------------|-------------|
 | placeholder          | false    |               | Placeholder in the input field |
 
+#### NumberFilter, RangeFilter
+| name                 | required | default value | description | 
+|----------------------|----------|---------------|-------------|
+| min                  | false    |               | minimal posible value |
+| max                  | false    |               | maximal posible value |
+| step                 | false    | 1             | step size of slider and up/down buttons |
 
 ### Resulting output object
 

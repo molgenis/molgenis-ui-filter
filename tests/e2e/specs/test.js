@@ -8,7 +8,7 @@ module.exports = {
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.filter-container')
       .assert.containsText('pre', 'selections:\n{\n  "search": "test"\n}')
-      .assert.elementCount('.filter-card', 4)
+      .assert.elementCount('.filter-card', 5)
       .end()
   }
 }

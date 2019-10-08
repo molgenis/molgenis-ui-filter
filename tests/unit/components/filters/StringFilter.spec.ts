@@ -19,7 +19,7 @@ describe('StringFilter.vue', () => {
     expect(inputElement.value).toBe('value')
   })
 
-  it('emits undefined when button is clicked', () => {
+  it('emits undefined when clear button is clicked', () => {
     wrapper.find('button').trigger('click')
     expect(wrapper.emitted().input[0]).toEqual([undefined])
   })
