@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.2.0...v1.3.0) (2019-10-08)
+
+
+### Features
+
+* **RangeFilter:** Add number and range filter ([6ec3f78](https://github.com/molgenis/molgenis-ui-filter/commit/6ec3f78))
+* **RangeSlider:** add use slider option ([fcb1a6d](https://github.com/molgenis/molgenis-ui-filter/commit/fcb1a6d))
+
 # [1.2.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.1.2...v1.2.0) (2019-08-06)
 
 
