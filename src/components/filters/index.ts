@@ -4,3 +4,4 @@ Vue.use(BootstrapVue)
 
 export { default as CheckboxFilter } from './CheckboxFilter.vue'
 export { default as StringFilter } from './StringFilter.vue'
+export { default as SelectFilter } from './SelectFilter.vue'

@@ -36,7 +36,7 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['search', 'color', 'name', 'price'],
+      filtersShown: ['search', 'color', 'select', 'price'],
       filters: [ {
         name: 'search',
         label: 'Search',
@@ -52,11 +52,11 @@ export default Vue.extend({
         options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
         type: 'checkbox-filter'
       }, {
-        name: 'name',
-        label: 'Name',
-        description: 'Name of object',
-        type: 'string-filter',
-        collapsed: false
+        name: 'select',
+        label: 'Select',
+        collapsed: false,
+        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        type: 'select-filter'
       }, {
         name: 'price',
         label: 'Price',

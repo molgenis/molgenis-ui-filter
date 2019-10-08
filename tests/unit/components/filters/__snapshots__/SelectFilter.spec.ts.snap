@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectFilter.vue matches the snapshot 1`] = `
+<div
+  class="input-group"
+  label="label"
+  role="group"
+>
+  <!---->
+  <!---->
+  <select
+    class="custom-select"
+    id="__BVID__4"
+  >
+    <option
+      value="default"
+    >
+      Default
+    </option>
+    <option
+      value="alt"
+    >
+      Alternative
+    </option>
+    <option
+      value=""
+    >
+      Please select an option
+    </option>
+  </select>
+  <!---->
+  <!---->
+</div>
+`;

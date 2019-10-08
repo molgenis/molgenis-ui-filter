@@ -77,6 +77,17 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 |----------------------|----------|---------------|-------------|
 | placeholder          | false    |               | Placeholder in the input field |
 
+#### SelectFilter
+| name                 | required | default value | description | 
+|----------------------|----------|---------------|-------------|
+| placeholder          | false    |               | Placeholder of the default field |
+| options              | true     | *na*          | Describe the select field. The value property is used as key and the text property is used as label by the UI |
+
+*Options example*
+```
+[{ value: 'value1', text: 'select 1' }, { value: 'value2', text: 'select 2' }]
+```
+
 
 ### Resulting output object
 

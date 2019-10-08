@@ -56,12 +56,12 @@
 <script>
 import AddFilterModal from './AddFilterModal.vue'
 import { FilterCard } from '.'
-import { StringFilter, CheckboxFilter } from './filters/'
+import { StringFilter, CheckboxFilter, SelectFilter } from './filters/'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'FilterContainer',
-  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, draggable },
+  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, SelectFilter, draggable },
   props: {
     filters: {
       type: Array,
