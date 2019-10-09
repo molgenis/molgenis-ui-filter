@@ -2,7 +2,6 @@ import { mount } from '@vue/test-utils'
 import { CheckboxFilter } from '@/components/filters/'
 
 describe('CheckboxFilter.vue', () => {
-
   const options = [{ value: 'foo', text: 'Foo' }, { value: 'bar', text: 'Bar' }, { value: 'baz', text: 'Baz' }]
 
   const wrapper = mount(CheckboxFilter, {
@@ -84,13 +83,12 @@ describe('CheckboxFilter.vue', () => {
   })
 
   it('use function as options property', (done) => {
-
     const optionsPromise = () => {
       return new Promise(
         function (resolve, reject) {
           resolve(options) // fulfilled
         })
-      }
+    }
 
     const unselected = mount(CheckboxFilter, {
       stubs: {
@@ -115,19 +113,16 @@ describe('CheckboxFilter.vue', () => {
         options: optionsPromise
       }
     })
-    
+
     // wait one frame to let the options resolve by the created() function
     wrapper.vm.$nextTick(() => {
       unselected.find('a.toggle-select.card-link').trigger('click') // select all
       expect(unselected.emitted('input')[0]).toEqual([['foo', 'bar', 'baz']])
-  
+
       selected.find('a.toggle-select.card-link').trigger('click') // deselect all
       expect(selected.emitted('input')[0]).toEqual([undefined])
 
       done()
     })
-
-    
   })
-
 })
