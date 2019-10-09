@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.3.0...v1.4.0) (2019-10-09)
+
+
+### Bug Fixes
+
+* **checkbox-tests:** lint fixes ([45a7174](https://github.com/molgenis/molgenis-ui-filter/commit/45a7174))
+
+
+### Features
+
+* **checkbox-filter:** add a manner to give options as functions to the checkbox filter ([c5b527c](https://github.com/molgenis/molgenis-ui-filter/commit/c5b527c))
+
 # [1.3.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.2.0...v1.3.0) (2019-10-08)
 
 
