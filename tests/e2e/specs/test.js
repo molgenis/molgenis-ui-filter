@@ -2,13 +2,13 @@
 // http://nightwatchjs.org/guide#usage
 
 module.exports = {
-  'Expecting 2 filters': browser => {
+  'Expecting 6 filters': browser => {
     browser
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.filter-container')
       .assert.containsText('pre', 'selections:\n{\n  "search": "test"\n}')
-      .assert.elementCount('.filter-card', 5)
+      .assert.elementCount('.filter-card', 6)
       .end()
   }
 }
