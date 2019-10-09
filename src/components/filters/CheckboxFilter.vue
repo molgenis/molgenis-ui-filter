@@ -41,7 +41,7 @@ export default {
       default: () => ''
     },
     options: {
-      type: Array,
+      type: [Array, Function],
       required: true
     },
     value: {
@@ -60,7 +60,8 @@ export default {
   },
   data () {
     return {
-      sliceOptions: this.maxVisibleOptions && this.options && this.maxVisibleOptions < this.options.length
+      resolvedOptions: [],
+      sliceOptions: this.maxVisibleOptions && this.resolvedOptions && this.maxVisibleOptions < this.resolvedOptions.length
     }
   },
   computed: {
@@ -73,29 +74,38 @@ export default {
       }
     },
     visibleOptions () {
-      return this.sliceOptions ? this.options.slice(0, this.maxVisibleOptions) : this.options
+      return this.sliceOptions ? this.resolvedOptions.slice(0, this.maxVisibleOptions) : (typeof this.resolvedOptions === 'function' ? [] : this.resolvedOptions)
     },
     showToggleSlice () {
-      return this.maxVisibleOptions && this.maxVisibleOptions < this.options.length
+      return this.maxVisibleOptions && this.maxVisibleOptions < this.resolvedOptions.length
     },
     toggleSelectText () {
       return this.value.length ? 'Deselect all' : 'Select all'
     },
     toggleSliceText () {
-      return this.sliceOptions ? `Show ${this.options.length - this.maxVisibleOptions} more` : 'Show less'
+      return this.sliceOptions ? `Show ${this.resolvedOptions.length - this.maxVisibleOptions} more` : 'Show less'
     }
   },
   watch: {
-    options () {
+    resolvedOptions () {
       this.sliceOptions = this.showToggleSlice
     },
     maxVisibleOptions () {
       this.sliceOptions = this.showToggleSlice
     }
   },
+  created () {
+    if (typeof this.options === 'function') {
+      this.options().then(response => {
+        this.resolvedOptions = response
+      })
+    } else {
+      this.resolvedOptions = this.options
+    }
+  },
   methods: {
     toggleSelect () {
-      this.selection = this.selection && this.selection.length ? [] : this.options.map(option => option.value)
+      this.selection = this.selection && this.selection.length ? [] : this.resolvedOptions.map(option => option.value)
     },
     toggleSlice () {
       this.sliceOptions = !this.sliceOptions

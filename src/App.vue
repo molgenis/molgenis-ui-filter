@@ -36,7 +36,7 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['search', 'color', 'name', 'age', 'number'],
+      filtersShown: ['search', 'color', 'name', 'age', 'number', 'checkbox-options'],
       filters: [ {
         name: 'search',
         label: 'Search',
@@ -81,9 +81,23 @@ export default Vue.extend({
       }, {
         name: 'checkbox',
         label: 'Checkbox',
-        collapsed: true,
+        collapsed: false,
         bulkOperation: true,
+        maxVisibleOptions: 1,
         options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        type: 'checkbox-filter'
+      }, {
+        name: 'checkbox-options',
+        label: 'Checkbox lots of options',
+        collapsed: false,
+        bulkOperation: true,
+        maxVisibleOptions: 1,
+        options: () => {
+          return new Promise(
+            function (resolve, reject) {
+              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }]) // fulfilled
+            })
+        },
         type: 'checkbox-filter'
       }, {
         name: 'long-name',

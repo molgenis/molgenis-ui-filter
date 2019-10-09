@@ -81,4 +81,48 @@ describe('CheckboxFilter.vue', () => {
     wrapper.find('a.toggle-slice.card-link').trigger('click')
     expect(wrapper.findAll('.custom-control.custom-checkbox').length).toBe(1)
   })
+
+  it('use function as options property', (done) => {
+    const optionsPromise = () => {
+      return new Promise(
+        function (resolve, reject) {
+          resolve(options) // fulfilled
+        })
+    }
+
+    const unselected = mount(CheckboxFilter, {
+      stubs: {
+        'font-awesome-icon': '<div />'
+      },
+      propsData: {
+        name: 'name',
+        label: 'label',
+        value: [],
+        options: optionsPromise
+      }
+    })
+
+    const selected = mount(CheckboxFilter, {
+      stubs: {
+        'font-awesome-icon': '<div />'
+      },
+      propsData: {
+        name: 'name',
+        label: 'label',
+        value: ['foo'],
+        options: optionsPromise
+      }
+    })
+
+    // wait one frame to let the options resolve by the created() function
+    wrapper.vm.$nextTick(() => {
+      unselected.find('a.toggle-select.card-link').trigger('click') // select all
+      expect(unselected.emitted('input')[0]).toEqual([['foo', 'bar', 'baz']])
+
+      selected.find('a.toggle-select.card-link').trigger('click') // deselect all
+      expect(selected.emitted('input')[0]).toEqual([undefined])
+
+      done()
+    })
+  })
 })
