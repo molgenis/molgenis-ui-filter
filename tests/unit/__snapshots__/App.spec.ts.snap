@@ -34,8 +34,7 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
         <strong>
           selections:
         </strong>
-        
-      {
+        {
   "search": "test"
 }
       </pre>
@@ -44,8 +43,7 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
         <strong>
           visibility:
         </strong>
-        
-      [
+        [
   "search",
   "color",
   "name",

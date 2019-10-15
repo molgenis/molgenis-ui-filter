@@ -7,7 +7,7 @@ module.exports = {
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.filter-container')
-      .assert.containsText('pre', 'selections:\n{\n  "search": "test"\n}')
+      .assert.containsText('pre', 'selections:{\n  "search": "test"\n}')
       .assert.elementCount('.filter-card', 6)
       .end()
   }
