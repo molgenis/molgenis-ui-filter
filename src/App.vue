@@ -19,10 +19,8 @@
           :filters="filters"
         />
         <br><br>
-        <pre><strong>selections:</strong>
-        {{ selections }}</pre>
-        <pre><strong>visibility:</strong>
-        {{ filtersShown }}</pre>
+        <pre><strong>selections:</strong>{{ selections }}</pre>
+        <pre><strong>visibility:</strong>{{ filtersShown }}</pre>
       </div>
     </div>
   </div>
