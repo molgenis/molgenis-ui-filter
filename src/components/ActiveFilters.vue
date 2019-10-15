@@ -67,8 +67,7 @@ export default Vue.extend({
 
           // Range Filter
           if (filter.type === 'range-filter') {
-            values.push({ key, subKey: 0, value: current[0], label: `Minimum ${filter.label}` })
-            values.push({ key, subKey: 1, value: current[1], label: `Maximum ${filter.label}` })
+            values.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
           }
         } else {
           // Single item
