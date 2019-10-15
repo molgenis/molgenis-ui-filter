@@ -14,8 +14,13 @@
         />
       </div>
       <div class="col col-md-8">
+        <active-filters
+          v-model="selections"
+          :filters="filters"
+        />
+        <br><br>
         <pre><strong>selections:</strong>
-{{ selections }}</pre>
+        {{ selections }}</pre>
         <pre><strong>visibility:</strong>
         {{ filtersShown }}</pre>
       </div>
@@ -26,11 +31,11 @@
 <script>
 import Vue from 'vue'
 import * as components from './components/filters'
-import { FilterContainer } from './components/'
+import { FilterContainer, ActiveFilters } from './components/'
 
 export default Vue.extend({
   name: 'App',
-  'components': { FilterContainer, ...components },
+  'components': { FilterContainer, ActiveFilters, ...components },
   data () {
     return {
       selections: {
