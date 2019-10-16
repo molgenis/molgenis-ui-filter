@@ -51,9 +51,6 @@ export default Vue.extend({
         // Clean op the values by removing undefined entry's
         if (current === undefined) return
 
-        // promise function has not settled yet
-        if (typeof filter.options === 'function') return
-
         // Unpack array
         if (Array.isArray(current)) {
           // Checkbox
