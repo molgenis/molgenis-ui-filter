@@ -45,8 +45,7 @@ export default Vue.extend({
   computed: {
     activeValues () {
       let values = []
-      Object.keys(this.value).map(key => {
-        const current = this.value[key]
+      Object.entries(this.value).forEach(([key, current]) => {
         const filter = this.selectFilter(key)
 
         // Clean op the values by removing undefined entry's
@@ -59,7 +58,7 @@ export default Vue.extend({
         if (Array.isArray(current)) {
           // Checkbox
           if (filter.type === 'checkbox-filter') {
-            current.map(subKey => {
+            current.forEach(subKey => {
               const option = filter.options.filter(item => item.value === subKey)[0]
               values.push({ key, subKey, value: option.text, label: filter.label })
             })
