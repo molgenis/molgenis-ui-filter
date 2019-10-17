@@ -6,7 +6,8 @@ describe('ActiveFilters.vue', () => {
     propsData: {
       value: {
         string: 'blah',
-        checkbox: ['red']
+        checkbox: ['red'],
+        range: [-5, 5]
       },
       filters: [ {
         name: 'string',
@@ -23,12 +24,13 @@ describe('ActiveFilters.vue', () => {
         options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
         type: 'checkbox-filter'
       }, {
-        name: 'checkbox2',
-        label: 'Checkbox',
+        name: 'range',
+        label: 'Range',
+        min: -10,
+        max: 10,
         collapsed: false,
-        bulkOperation: true,
         options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
-        type: 'checkbox-filter'
+        type: 'range-filter'
       }]
     }
   })
@@ -40,9 +42,9 @@ describe('ActiveFilters.vue', () => {
   it('removes filter values on click', () => {
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'string' })
-    expect(wrapper.emitted().input[0][0]).toEqual({ checkbox: [ 'red' ] })
+    expect(wrapper.emitted().input[0][0]).toEqual({ checkbox: [ 'red' ], 'range': [-5, 5] })
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'checkbox', subKey: 'red' })
-    expect(wrapper.emitted().input[1][0]).toEqual({ 'checkbox': [], string: 'blah' })
+    expect(wrapper.emitted().input[1][0]).toEqual({ 'checkbox': [], 'range': [-5, 5], string: 'blah' })
   })
 })

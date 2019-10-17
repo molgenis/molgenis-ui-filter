@@ -71,9 +71,6 @@ export default Vue.extend({
         }
       })
       return values
-    },
-    splitArray () {
-      return this.activeValues
     }
   },
   methods: {
