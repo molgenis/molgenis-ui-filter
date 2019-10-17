@@ -63,13 +63,19 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
-| options              | true     | *na*          | describe the checkboxes. The value property is used as key and the text property is used as label by the UI |
+| options              | true     | *na*          | describe the checkboxes. This is a function holding a promise holding holding the options (see example below) |
 | bulkOperation        | false    | true          | adds 'select all' and or 'Deselect all' button |
 | maxVisibleOptions    | false    | undefined *(show all options)* | limit the amount of initially shown options | 
 
-*Options example*
+*options example*
 ```
-[{ value: 'value1', text: 'Checkbox 1' }, { value: 'value2', text: 'Checkbox 2' }]
+() => {
+    return new Promise(
+        function (resolve) {
+            resolve([{ value: 'value1', text: 'Checkbox 1' }, { value: 'value2', text: 'Checkbox 2' }])
+        }
+    )
+}
 ```
 
 #### StringFilter

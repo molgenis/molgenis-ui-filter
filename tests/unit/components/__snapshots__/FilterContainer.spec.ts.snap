@@ -118,7 +118,20 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
         <div
           bulkoperation="true"
           class="card filter-card mb-2"
-          options="[object Object],[object Object],[object Object]"
+          options="() => {
+    return new Promise(function (resolve) {
+      resolve([{
+        value: 'red',
+        text: 'Red'
+      }, {
+        value: 'green',
+        text: 'Green'
+      }, {
+        value: 'blue',
+        text: 'Blue'
+      }]);
+    });
+  }"
           type="checkbox-filter"
         >
           <!---->

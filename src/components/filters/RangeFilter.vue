@@ -7,6 +7,7 @@
         type="number"
         :min="min"
         :max="max"
+        placeholder="min"
         :step="step"
         class="text-center range-from"
         @change="handleChange"
@@ -16,6 +17,7 @@
         type="number"
         :min="min"
         :max="max"
+        placeholder="max"
         :step="step"
         class="text-center range-to"
         @change="handleChange"
@@ -69,7 +71,13 @@ export default Vue.extend({
   },
   data: function () {
     return {
-      sliderValue: [this.min, this.max]
+      sliderValue: [null, null]
+    }
+  },
+  watch: {
+    value (newValue) {
+      this.sliderValue[0] = Math.min(newValue[0], newValue[1])
+      this.sliderValue[1] = Math.max(newValue[0], newValue[1])
     }
   },
   methods: {

@@ -22,12 +22,19 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
     <div
       class="col col-md-8"
     >
+      <active-filters-stub
+        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+        value="[object Object]"
+      />
+       
+      <br />
+      <br />
+       
       <pre>
         <strong>
           selections:
         </strong>
-        
-{
+        {
   "search": "test"
 }
       </pre>
@@ -36,7 +43,6 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
         <strong>
           visibility:
         </strong>
-        
         [
   "search",
   "color",

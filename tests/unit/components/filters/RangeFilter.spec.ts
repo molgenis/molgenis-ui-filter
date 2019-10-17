@@ -15,9 +15,9 @@ describe('RangeFilter.vue', () => {
 
   it('sets value property on inner input', () => {
     const inputElement1 = wrapper.find('.range-from').element as HTMLInputElement
-    expect(parseInt(inputElement1.value, 10)).toBe(Number.MIN_SAFE_INTEGER)
+    expect(inputElement1.value).toBe('')
     const inputElement2 = wrapper.find('.range-to').element as HTMLInputElement
-    expect(parseInt(inputElement2.value, 10)).toBe(Number.MAX_SAFE_INTEGER)
+    expect(inputElement2.value).toBe('')
   })
 
   it('triggers event after value change', () => {
