@@ -2,6 +2,13 @@ import { mount, Wrapper } from '@vue/test-utils'
 import { FilterContainer } from '@/components'
 
 describe('FilterContainer.vue', () => {
+  const optionsPromise = () => {
+    return new Promise(
+      function (resolve) {
+        resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+      }
+    )
+  }
   const options = {
     stubs: {
       'font-awesome-icon': '<div />'
@@ -23,14 +30,14 @@ describe('FilterContainer.vue', () => {
         label: 'Checkbox',
         collapsed: false,
         bulkOperation: true,
-        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        options: optionsPromise,
         type: 'checkbox-filter'
       }, {
         name: 'checkbox2',
         label: 'Checkbox',
         collapsed: false,
         bulkOperation: true,
-        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        options: optionsPromise,
         type: 'checkbox-filter'
       }],
       filtersShown: ['string', 'checkbox']

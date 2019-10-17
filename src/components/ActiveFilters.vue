@@ -39,12 +39,20 @@ export default Vue.extend({
   },
   data () {
     return {
-      isOpen: this.collapsable ? !this.collapsed : true
+      activeValues: []
     }
   },
-  computed: {
-    activeValues () {
-      let values = []
+  watch: {
+    value () {
+      this.buildActiveValues()
+    }
+  },
+  created () {
+    this.buildActiveValues()
+  },
+  methods: {
+    buildActiveValues () {
+      this.activeValues = []
       Object.entries(this.value).forEach(([key, current]) => {
         const filter = this.selectFilter(key)
 
@@ -55,25 +63,24 @@ export default Vue.extend({
         if (Array.isArray(current)) {
           // Checkbox
           if (filter.type === 'checkbox-filter') {
-            current.forEach(subKey => {
-              const option = filter.options.filter(item => item.value === subKey)[0]
-              values.push({ key, subKey, value: option.text, label: filter.label })
+            // resolve options function/promise and show results later
+            filter.options().then(option => {
+              current.forEach(subKey => {
+                const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
+                this.activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
+              })
             })
           }
-
           // Range Filter
           if (filter.type === 'range-filter') {
-            values.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
+            this.activeValues.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
           }
         } else {
           // Single item
-          values.push({ key, value: current, label: filter.label })
+          this.activeValues.push({ key, value: current, label: filter.label })
         }
       })
-      return values
-    }
-  },
-  methods: {
+    },
     selectFilter (key) {
       return this.filters.filter(filter => filter.name === key)[0]
     },

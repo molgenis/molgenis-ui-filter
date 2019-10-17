@@ -2,7 +2,13 @@ import { mount } from '@vue/test-utils'
 import { CheckboxFilter } from '@/components/filters/'
 
 describe('CheckboxFilter.vue', () => {
-  const options = [{ value: 'foo', text: 'Foo' }, { value: 'bar', text: 'Bar' }, { value: 'baz', text: 'Baz' }]
+  const optionsPromise = () => {
+    return new Promise(
+      function (resolve) {
+        resolve([{ value: 'foo', text: 'Foo' }, { value: 'bar', text: 'Bar' }, { value: 'baz', text: 'Baz' }])
+      }
+    )
+  }
 
   const wrapper = mount(CheckboxFilter, {
     stubs: {
@@ -12,16 +18,52 @@ describe('CheckboxFilter.vue', () => {
       name: 'name',
       label: 'label',
       value: [],
-      options
+      options: optionsPromise
     }
   })
-  const inputElements = wrapper.findAll('input')
+
+  const unselected = mount(CheckboxFilter, {
+    stubs: {
+      'font-awesome-icon': '<div />'
+    },
+    propsData: {
+      name: 'name',
+      label: 'label',
+      value: [],
+      options: optionsPromise
+    }
+  })
+
+  const selected = mount(CheckboxFilter, {
+    stubs: {
+      'font-awesome-icon': '<div />'
+    },
+    propsData: {
+      name: 'name',
+      label: 'label',
+      value: ['foo'],
+      options: optionsPromise
+    }
+  })
+
+  const maxVisible = mount(CheckboxFilter, {
+    stubs: {
+      'font-awesome-icon': '<div />'
+    },
+    propsData: {
+      name: 'name',
+      label: 'label',
+      maxVisibleOptions: 1,
+      value: [],
+      options: optionsPromise
+    }
+  })
 
   it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
-
   it('can set and unset values', () => {
+    const inputElements = wrapper.findAll('input')
     inputElements.at(0).trigger('click') // select foo
     inputElements.at(1).trigger('click') // select bar
     inputElements.at(2).trigger('click') // select baz
@@ -30,30 +72,6 @@ describe('CheckboxFilter.vue', () => {
   })
 
   it('can select all and deselect all', () => {
-    const unselected = mount(CheckboxFilter, {
-      stubs: {
-        'font-awesome-icon': '<div />'
-      },
-      propsData: {
-        name: 'name',
-        label: 'label',
-        value: [],
-        options
-      }
-    })
-
-    const selected = mount(CheckboxFilter, {
-      stubs: {
-        'font-awesome-icon': '<div />'
-      },
-      propsData: {
-        name: 'name',
-        label: 'label',
-        value: ['foo'],
-        options
-      }
-    })
-
     unselected.find('a.toggle-select.card-link').trigger('click') // select all
     expect(unselected.emitted('input')[0]).toEqual([['foo', 'bar', 'baz']])
 
@@ -62,34 +80,14 @@ describe('CheckboxFilter.vue', () => {
   })
 
   it('can hide elements based on maxVisibleOptions', () => {
-    const wrapper = mount(CheckboxFilter, {
-      stubs: {
-        'font-awesome-icon': '<div />'
-      },
-      propsData: {
-        name: 'name',
-        label: 'label',
-        maxVisibleOptions: 1,
-        value: [],
-        options
-      }
-    })
-
-    expect(wrapper.findAll('.custom-control.custom-checkbox').length).toBe(1)
-    wrapper.find('a.toggle-slice.card-link').trigger('click')
-    expect(wrapper.findAll('.custom-control.custom-checkbox').length).toBe(3)
-    wrapper.find('a.toggle-slice.card-link').trigger('click')
-    expect(wrapper.findAll('.custom-control.custom-checkbox').length).toBe(1)
+    expect(maxVisible.findAll('.custom-control.custom-checkbox').length).toBe(1)
+    maxVisible.find('a.toggle-slice.card-link').trigger('click')
+    expect(maxVisible.findAll('.custom-control.custom-checkbox').length).toBe(3)
+    maxVisible.find('a.toggle-slice.card-link').trigger('click')
+    expect(maxVisible.findAll('.custom-control.custom-checkbox').length).toBe(1)
   })
 
   it('use function as options property', (done) => {
-    const optionsPromise = () => {
-      return new Promise(
-        function (resolve, reject) {
-          resolve(options) // fulfilled
-        })
-    }
-
     const unselected = mount(CheckboxFilter, {
       stubs: {
         'font-awesome-icon': '<div />'

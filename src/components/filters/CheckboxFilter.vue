@@ -41,7 +41,7 @@ export default {
       default: () => ''
     },
     options: {
-      type: [Array, Function],
+      type: [Function],
       required: true
     },
     value: {
@@ -95,13 +95,9 @@ export default {
     }
   },
   created () {
-    if (typeof this.options === 'function') {
-      this.options().then(response => {
-        this.resolvedOptions = response
-      })
-    } else {
-      this.resolvedOptions = this.options
-    }
+    this.options().then(response => {
+      this.resolvedOptions = response
+    })
   },
   methods: {
     toggleSelect () {

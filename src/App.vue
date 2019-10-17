@@ -52,7 +52,12 @@ export default Vue.extend({
         label: 'Color',
         collapsed: false,
         bulkOperation: true,
-        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        options: () => {
+          return new Promise(
+            function (resolve) {
+              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+            })
+        },
         type: 'checkbox-filter'
       }, {
         name: 'number',
@@ -87,7 +92,12 @@ export default Vue.extend({
         collapsed: false,
         bulkOperation: true,
         maxVisibleOptions: 1,
-        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        options: () => {
+          return new Promise(
+            function (resolve) {
+              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+            })
+        },
         type: 'checkbox-filter'
       }, {
         name: 'checkbox-options',
@@ -97,8 +107,8 @@ export default Vue.extend({
         maxVisibleOptions: 1,
         options: () => {
           return new Promise(
-            function (resolve, reject) {
-              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }]) // fulfilled
+            function (resolve) {
+              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
             })
         },
         type: 'checkbox-filter'
@@ -107,7 +117,12 @@ export default Vue.extend({
         label: 'Way too long name to really fit in the user interface',
         collapsed: true,
         bulkOperation: true,
-        options: [{ value: 'yes', text: 'Yes' }, { value: 'no', text: 'No' }],
+        options: () => {
+          return new Promise(
+            function (resolve) {
+              resolve([{ value: 'no', text: 'No' }, { value: 'yes', text: 'Yes' }])
+            })
+        },
         type: 'checkbox-filter'
       }]
     }

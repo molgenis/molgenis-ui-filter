@@ -2,6 +2,13 @@ import { mount } from '@vue/test-utils'
 import { ActiveFilters } from '@/components'
 
 describe('ActiveFilters.vue', () => {
+  const optionsPromise = () => {
+    return new Promise(
+      function (resolve) {
+        resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+      }
+    )
+  }
   const wrapper = mount(ActiveFilters, {
     propsData: {
       value: {
@@ -21,7 +28,7 @@ describe('ActiveFilters.vue', () => {
         label: 'Checkbox',
         collapsed: false,
         bulkOperation: true,
-        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        options: optionsPromise,
         type: 'checkbox-filter'
       }, {
         name: 'range',
@@ -29,7 +36,7 @@ describe('ActiveFilters.vue', () => {
         min: -10,
         max: 10,
         collapsed: false,
-        options: [{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }],
+        options: optionsPromise,
         type: 'range-filter'
       }]
     }

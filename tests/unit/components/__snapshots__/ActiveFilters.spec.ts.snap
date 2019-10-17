@@ -31,7 +31,7 @@ exports[`ActiveFilters.vue matches snapshot 1`] = `
     type="button"
   >
     
-    Checkbox: Red
+    Range: -5 to 5
     
     <svg
       aria-hidden="true"
@@ -55,7 +55,7 @@ exports[`ActiveFilters.vue matches snapshot 1`] = `
     type="button"
   >
     
-    Range: -5 to 5
+    Checkbox: Red
     
     <svg
       aria-hidden="true"
