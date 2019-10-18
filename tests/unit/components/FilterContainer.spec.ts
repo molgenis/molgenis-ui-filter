@@ -1,4 +1,4 @@
-import { mount, Wrapper } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import { FilterContainer } from '@/components'
 
 describe('FilterContainer.vue', () => {
