@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.4.0...v1.4.1) (2019-10-18)
+
+
+### Bug Fixes
+
+* remove unused code, trigger patch release ([2b71cc9](https://github.com/molgenis/molgenis-ui-filter/commit/2b71cc9))
+
 # [1.4.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.3.0...v1.4.0) (2019-10-09)
 
 
