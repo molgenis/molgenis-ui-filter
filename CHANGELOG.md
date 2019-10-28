@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.4.1...v1.4.2) (2019-10-28)
+
+
+### Bug Fixes
+
+* activeFilter wil not brake when updated quickly ([36032e5](https://github.com/molgenis/molgenis-ui-filter/commit/36032e5))
+
 ## [1.4.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.4.0...v1.4.1) (2019-10-18)
 
 
