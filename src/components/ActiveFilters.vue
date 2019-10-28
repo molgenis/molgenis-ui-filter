@@ -43,17 +43,17 @@ export default Vue.extend({
     }
   },
   watch: {
-    value () {
-      this.buildActiveValues()
+    value: {
+      handler (newValue) {
+        this.buildActiveValues(newValue)
+      },
+      immediate: true
     }
   },
-  created () {
-    this.buildActiveValues()
-  },
   methods: {
-    buildActiveValues () {
-      this.activeValues = []
-      Object.entries(this.value).forEach(([key, current]) => {
+    async buildActiveValues (newValue) {
+      const activeValues = []
+      Object.entries(newValue).forEach(async ([key, current]) => {
         const filter = this.selectFilter(key)
 
         // Clean op the values by removing undefined entry's
@@ -64,22 +64,24 @@ export default Vue.extend({
           // Checkbox
           if (filter.type === 'checkbox-filter') {
             // resolve options function/promise and show results later
-            filter.options().then(option => {
-              current.forEach(subKey => {
-                const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
-                this.activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
-              })
+            const option = await filter.options()
+            current.forEach(subKey => {
+              const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
+              activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
             })
           }
           // Range Filter
           if (filter.type === 'range-filter') {
-            this.activeValues.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
+            activeValues.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
           }
         } else {
           // Single item
-          this.activeValues.push({ key, value: current, label: filter.label })
+          activeValues.push({ key, value: current, label: filter.label })
         }
       })
+      if (this.value === newValue) {
+        this.activeValues = activeValues
+      }
     },
     selectFilter (key) {
       return this.filters.filter(filter => filter.name === key)[0]
