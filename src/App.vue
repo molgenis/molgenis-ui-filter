@@ -124,6 +124,17 @@ export default Vue.extend({
             })
         },
         type: 'checkbox-filter'
+      }, {
+        name: 'boolean-filter',
+        label: 'Boolean filter',
+        collapsed: true,
+        options: () => {
+          return new Promise(
+            function (resolve) {
+              resolve({ trueLabel: 'Public', falseLabel: 'Private' })
+            })
+        },
+        type: 'boolean-filter'
       }]
     }
   },
