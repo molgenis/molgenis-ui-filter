@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BooleanFilter.vue matches the snapshot 1`] = `
+<label
+  class="slider-checkbox-container"
+  label="Boolean filter"
+  type="boolean-filter"
+>
+  <span
+    class="label-text"
+  >
+    Private
+  </span>
+   
+  <div
+    class="slider-checkbox"
+  >
+    <div
+      class="inner-slider"
+    >
+      <input
+        type="checkbox"
+      />
+       
+      <div
+        class="slider-knob bg-light"
+      />
+       
+      <div
+        class="slider-background bg-primary"
+      />
+    </div>
+  </div>
+   
+  <span
+    class="label-text"
+  >
+    Public
+  </span>
+</label>
+`;
