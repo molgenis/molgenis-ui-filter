@@ -14,7 +14,8 @@ module.exports = {
     '^.+\\.es.js$': 'babel-jest'
   },
   transformIgnorePatterns: [
-    '/node_modules/(?!(@molgenis/molgenis-api-client.*))'
+    '/node_modules/(?!(@molgenis/molgenis-api-client.*))',
+    'App.vue'
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
