@@ -1,13 +1,13 @@
 <template>
   <div>
     <button
-      v-for="(item, key) in activeValues"
-      :key="key"
+      v-for="filterSelection in filtersSelection"
+      :key="`${filterSelection.filter.id}-${filterSelection.id}`"
       type="button"
       class="active-filter btn btn-light m-1 btn-outline-secondary"
-      @click="removeFilter(item)"
+      @click="deselectFilter(filterSelection)"
     >
-      {{ item.label }}: {{ item.value }}
+      {{ filterSelection.label }}: {{ filterSelection.name }}
       <font-awesome-icon
         icon="times"
         class="ml-1"
@@ -27,76 +27,53 @@ library.add(faTimes)
 export default Vue.extend({
   name: 'ActiveFilters',
   components: { FontAwesomeIcon },
-  props: {
-    filters: {
-      type: Array,
-      required: true
-    },
-    value: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  data () {
-    return {
-      activeValues: []
-    }
-  },
-  watch: {
-    value: {
-      handler (newValue) {
-        this.buildActiveValues(newValue)
-      },
-      immediate: true
-    }
-  },
-  methods: {
-    async buildActiveValues (newValue) {
-      const activeValues = []
-      Object.entries(newValue).forEach(async ([key, current]) => {
-        const filter = this.selectFilter(key)
+  computed: {
+    filtersSelection: function () {
+      const filtersSelection = []
 
-        // Clean op the values by removing undefined entry's
-        if (current === undefined) return
-
-        // Unpack array
-        if (Array.isArray(current)) {
-          // Checkbox
-          if (filter.type === 'checkbox-filter') {
-            // resolve options function/promise and show results later
-            const option = await filter.options()
-            current.forEach(subKey => {
-              const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
-              activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
+      for (const filter of this.filters) {
+        if (!filter.active || !filter.selection) {
+          continue
+        } else if (Array.isArray(filter.selection)) {
+          if (['MultiFilter', 'CheckboxFilter'].includes(filter.type)) {
+            for (const [i, optionId] of filter.selection.entries()) {
+              const option = filter.options.find((f) => f.id === optionId)
+              filtersSelection.push({ id: i, filter, label: filter.label, name: option.name })
+            }
+          } else if (filter.type === 'RangeFilter') {
+            if (filter.selection[0] === null && filter.selection[1] === null) {
+              continue
+            }
+            filtersSelection.push({
+              id: filter.id,
+              filter,
+              label: filter.label,
+              name: `${filter.selection[0]} to ${filter.selection[1]}`
             })
-          }
-          // Range Filter
-          if (filter.type === 'range-filter') {
-            activeValues.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
           }
         } else {
           // Single item
-          activeValues.push({ key, value: current, label: filter.label })
+          filtersSelection.push({ id: filter.id, filter, label: filter.label, name: filter.selection })
         }
-      })
-      if (this.value === newValue) {
-        this.activeValues = activeValues
       }
-    },
-    selectFilter (key) {
-      return this.filters.filter(filter => filter.name === key)[0]
-    },
-    removeFilter ({ key, subKey }) {
-      if (subKey === undefined) {
-        let selections = { ...this.value }
-        delete selections[key]
-        this.$emit('input', selections)
+
+      return filtersSelection
+    }
+  },
+  methods: {
+    deselectFilter (filterSelection) {
+      if (Array.isArray(filterSelection.filter.selection)) {
+        filterSelection.filter.selection.splice(filterSelection.id, 1)
+        if (filterSelection.filter.type === 'range-filter') {
+          filterSelection.filter.selection = [null, null]
+        }
       } else {
-        let selections = { ...this.value }
-        selections[key] = selections[key].filter(key => key !== subKey)
-        this.$emit('input', selections)
+        filterSelection.filter.selection = ''
       }
     }
+  },
+  store: {
+    'filters': 'filters.available'
   }
 })
 </script>

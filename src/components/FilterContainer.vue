@@ -20,36 +20,32 @@
       :visible="!doCollapse || mobileToggle"
     >
       <draggable
-        v-model="filtersToShow"
+        v-model="activeFilters"
         :disabled="!doDragDrop"
         :class="{'dragdrop': doDragDrop, 'dragging': drag}"
         @choose="drag=true"
         @end="drag=false"
-        @input="selectionUpdate"
       >
         <transition-group>
           <filter-card
-            v-for="filter in listOfVisibleFilters"
-            :key="filter.name"
-            v-bind="filter"
+            v-for="filter in activeFilters"
+            :key="filter.id"
+            :filter="filter"
             :can-remove="canEdit"
-            @removeFilter="removeFilter(filter.name)"
+            class="filter"
+            @removeFilter="filter.active = false"
           >
             <component
               :is="filter.type"
-              :name="filter.name"
-              :value="value[filter.name]"
-              v-bind="filter"
-              @input="value => selectionChange(filter.name, value)"
+              :filter="filter"
             />
           </filter-card>
         </transition-group>
       </draggable>
+
       <add-filter-modal
-        v-if="canEdit && listOfInvisibleFilters.length > 0"
-        v-model="filtersToShow"
-        :filters="listOfInvisibleFilters"
-        @input="selectionUpdate"
+        v-if="canEdit && inactiveFilters.length > 0"
+        :filters="inactiveFilters"
       />
     </b-collapse>
   </div>
@@ -58,36 +54,14 @@
 <script>
 import AddFilterModal from './AddFilterModal.vue'
 import { FilterCard } from '.'
-import { StringFilter, CheckboxFilter, NumberFilter, RangeFilter } from './filters/'
+import * as components from '../components/filters'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'FilterContainer',
-  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, NumberFilter, RangeFilter, draggable },
-  props: {
-    filters: {
-      type: Array,
-      required: true
-    },
-    value: {
-      type: Object,
-      default: () => ({})
-    },
-    filtersShown: {
-      type: Array,
-      required: false,
-      default: () => []
-    },
-    canEdit: {
-      type: Boolean,
-      required: false,
-      default: () => false
-    }
-  },
+  components: { AddFilterModal, FilterCard, draggable, ...components },
   data () {
     return {
-      filtersToShow: this.filtersShown,
-      filterToAdd: null,
       drag: false,
       width: 0,
       mobileToggle: false
@@ -101,11 +75,22 @@ export default {
     doDragDrop () {
       return this.canEdit && !this.doCollapse
     },
-    listOfVisibleFilters () {
-      return this.filters.filter(filter => this.filtersToShow.includes(filter.name))
+    inactiveFilters () {
+      return this.filters.filter(filter => !filter.active)
     },
-    listOfInvisibleFilters () {
-      return this.filters.filter(filter => !this.filtersToShow.includes(filter.name))
+    /**
+     * A setter is required, because the <draggable> component
+     * uses this computed property to update the filter order.
+     */
+    activeFilters: {
+      get () {
+        return this.filters.filter(filter => filter.active)
+      },
+      set (value) {
+        // Reordering the active filter order to the start
+        // of the array. Inactive filters are stacked after.
+        this.filters = value.concat(this.inactiveFilters)
+      }
     }
   },
   created () {
@@ -118,21 +103,11 @@ export default {
   methods: {
     handleResize () {
       this.width = window.innerWidth
-    },
-    removeFilter (name) {
-      this.filtersToShow = this.filtersToShow.filter(filter => name !== filter)
-      this.$emit('update', this.filtersToShow)
-
-      let selections = { ...this.value }
-      delete selections[name]
-      this.$emit('input', selections)
-    },
-    selectionChange (name, value) {
-      this.$emit('input', { ...this.value, [name]: value })
-    },
-    selectionUpdate () {
-      this.$emit('update', this.filtersToShow)
     }
+  },
+  store: {
+    canEdit: 'filters.canEdit',
+    filters: 'filters.available'
   }
 }
 </script>

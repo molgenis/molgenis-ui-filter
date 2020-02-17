@@ -1,90 +1,56 @@
-import { mount } from '@vue/test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import { FilterContainer } from '@/components'
+import BootstrapVue from 'bootstrap-vue'
+import state from '@/store'
+
+const VueStash = require('vue-stash')
 
 describe('FilterContainer.vue', () => {
-  const optionsPromise = () => {
-    return new Promise(
-      function (resolve) {
-        resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
-      }
-    )
-  }
-  const options = {
-    stubs: {
-      'font-awesome-icon': '<div />'
-    },
-    propsData: {
-      value: {
-        string: 'blah',
-        checkbox: ['red']
-      },
-      filters: [ {
-        name: 'string',
-        label: 'String',
-        description: 'search by string',
-        placeholder: 'placeholder',
-        type: 'string-filter',
-        collapsable: false
-      }, {
-        name: 'checkbox',
-        label: 'Checkbox',
-        collapsed: false,
-        bulkOperation: true,
-        options: optionsPromise,
-        type: 'checkbox-filter'
-      }, {
-        name: 'checkbox2',
-        label: 'Checkbox',
-        collapsed: false,
-        bulkOperation: true,
-        options: optionsPromise,
-        type: 'checkbox-filter'
-      }],
-      filtersShown: ['string', 'checkbox']
-    }
-  }
+  let wrapper:any
+  let store:any
 
-  let wrapper = mount(FilterContainer, options)
+  const localVue = createLocalVue()
+  localVue.use(VueStash.default)
+  localVue.use(BootstrapVue)
 
   beforeEach(() => {
-    wrapper = mount(FilterContainer, options)
+    store = { ...state }
+
+    wrapper = mount(FilterContainer, {
+      localVue,
+      parentComponent: { data: () => ({ store }) }
+    })
   })
 
   it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('consolidates all filter output and sends them via input event', () => {
-    wrapper.find('input[name="string"]').setValue('test')
-    wrapper.find('input[value="red"]').trigger('click')
-    expect(wrapper.emitted().input).toEqual([
-      [{ 'checkbox': ['red'], 'string': 'test' }],
-      [{ 'checkbox': undefined, 'string': 'blah' }]
-    ])
-  })
-
-  it('cannot remove filters by default', () => {
+  it('editable mode is toggleable', () => {
+    store.filters.canEdit = false
     expect(wrapper.find('.remove-button').exists()).toBe(false)
-  })
-
-  it('can remove filters when editable', () => {
-    wrapper.setProps({ canEdit: true })
-    wrapper.find('.remove-button').trigger('click')
-    expect(wrapper.emitted().update).toEqual([[['checkbox']]])
-    expect(wrapper.emitted().input).toEqual([[{ checkbox: [ 'red' ] }]])
-  })
-
-  it('cannot add filters by default', () => {
     expect(wrapper.find('.add-button').exists()).toBe(false)
+    store.filters.canEdit = true
+    expect(wrapper.find('.remove-button').exists()).toBe(true)
+    expect(wrapper.find('.add-button').exists()).toBe(true)
   })
 
-  it('can add filters when editable', (done) => {
-    wrapper.setProps({ canEdit: true })
+  it('filters are removable when filters are editable', () => {
+    store.filters.canEdit = true
+    const before = wrapper.findAll('.filter').length
+    wrapper.find('.remove-button').trigger('click')
+    const after = wrapper.findAll('.filter').length
+    expect(after).toBeLessThan(before)
+  })
+
+  it('filter is addable when filters are editable', (done) => {
+    store.filters.canEdit = true
     wrapper.find('.add-button').trigger('click')
+    const before = wrapper.findAll('.filter').length
     wrapper.vm.$nextTick(() => {
-      wrapper.find('#modal-add-filter select[name=filter]').setValue('checkbox2')
       wrapper.find('#modal-add-filter .modal-footer button.btn-primary').trigger('click')
-      expect(wrapper.emitted().update[0]).toEqual([ [ 'string', 'checkbox', 'checkbox2' ] ])
+      const after = wrapper.findAll('.filter').length
+      expect(before).toBeLessThan(after)
       done()
     })
   })

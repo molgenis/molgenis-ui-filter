@@ -1,24 +1,28 @@
 <template>
   <div>
     <b-form-checkbox-group
-      v-model="selection"
+      v-model="filter.selection"
       stacked
       :options="visibleOptions"
-      :name="name"
+      :name="filter.name"
+      value-field="id"
+      text-field="name"
     />
     <span v-if="bulkOperation">
       <b-link
-        v-if="showToggleSlice"
-        class="toggle-slice card-link"
-        @click.prevent="toggleSlice"
+        v-if="filter.options.length > filter.maxVisibleOptions"
+        class="card-link"
+        @click="showMoreToggled = !showMoreToggled"
       >
-        {{ toggleSliceText }}
+        {{ showMoreText }}
       </b-link>
+
       <b-link
+        v-if="filter.options.length > filter.maxVisibleOptions"
         class="toggle-select card-link"
-        @click.prevent="toggleSelect"
+        @click="toggleSelect"
       >
-        {{ toggleSelectText }}
+        {{ filter.selection.length ? 'Deselect all' : 'Select all' }}
       </b-link>
     </span>
   </div>
@@ -31,80 +35,47 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-    label: {
-      type: String,
-      required: false,
-      default: () => ''
-    },
-    options: {
-      type: [Function],
-      required: true
-    },
-    value: {
-      type: Array,
-      default: () => []
-    },
     bulkOperation: {
       type: Boolean,
       required: false,
       default: () => true
     },
-    maxVisibleOptions: {
-      type: Number,
-      default: () => undefined
+    filter: {
+      required: true,
+      type: Object
     }
   },
   data () {
     return {
-      resolvedOptions: [],
-      sliceOptions: this.maxVisibleOptions && this.resolvedOptions && this.maxVisibleOptions < this.resolvedOptions.length
+      showMoreToggled: false
     }
   },
   computed: {
-    selection: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        this.$emit('input', value.length === 0 ? undefined : value)
-      }
-    },
     visibleOptions () {
-      return this.sliceOptions ? this.resolvedOptions.slice(0, this.maxVisibleOptions) : (typeof this.resolvedOptions === 'function' ? [] : this.resolvedOptions)
+      if (this.showMoreToggled) {
+        return this.filter.options
+      }
+      return this.filter.options.slice(0, this.filter.maxVisibleOptions)
     },
-    showToggleSlice () {
-      return this.maxVisibleOptions && this.maxVisibleOptions < this.resolvedOptions.length
-    },
-    toggleSelectText () {
-      return this.value.length ? 'Deselect all' : 'Select all'
-    },
-    toggleSliceText () {
-      return this.sliceOptions ? `Show ${this.resolvedOptions.length - this.maxVisibleOptions} more` : 'Show less'
+    showMoreText () {
+      if (this.showMoreToggled) {
+        return 'Show less'
+      }
+
+      return `Show ${this.filter.options.length - this.filter.maxVisibleOptions} more`
     }
+
   },
-  watch: {
-    resolvedOptions () {
-      this.sliceOptions = this.showToggleSlice
-    },
-    maxVisibleOptions () {
-      this.sliceOptions = this.showToggleSlice
-    }
-  },
-  created () {
-    this.options().then(response => {
-      this.resolvedOptions = response
-    })
+  created: async function () {
+    this.filter.options = await this.filter.provider()
   },
   methods: {
     toggleSelect () {
-      this.selection = this.selection && this.selection.length ? [] : this.resolvedOptions.map(option => option.value)
-    },
-    toggleSlice () {
-      this.sliceOptions = !this.sliceOptions
+      if (this.filter.selection.length) {
+        this.filter.selection = []
+      } else {
+        this.filter.selection = this.visibleOptions.map((f) => f.id)
+      }
     }
   }
 }
