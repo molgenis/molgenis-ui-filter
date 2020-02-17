@@ -72,7 +72,6 @@ export default {
 }
 .slider-checkbox {
   position: relative;
-  overflow: hidden;
 }
 .slider-knob {
   width: 1.6em;
