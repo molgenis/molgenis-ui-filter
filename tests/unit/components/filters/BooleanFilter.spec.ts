@@ -18,9 +18,18 @@ describe('BooleanFilter.vue', () => {
   }
 
   const wrapper = mount(BooleanFilter, { propsData })
-  wrapper.vm.$emit = jest.fn()
 
   it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
+  })
+
+  it('changes class to bg-primary when isSet is true', async (done) => {
+    wrapper.setData({ selection: true })
+    const background = wrapper.find('.slider-background')
+
+    wrapper.vm.$nextTick()
+
+    expect(background.classes()).toContain('bg-primary')
+    done()
   })
 })
