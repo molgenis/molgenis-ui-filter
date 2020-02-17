@@ -124,6 +124,17 @@ export default Vue.extend({
             })
         },
         type: 'checkbox-filter'
+      },
+      {
+        name: 'multi-filter',
+        label: 'Filter with multiple options',
+        options: () => {
+          return new Promise(
+            function (resolve) {
+              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+            })
+        },
+        type: 'multi-filter'
       }]
     }
   },

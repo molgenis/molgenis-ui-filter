@@ -1,13 +1,14 @@
 <template>
   <div>
     <input
+      v-model="query"
       type="text"
       @keyup="fetchOptions"
       @paste="fetchOptions"
     >
     <div v-if="inputOptions && inputOptions.length >= 0">
       <b-form-checkbox-group
-        v-model="selected"
+        v-model="selection"
         :options="inputOptions"
         :name="name"
       />
@@ -39,9 +40,9 @@ export default {
   data () {
     return {
       selected: [],
-      triggerQuery: Function,
+      triggerQuery: Number,
       inputOptions: [],
-      query: String
+      query: ''
     }
   },
   computed: {
@@ -61,11 +62,17 @@ export default {
   },
   methods: {
     fetchOptions () {
-      clearInterval(triggerQuery)
-      triggerQuery = setInterval(function () {
-        this.$emit('fetch', this.query)
-        clearInterval(triggerQuery)
-      }, 700)
+      if (this.triggerQuery) {
+        clearTimeout(this.triggerQuery)
+      }
+      // bind it, due to scope.
+      const self = this
+
+      this.triggerQuery = setTimeout(function () {
+        clearTimeout(self.triggerQuery)
+        self.$emit('fetch', self.query)
+        console.log(self.query)
+      }, 500)
     }
   }
 }
