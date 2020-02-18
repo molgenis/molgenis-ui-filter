@@ -33,98 +33,116 @@ import { FilterContainer, ActiveFilters } from './components/'
 
 export default Vue.extend({
   name: 'App',
-  'components': { FilterContainer, ActiveFilters, ...components },
+  'components': { FilterContainer, ActiveFilters },
   data () {
     return {
       selections: {
         search: 'test'
       },
-      filtersShown: ['search', 'color', 'name', 'age', 'number', 'checkbox-options'],
-      filters: [ {
-        name: 'search',
-        label: 'Search',
-        description: 'search by string',
-        placeholder: 'placeholder',
-        type: 'string-filter',
-        collapsable: false
-      }, {
-        name: 'color',
-        label: 'Color',
-        collapsed: false,
-        bulkOperation: true,
-        options: () => {
-          return new Promise(
-            function (resolve) {
-              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
-            })
+      filtersShown: ['datetime', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filters: [
+        {
+          name: 'datetime',
+          label: 'Datetime',
+          collapsed: false,
+          range: false,
+          time: false,
+          type: 'date-time-filter'
         },
-        type: 'checkbox-filter'
-      }, {
-        name: 'number',
-        label: 'Number',
-        collapsed: false,
-        type: 'number-filter'
-      }, {
-        name: 'age',
-        label: 'Age',
-        collapsed: false,
-        min: -10,
-        max: 10,
-        step: 0.01,
-        type: 'range-filter'
-      }, {
-        name: 'name',
-        label: 'Name',
-        description: 'Name of object',
-        type: 'string-filter',
-        collapsed: false
-      }, {
-        name: 'string',
-        label: 'String',
-        description: 'search by string',
-        placeholder: 'placeholder',
-        type: 'string-filter',
-        collapsable: true,
-        collapsed: false
-      }, {
-        name: 'checkbox',
-        label: 'Checkbox',
-        collapsed: false,
-        bulkOperation: true,
-        maxVisibleOptions: 1,
-        options: () => {
-          return new Promise(
-            function (resolve) {
-              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
-            })
+        {
+          name: 'search',
+          label: 'Search',
+          description: 'search by string',
+          placeholder: 'placeholder',
+          type: 'string-filter',
+          collapsable: false
         },
-        type: 'checkbox-filter'
-      }, {
-        name: 'checkbox-options',
-        label: 'Checkbox lots of options',
-        collapsed: false,
-        bulkOperation: true,
-        maxVisibleOptions: 1,
-        options: () => {
-          return new Promise(
-            function (resolve) {
-              resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
-            })
+        {
+          name: 'color',
+          label: 'Color',
+          collapsed: false,
+          bulkOperation: true,
+          options: () => {
+            return new Promise(
+              function (resolve) {
+                resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+              })
+          },
+          type: 'checkbox-filter'
         },
-        type: 'checkbox-filter'
-      }, {
-        name: 'long-name',
-        label: 'Way too long name to really fit in the user interface',
-        collapsed: true,
-        bulkOperation: true,
-        options: () => {
-          return new Promise(
-            function (resolve) {
-              resolve([{ value: 'no', text: 'No' }, { value: 'yes', text: 'Yes' }])
-            })
+        {
+          name: 'number',
+          label: 'Number',
+          collapsed: false,
+          type: 'number-filter'
         },
-        type: 'checkbox-filter'
-      }]
+        {
+          name: 'age',
+          label: 'Age',
+          collapsed: false,
+          min: -10,
+          max: 10,
+          step: 0.01,
+          type: 'range-filter'
+        },
+        {
+          name: 'name',
+          label: 'Name',
+          description: 'Name of object',
+          type: 'string-filter',
+          collapsed: false
+        },
+        {
+          name: 'string',
+          label: 'String',
+          description: 'search by string',
+          placeholder: 'placeholder',
+          type: 'string-filter',
+          collapsable: true,
+          collapsed: false
+        },
+        {
+          name: 'checkbox',
+          label: 'Checkbox',
+          collapsed: false,
+          bulkOperation: true,
+          maxVisibleOptions: 1,
+          options: () => {
+            return new Promise(
+              function (resolve) {
+                resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+              })
+          },
+          type: 'checkbox-filter'
+        },
+        {
+          name: 'checkbox-options',
+          label: 'Checkbox lots of options',
+          collapsed: false,
+          bulkOperation: true,
+          maxVisibleOptions: 1,
+          options: () => {
+            return new Promise(
+              function (resolve) {
+                resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+              })
+          },
+          type: 'checkbox-filter'
+        },
+        {
+          name: 'long-name',
+          label: 'Way too long name to really fit in the user interface',
+          collapsed: true,
+          bulkOperation: true,
+          options: () => {
+            return new Promise(
+              function (resolve) {
+                resolve([{ value: 'no', text: 'No' }, { value: 'yes', text: 'Yes' }])
+              })
+          },
+          type: 'checkbox-filter'
+        }
+      ]
     }
   },
   methods: {

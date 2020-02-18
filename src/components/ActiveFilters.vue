@@ -59,6 +59,18 @@ export default Vue.extend({
         // Clean op the values by removing undefined entry's
         if (current === undefined) return
 
+        if (filter.type === 'date-time-filter') {
+          let value
+          if (current.startDate && current.startDate) {
+            value = `${current.startDate.toLocaleDateString()} - ${current.endDate.toLocaleDateString()}`
+          } else {
+            value = current.startDate.toLocaleDateString()
+          }
+
+          activeValues.push({ key, value, label: filter.label })
+          return
+        }
+
         // Unpack array
         if (Array.isArray(current)) {
           // Checkbox
