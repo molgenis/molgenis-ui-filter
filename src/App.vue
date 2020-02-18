@@ -35,14 +35,22 @@ import mockData from '../tests/mockdata'
 
 export default Vue.extend({
   name: 'App',
-  'components': { FilterContainer, ActiveFilters, ...components },
+  'components': { FilterContainer, ActiveFilters },
   data () {
     return {
       selections: {
         search: 'test'
       },
-      filtersShown: ['search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filtersShown: ['datetime', 'disease', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
       filters: [
+        {
+          name: 'datetime',
+          label: 'Datetime',
+          collapsed: false,
+          range: false,
+          time: false,
+          type: 'date-time-filter'
+        },
         {
           name: 'disease', // attribute name
           label: 'Filter with multiple options',
