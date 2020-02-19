@@ -13,8 +13,8 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
     >
       <filter-container-stub
         canedit="true"
-        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
-        filtersshown="search,color,name,age,number,checkbox-options"
+        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+        filtersshown="datetime,search,color,name,age,number,checkbox-options"
         value="[object Object]"
       />
     </div>
@@ -23,7 +23,7 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
       class="col col-md-8"
     >
       <active-filters-stub
-        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+        filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
         value="[object Object]"
       />
        
@@ -44,6 +44,7 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
           visibility:
         </strong>
         [
+  "datetime",
   "search",
   "color",
   "name",

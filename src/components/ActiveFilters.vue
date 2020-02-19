@@ -53,44 +53,41 @@ export default Vue.extend({
   methods: {
     async buildActiveValues (newValue) {
       const activeValues = []
-      Object.entries(newValue).forEach(async ([key, current]) => {
+      for (const [key, current] of Object.entries(newValue)) {
         const filter = this.selectFilter(key)
 
-        // Clean op the values by removing undefined entry's
-        if (current === undefined) return
+        // Clean up the values by removing undefined entries.
+        if (current === undefined) continue
 
         if (filter.type === 'date-time-filter') {
           let value
-          if (current.startDate && current.startDate) {
-            value = `${current.startDate.toLocaleDateString()} - ${current.endDate.toLocaleDateString()}`
+          if (current instanceof Date) {
+            value = current.toLocaleDateString()
           } else {
-            value = current.startDate.toLocaleDateString()
+            value = `${current.startDate.toLocaleDateString()} - ${current.endDate.toLocaleDateString()}`
           }
 
           activeValues.push({ key, value, label: filter.label })
-          return
+          continue
         }
 
-        // Unpack array
-        if (Array.isArray(current)) {
-          // Checkbox
+        // Single item.
+        if (!Array.isArray(current)) {
+          activeValues.push({ key, value: current, label: filter.label })
+        } else {
           if (filter.type === 'checkbox-filter') {
-            // resolve options function/promise and show results later
             const option = await filter.options()
-            current.forEach(subKey => {
+            for (const subKey of current) {
               const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
               activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
-            })
+            }
           }
-          // Range Filter
           if (filter.type === 'range-filter') {
             activeValues.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
           }
-        } else {
-          // Single item
-          activeValues.push({ key, value: current, label: filter.label })
         }
-      })
+      }
+
       if (this.value === newValue) {
         this.activeValues = activeValues
       }

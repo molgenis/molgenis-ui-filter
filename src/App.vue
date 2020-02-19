@@ -45,8 +45,8 @@ export default Vue.extend({
           name: 'datetime',
           label: 'Datetime',
           collapsed: false,
-          range: false,
-          time: false,
+          range: true,
+          time: true,
           type: 'date-time-filter'
         },
         {

@@ -62,6 +62,11 @@ export default Vue.extend({
     }
   },
   props: {
+    opens: {
+      default: 'right',
+      type: String,
+      required: false
+    },
     name: {
       type: String,
       required: true
@@ -75,7 +80,7 @@ export default Vue.extend({
       default: () => true
     },
     value: {
-      type: Object,
+      type: [Object, Date],
       default: () => {
         return emptyDateRange
       }
@@ -83,13 +88,12 @@ export default Vue.extend({
   },
   data: function () {
     return {
-      opens: 'right',
       dateRange: {
         startDate: this.value.startDate,
         endDate: this.value.endDate
       },
       show_ranges: false,
-      singleDatePicker: false,
+      singleDatePicker: !this.range,
       timePicker24Hour: true,
       showDropdowns: true,
       autoApply: true,
@@ -100,7 +104,14 @@ export default Vue.extend({
   },
   watch: {
     value (newValue) {
-      this.dateRange = newValue
+      // Filter is unset, but don't propagate to datepicker's model.
+      if (newValue === undefined) return
+
+      if (this.range) {
+        this.dateRange = newValue
+      } else {
+        this.dateRange.startDate = newValue
+      }
     }
   },
   methods: {
@@ -109,7 +120,11 @@ export default Vue.extend({
       this.$emit('input', undefined)
     },
     updateValues: function () {
-      this.$emit('input', this.dateRange)
+      if (this.range) {
+        this.$emit('input', this.dateRange)
+      } else {
+        this.$emit('input', this.dateRange.startDate)
+      }
     }
   }
 })
