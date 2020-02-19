@@ -39,7 +39,7 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['datetime', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filtersShown: ['multi-filter', 'datetime', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
       filters: [
         {
           name: 'datetime',
@@ -48,6 +48,18 @@ export default Vue.extend({
           range: true,
           time: true,
           type: 'date-time-filter'
+        },
+        {
+          name: 'multi-filter',
+          label: 'Filter with multiple options',
+          collapsed: false,
+          options: () => {
+            return new Promise(
+              function (resolve) {
+                resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+              })
+          },
+          type: 'multi-filter'
         },
         {
           name: 'search',
