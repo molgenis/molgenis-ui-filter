@@ -21,8 +21,8 @@
     >
       <draggable
         v-model="filtersToShow"
-        :disabled="!doDragDrop"
         :class="{'dragdrop': doDragDrop, 'dragging': drag}"
+        :disabled="!doDragDrop"
         @choose="drag=true"
         @end="drag=false"
         @input="selectionUpdate"
@@ -37,9 +37,9 @@
           >
             <component
               :is="filter.type"
+              v-bind="filter"
               :name="filter.name"
               :value="value[filter.name]"
-              v-bind="filter"
               @input="value => selectionChange(filter.name, value)"
             />
           </filter-card>

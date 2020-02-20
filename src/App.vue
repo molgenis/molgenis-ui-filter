@@ -7,9 +7,9 @@
       <div class="col col-md-3">
         <filter-container
           v-model="selections"
+          :can-edit="true"
           :filters="filters"
           :filters-shown="filtersShown"
-          :can-edit="true"
           @update="updateState"
         />
       </div>
@@ -45,7 +45,7 @@ export default Vue.extend({
           name: 'datetime',
           label: 'Datetime',
           collapsed: false,
-          range: true,
+          range: false,
           time: true,
           type: 'date-time-filter'
         },
@@ -53,11 +53,9 @@ export default Vue.extend({
           name: 'multi-filter',
           label: 'Filter with multiple options',
           collapsed: false,
-          options: () => {
-            return new Promise(
-              function (resolve) {
-                resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
-              })
+          endpoint: {
+            api: 'http://localhost:8080/api/',
+            entity: 'root_hospital_diagnosis'
           },
           type: 'multi-filter'
         },

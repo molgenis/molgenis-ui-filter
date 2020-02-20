@@ -2,9 +2,9 @@
   <div>
     <b-form-checkbox-group
       v-model="selection"
-      stacked
-      :options="visibleOptions"
       :name="name"
+      :options="visibleOptions"
+      stacked
     />
     <span v-if="bulkOperation">
       <b-link
