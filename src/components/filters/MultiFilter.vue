@@ -1,9 +1,33 @@
 <template>
   <div>
-    <input v-model="query" type="text">
+    <b-input-group>
+      <b-form-input
+        v-model="query"
+        :name="name"
+        :placeholder="placeholder"
+        trim
+      />
+      <b-input-group-append>
+        <b-button
+          variant="outline-secondary"
+          @click.prevent="query=''"
+        >
+          <font-awesome-icon
+            v-if="isLoading"
+            class="fa-spin"
+            icon="spinner"
+          />
+          <font-awesome-icon
+            v-else
+            icon="times"
+          />
+        </b-button>
+      </b-input-group-append>
+    </b-input-group>
 
     <b-form-checkbox-group
       v-model="selection"
+      class="checkbox-list"
       :name="name"
       :options="maxOptions"
       stacked
@@ -22,11 +46,23 @@
 <script>
 import axios from 'axios'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faTimes)
+library.add(faSpinner)
+
 export default {
+  components: { FontAwesomeIcon },
   props: {
     name: {
       type: String,
       required: true
+    },
+    placeholder: {
+      type: String,
+      required: false,
+      default: () => ''
     },
     label: {
       type: String,
@@ -48,6 +84,7 @@ export default {
   },
   data () {
     return {
+      isLoading: false,
       showMoreToggled: false,
       selected: [],
       triggerQuery: Number,
@@ -90,7 +127,9 @@ export default {
         if (!newVal.length) {
           this.inputOptions = []
         } else {
+          this.isLoading = true
           this.inputOptions = await this.fetchOptions()
+          this.isLoading = false
         }
       }, 500)
     }
@@ -119,3 +158,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.checkbox-list {
+  max-height: 250px;
+  overflow-y: auto;
+  margin: 0.75rem 0;
+}
+</style>

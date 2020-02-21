@@ -4,18 +4,18 @@
     <date-range-picker
       ref="picker"
       v-model="dateRange"
+      :auto-apply="autoApply"
       class="flex-grow-1"
-      :opens="opens"
       :locale-data="{ firstDay: 1, format: 'yyyy-mm-dd HH:MM:ss' }"
+      :linked-calendars="linkedCalendars"
+      :opens="opens"
+      :always-show-calendars="alwaysShowCalendars"
+      :ranges="show_ranges ? undefined : false"
+      :show-dropdowns="showDropdowns"
+      :show-week-numbers="showWeekNumbers"
       :single-date-picker="singleDatePicker"
       :time-picker="time"
       :time-picker24hour="timePicker24Hour"
-      :show-week-numbers="showWeekNumbers"
-      :show-dropdowns="showDropdowns"
-      :auto-apply="autoApply"
-      :ranges="show_ranges ? undefined : false"
-      :linked-calendars="linkedCalendars"
-      :always-show-calendars="alwaysShowCalendars"
       @update="updateValues"
     >
       <div
@@ -105,7 +105,7 @@ export default Vue.extend({
   watch: {
     value (newValue) {
       // Filter is unset, but don't propagate to datepicker's model.
-      if (newValue === undefined) return
+      if (newValue === undefined) { return }
 
       if (this.range) {
         this.dateRange = newValue

@@ -1,7 +1,7 @@
 <template>
   <b-card
-    no-body
     class="filter-card mb-2"
+    no-body
   >
     <b-card-header
       :class="collapsable ? 'collapsable' : ''"
@@ -13,9 +13,9 @@
       >
         <font-awesome-icon
           v-if="collapsable"
+          class="mr-2"
           icon="caret-right"
           :style="iconStyle"
-          class="mr-2"
         />
         {{ label }}
         <span
