@@ -38,23 +38,8 @@ import axios from 'axios'
 
 const api = axios.create({
   baseURL: 'http://localhost:8080/api/',
-  timeout: 15000,
-  headers: { 'X-Custom-Header': 'foobar' }
+  timeout: 15000
 })
-
-api.entity = 'root_hospital_diagnosis'
-
-const getOptions = {
-  multiFilter: async (query) => {
-    const metadata = await api.get(`metadata/${api.entity}`)
-    const nameAttr = metadata.data.data.attributes.items.filter((i) => i.data.labelAttribute).map((i) => i.data.name)[0]
-
-    const data = await api.get(`data/${api.entity}?q=${nameAttr}=like=${query}`)
-    return data.data.items.map((i) => {
-      return { value: i.data.id, text: i.data[nameAttr] }
-    })
-  }
-}
 
 export default Vue.extend({
   name: 'App',
@@ -70,7 +55,16 @@ export default Vue.extend({
           name: 'multi-filter',
           label: 'Filter with multiple options',
           collapsed: false,
-          options: getOptions.multiFilter,
+          entity: 'root_hospital_diagnosis',
+          metaQuery: async (entity) => api.get(`metadata/${entity}`),
+          dataQuery: async (query, entity, metadata) => {
+            const nameAttr = metadata.data.data.attributes.items.filter((i) => i.data.labelAttribute).map((i) => i.data.name)[0]
+            const data = await api.get(`data/${entity}?q=${nameAttr}=like=${query}`)
+            return data.data.items.map((i) => {
+              return { value: i.data.id, text: i.data[nameAttr] }
+            })
+          },
+          options: (checked, entity) => api.get(`data/${entity}?q=id=in=(${checked.join(',')})`),
           type: 'multi-filter'
         },
         {

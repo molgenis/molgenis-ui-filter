@@ -70,7 +70,15 @@ export default {
       required: false,
       default: () => ''
     },
-    options: {
+    entity: {
+      type: String,
+      required: true
+    },
+    metaQuery: {
+      type: [Function],
+      required: true
+    },
+    dataQuery: {
       type: [Function],
       required: true
     },
@@ -122,7 +130,6 @@ export default {
       if (this.triggerQuery) {
         clearTimeout(this.triggerQuery)
       }
-
       this.triggerQuery = setTimeout(async () => {
         clearTimeout(this.triggerQuery)
         if (!newVal.length) {
@@ -130,8 +137,13 @@ export default {
         } else {
           this.isLoading = true
           try {
-            this.inputOptions = await this.options(this.query)
-          } catch (err) {} finally {
+            if (!this.metaData) {
+              this.metaData = await this.metaQuery(this.entity)
+            }
+            const checkboxOptions = await this.dataQuery(this.query, this.entity, this.metaData)
+            this.inputOptions = checkboxOptions
+          } catch (err) {
+          } finally {
             this.isLoading = false
           }
         }
@@ -150,5 +162,8 @@ export default {
 </style>
 
 <style>
-.card-link { font-style: italic; font-size: small; }
+.card-link {
+  font-style: italic;
+  font-size: small;
+}
 </style>

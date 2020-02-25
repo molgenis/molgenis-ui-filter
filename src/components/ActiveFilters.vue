@@ -57,7 +57,7 @@ export default Vue.extend({
         const filter = this.selectFilter(key)
 
         // Clean op the values by removing undefined entry's
-        if (current === undefined) return
+        if (current === undefined || !current.length) return
 
         // Unpack array
         if (Array.isArray(current)) {
@@ -66,13 +66,45 @@ export default Vue.extend({
             // resolve options function/promise and show results later
             const option = await filter.options()
             current.forEach(subKey => {
-              const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
-              activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
+              const findTextFromValue = option.filter(
+                filter => filter.value === subKey
+              )[0]
+              activeValues.push({
+                key,
+                subKey,
+                value: findTextFromValue.text,
+                label: filter.label
+              })
             })
           }
           // Range Filter
           if (filter.type === 'range-filter') {
-            activeValues.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
+            activeValues.push({
+              key,
+              value: `${current[0]} to ${current[1]}`,
+              label: filter.label
+            })
+          }
+          if (filter.type === 'multi-filter') {
+            const metaData = await filter.metaQuery(filter.entity)
+            const rawOptions = await filter.options(current, filter.entity)
+            const nameAttr = metaData.data.data.attributes.items
+              .filter(i => i.data.labelAttribute)
+              .map(i => i.data.name)[0]
+            const options = rawOptions.data.items.map(i => {
+              return { value: i.data.id, text: i.data[nameAttr] }
+            })
+            current.forEach(subKey => {
+              const findTextFromValue = options.filter(
+                filter => filter.value === subKey
+              )[0]
+              activeValues.push({
+                key,
+                subKey,
+                value: findTextFromValue.text,
+                label: filter.label
+              })
+            })
           }
         } else {
           // Single item
@@ -102,10 +134,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-  button svg path {
-    transition: fill 0.3s;
-  }
-  button:hover svg path {
-    fill: var(--danger);
-  }
+button svg path {
+  transition: fill 0.3s;
+}
+button:hover svg path {
+  fill: var(--danger);
+}
 </style>
