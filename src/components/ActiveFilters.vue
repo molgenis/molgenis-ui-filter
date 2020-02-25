@@ -27,44 +27,27 @@ library.add(faTimes)
 export default Vue.extend({
   name: 'ActiveFilters',
   components: { FontAwesomeIcon },
-  props: {
-    filters: {
-      type: Array,
-      required: true
-    },
-    value: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  data () {
-    return {
-      activeValues: []
-    }
-  },
-  watch: {
-    value: {
-      handler (newValue) {
-        this.buildActiveValues(newValue)
-      },
-      immediate: true
-    }
-  },
-  methods: {
-    async buildActiveValues (newValue) {
+  computed: {
+    activeValues: function () {
       const activeValues = []
-      Object.entries(newValue).forEach(async ([key, current]) => {
-        const filter = this.selectFilter(key)
 
+      for (const filter of this.filters.filter((f) => f.selected)) {
+        const current = filter.active
         // Clean op the values by removing undefined entry's
         if (current === undefined) return
 
-        // Unpack array
         if (Array.isArray(current)) {
-          // Checkbox
+          if (filter.type === 'multi-filter') {
+            for (const filter of current) {
+              activeValues.push({ key, value: filter.value, label: filter.text })
+            }
+          }
+
           if (filter.type === 'checkbox-filter') {
-            // resolve options function/promise and show results later
-            const option = await filter.options()
+            // API calls shouldn't be made this often; please use
+            // current value.
+            // const option = await filter.options()
+
             current.forEach(subKey => {
               const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
               activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
@@ -78,26 +61,21 @@ export default Vue.extend({
           // Single item
           activeValues.push({ key, value: current, label: filter.label })
         }
-      })
-      if (this.value === newValue) {
-        this.activeValues = activeValues
       }
-    },
-    selectFilter (key) {
-      return this.filters.filter(filter => filter.name === key)[0]
-    },
+
+      return activeValues
+    }
+  },
+  methods: {
     removeFilter ({ key, subKey }) {
       if (subKey === undefined) {
-        let selections = { ...this.value }
-        delete selections[key]
-        this.$emit('input', selections)
+        Vue.delete(this.filters.selected, key)
       } else {
-        let selections = { ...this.value }
-        selections[key] = selections[key].filter(key => key !== subKey)
-        this.$emit('input', selections)
+        Vue.set(this.filters.selected[key], selections[key].filter(key => key !== subKey))
       }
     }
-  }
+  },
+  store: ['filters']
 })
 </script>
 

@@ -2,16 +2,16 @@
   <div>
     <b-input-group>
       <b-form-input
-        v-model="query"
-        :name="name"
-        :placeholder="placeholder"
+        v-model="filter.search"
+        :name="filter.name"
+        :placeholder="filter.placeholder"
         trim
       />
       <b-input-group-append>
         <b-button
           variant="outline-secondary"
           :disabled="isLoading"
-          @click.prevent="query=''"
+          @click.prevent="filter.search=''"
         >
           <font-awesome-icon
             v-if="isLoading"
@@ -28,16 +28,16 @@
     </b-input-group>
 
     <b-form-checkbox-group
-      v-if="slicedOptions.length"
-      v-model="selection"
+      v-if="slicedSelection.length"
+      v-model="filter.selection"
       class="checkbox-list"
-      :name="name"
-      :options="slicedOptions"
+      :name="filter.name"
+      :options="slicedSelection"
       stacked
     />
 
     <b-link
-      v-if="inputOptions.length > maxVisibleOptions"
+      v-if="filter.options.length > filter.maxVisibleOptions"
       class="card-link"
       @click="showMoreToggled = !showMoreToggled"
     >
@@ -55,34 +55,8 @@ library.add(faSpinner)
 
 export default {
   components: { FontAwesomeIcon },
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    placeholder: {
-      type: String,
-      required: false,
-      default: () => ''
-    },
-    label: {
-      type: String,
-      required: false,
-      default: () => ''
-    },
-    options: {
-      type: [Function],
-      required: true
-    },
-    value: {
-      type: Array,
-      default: () => []
-    },
-    maxVisibleOptions: {
-      type: Number,
-      default: () => 10
-    }
-  },
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['filter'],
   data () {
     return {
       isLoading: false,
@@ -94,46 +68,42 @@ export default {
     }
   },
   computed: {
-    slicedOptions: function () {
+    slicedSelection: function () {
       if (this.showMoreToggled) {
-        return this.inputOptions
+        return this.filter.options
       } else {
-        return this.inputOptions.slice(0, this.maxVisibleOptions)
-      }
-    },
-    selection: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        this.$emit('input', value.length === 0 ? undefined : value)
+        return this.filter.options.slice(0, this.maxVisibleOptions)
       }
     },
     showMoreText () {
       if (this.showMoreToggled) {
         return 'Show less'
       } else {
-        return `Show ${this.inputOptions.length - this.maxVisibleOptions} more`
+        return `Show ${this.filter.options.length - this.maxVisibleOptions} more`
       }
     }
   },
+  store: ['filters'],
   watch: {
-    query: function (newVal) {
+    'filter.search': function (search) {
       if (this.triggerQuery) {
         clearTimeout(this.triggerQuery)
       }
 
       this.triggerQuery = setTimeout(async () => {
         clearTimeout(this.triggerQuery)
-        if (!newVal.length) {
-          this.inputOptions = []
-        } else {
+
+        if (search.length) {
           this.isLoading = true
           try {
-            this.inputOptions = await this.options(this.query)
-          } catch (err) {} finally {
+            this.filter.options = await this.filter.provider(search)
+          } catch (err) {
+            console.log('ERR', err)
+          } finally {
             this.isLoading = false
           }
+        } else {
+          this.filter.options = []
         }
       }, 500)
     }

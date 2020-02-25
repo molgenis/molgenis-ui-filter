@@ -20,16 +20,15 @@
       :visible="!doCollapse || mobileToggle"
     >
       <draggable
-        v-model="filtersToShow"
+        v-model="filters"
         :disabled="!doDragDrop"
         :class="{'dragdrop': doDragDrop, 'dragging': drag}"
         @choose="drag=true"
         @end="drag=false"
-        @input="selectionUpdate"
       >
         <transition-group>
           <filter-card
-            v-for="filter in listOfVisibleFilters"
+            v-for="filter in visibleFilters"
             :key="filter.name"
             v-bind="filter"
             :can-remove="canEdit"
@@ -37,19 +36,16 @@
           >
             <component
               :is="filter.type"
-              :name="filter.name"
-              :value="value[filter.name]"
-              v-bind="filter"
-              @input="value => selectionChange(filter.name, value)"
+              :filter="filter"
             />
           </filter-card>
         </transition-group>
       </draggable>
+
       <add-filter-modal
-        v-if="canEdit && listOfInvisibleFilters.length > 0"
-        v-model="filtersToShow"
-        :filters="listOfInvisibleFilters"
-        @input="selectionUpdate"
+        v-if="canEdit && invisibleFilters.length > 0"
+        v-model="filters.visible"
+        :filters="invisibleFilters"
       />
     </b-collapse>
   </div>
@@ -65,19 +61,6 @@ export default {
   name: 'FilterContainer',
   components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, NumberFilter, RangeFilter, MultiFilter, draggable },
   props: {
-    filters: {
-      type: Array,
-      required: true
-    },
-    value: {
-      type: Object,
-      default: () => ({})
-    },
-    filtersShown: {
-      type: Array,
-      required: false,
-      default: () => []
-    },
     canEdit: {
       type: Boolean,
       required: false,
@@ -86,8 +69,6 @@ export default {
   },
   data () {
     return {
-      filtersToShow: this.filtersShown,
-      filterToAdd: null,
       drag: false,
       width: 0,
       mobileToggle: false
@@ -101,11 +82,11 @@ export default {
     doDragDrop () {
       return this.canEdit && !this.doCollapse
     },
-    listOfVisibleFilters () {
-      return this.filters.filter(filter => this.filtersToShow.includes(filter.name))
+    invisibleFilters () {
+      return this.filters.filter(filter => !filter.visible)
     },
-    listOfInvisibleFilters () {
-      return this.filters.filter(filter => !this.filtersToShow.includes(filter.name))
+    visibleFilters () {
+      return this.filters.filter(filter => filter.visible)
     }
   },
   created () {
@@ -120,20 +101,14 @@ export default {
       this.width = window.innerWidth
     },
     removeFilter (name) {
-      this.filtersToShow = this.filtersToShow.filter(filter => name !== filter)
-      this.$emit('update', this.filtersToShow)
-
-      let selections = { ...this.value }
-      delete selections[name]
-      this.$emit('input', selections)
-    },
-    selectionChange (name, value) {
-      this.$emit('input', { ...this.value, [name]: value })
-    },
-    selectionUpdate () {
-      this.$emit('update', this.filtersToShow)
+      for (const filter of this.filters) {
+        if (filter.name === 'name') {
+          filter.visible = false
+        }
+      }
     }
-  }
+  },
+  store: ['filters']
 }
 </script>
 

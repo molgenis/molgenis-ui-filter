@@ -70,6 +70,7 @@ export default {
         return this.value
       },
       set (value) {
+        console.log('EMIT VALUE')
         this.$emit('input', value.length === 0 ? undefined : value)
       }
     },
