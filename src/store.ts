@@ -35,7 +35,7 @@ export default {
       provider: providers.multiFilter,
       type: 'multi-filter',
       selection: [], // Maps to b-form-checkbox-group model
-      visible: false
+      visible: true
     },
     {
       id: 'search',
@@ -50,20 +50,19 @@ export default {
     {
       id: 'color',
       label: 'Color',
-      collapsed: false,
+      collapsed: true,
       collapsible: true,
       bulkOperation: true,
       maxVisibleOptions: 5,
       options: [],
       provider: () => {
-        return new Promise(
-          function (resolve) {
-            resolve(data.checkboxOptions)
-          })
+        return new Promise((resolve) => {
+          resolve(data.checkboxOptions)
+        })
       },
       type: 'checkbox-filter',
       selection: [],
-      visible: false
+      visible: true
     },
     {
       id: 'number',
@@ -81,14 +80,15 @@ export default {
     {
       id: 'age',
       label: 'Age',
-      collapsed: false,
+      collapsed: true,
       collapsible: true,
       min: -10,
       max: 10,
       step: 0.01,
       type: 'range-filter',
-      selection: null,
-      visible: false
+      useSlider: true,
+      selection: [null, null],
+      visible: true
     },
     {
       id: 'name',
@@ -120,14 +120,13 @@ export default {
       maxVisibleOptions: 1,
       options: [],
       provider: () => {
-        return new Promise(
-          function (resolve) {
-            resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
-          })
+        return new Promise((resolve) => {
+          resolve(data.checkboxOptions)
+        })
       },
       type: 'checkbox-filter',
       selection: null,
-      visible: false
+      visible: true
     },
     {
       id: 'checkbox-options',
@@ -138,10 +137,9 @@ export default {
       maxVisibleOptions: 1,
       options: [],
       provider: () => {
-        return new Promise(
-          function (resolve) {
-            resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
-          })
+        return new Promise((resolve) => {
+          resolve(data.checkboxOptions)
+        })
       },
       type: 'checkbox-filter',
       selection: null,

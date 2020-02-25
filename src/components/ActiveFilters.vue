@@ -35,22 +35,21 @@ export default Vue.extend({
         if (!filter.selection) {
           continue
         } else if (Array.isArray(filter.selection)) {
-          if (filter.type === 'multi-filter') {
+          if (['multi-filter', 'checkbox-filter'].includes(filter.type)) {
             for (const [i, optionId] of filter.selection.entries()) {
               const option = filter.options.find((f) => f.id === optionId)
               filtersSelection.push({ id: i, filter, label: filter.label, name: option.name })
             }
-          }
-
-          if (filter.type === 'checkbox-filter') {
-            for (const [i, selection] of filter.selection.entries()) {
-              // const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
-              // activeFilters.push({ id: findTextFromValue.text, label: findTextFromValue.text, name: filter.label })
+          } else if (filter.type === 'range-filter') {
+            if (filter.selection[0] === null && filter.selection[1] === null) {
+              continue
             }
-          }
-          // Range Filter
-          if (filter.type === 'range-filter') {
-            filtersSelection.push({ id: filter.id, filter, label: `${current[0]} to ${current[1]}`, name: filter.label })
+            filtersSelection.push({
+              id: filter.id,
+              filter,
+              label: filter.label,
+              name: `${filter.selection[0]} to ${filter.selection[1]}`
+            })
           }
         } else {
           // Single item
@@ -65,6 +64,9 @@ export default Vue.extend({
     deselectFilter (filterSelection) {
       if (Array.isArray(filterSelection.filter.selection)) {
         filterSelection.filter.selection.splice(filterSelection.id, 1)
+        if (filterSelection.filter.type === 'range-filter') {
+          filterSelection.filter.selection = [null, null]
+        }
       } else {
         filterSelection.filter.selection = ''
       }

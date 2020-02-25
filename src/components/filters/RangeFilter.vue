@@ -3,34 +3,31 @@
   <div>
     <b-input-group>
       <b-form-input
-        v-model="sliderValue[0]"
+        v-model.number="filter.selection[0]"
         type="number"
-        :min="min"
-        :max="max"
+        :min="filter.min"
+        :max="filter.max"
         placeholder="min"
-        :step="step"
+        :step="filter.step"
         class="text-center range-from"
-        @change="handleChange"
       />
       <b-form-input
-        v-model="sliderValue[1]"
+        v-model.number="filter.selection[1]"
         type="number"
-        :min="min"
-        :max="max"
+        :min="filter.min"
+        :max="filter.max"
         placeholder="max"
-        :step="step"
+        :step="filter.step"
         class="text-center range-to"
-        @change="handleChange"
       />
     </b-input-group>
     <vue-slider
-      v-if="useSlider"
-      v-model="sliderValue"
-      :min="min"
-      :max="max"
-      :interval="step"
+      v-if="filter.useSlider"
+      v-model="filter.selection"
+      :min="filter.min"
+      :max="filter.max"
+      :interval="filter.step"
       class="mt-2"
-      @change="handleChange"
     />
   </div>
 </template>
@@ -43,51 +40,19 @@ import 'vue-slider-component/theme/default.css'
 export default Vue.extend({
   name: 'RangeFilter',
   components: { VueSlider },
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    min: {
-      type: Number,
-      default: () => Number.MIN_SAFE_INTEGER
-    },
-    max: {
-      type: Number,
-      default: () => Number.MAX_SAFE_INTEGER
-    },
-    step: {
-      type: Number,
-      default: () => 1
-    },
-    value: {
-      type: Array,
-      default: () => [null, null]
-    },
-    useSlider: {
-      type: Boolean,
-      default: () => false
-    }
-  },
-  data: function () {
-    return {
-      sliderValue: [null, null]
-    }
-  },
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['filter'],
   watch: {
-    value (newValue) {
-      this.sliderValue[0] = Math.min(newValue[0], newValue[1])
-      this.sliderValue[1] = Math.max(newValue[0], newValue[1])
-    }
-  },
-  methods: {
-    handleChange () {
-      if (this.sliderValue[0] === this.min && this.sliderValue[1] === this.max) {
-        this.$emit('input', undefined)
-      } else {
-        this.sliderValue = [parseFloat(Math.max(this.min, this.sliderValue[0])), parseFloat(Math.min(this.max, this.sliderValue[1]))]
-        // clone to break reactive loop
-        this.$emit('input', [...this.sliderValue])
+    // Keep max value in sync with min value.
+    'filter.selection.0': function (updatedMinValue) {
+      if (updatedMinValue > this.filter.selection[1]) {
+        this.filter.selection[1] = this.filter.selection[0]
+      }
+    },
+    // Keep min value in sync with max value.
+    'filter.selection.1': function (updatedMaxValue) {
+      if (updatedMaxValue < this.filter.selection[0]) {
+        this.filter.selection[0] = this.filter.selection[1]
       }
     }
   }
