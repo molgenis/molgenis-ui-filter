@@ -85,7 +85,7 @@ export default Vue.extend({
   },
   methods: {
     removeFilter () {
-      this.filter.visible = false
+      this.filter.active = false
     },
     toggleCollapse: function () {
       if (this.filter.collapsible) {

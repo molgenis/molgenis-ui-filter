@@ -22,36 +22,36 @@ const providers = {
   }
 }
 
-export default {
+const widget = {
+  collapsed: true,
+  collapsible: true
+}
+
+const filterState = {
   filters: [
     {
       id: 'multi-filter',
       label: 'Multi filter',
-      collapsed: false,
-      collapsible: true,
       maxVisibleOptions: 5,
       search: '',
       options: [],
       provider: providers.multiFilter,
-      type: 'multi-filter',
+      type: 'MultiFilter',
       selection: [], // Maps to b-form-checkbox-group model
-      visible: true
+      active: true
     },
     {
       id: 'search',
       label: 'Search',
       description: 'search by string',
       placeholder: 'placeholder',
-      type: 'string-filter',
-      collapsible: false,
+      type: 'StringFilter',
       selection: 'test',
-      visible: false
+      active: false
     },
     {
       id: 'color',
       label: 'Color',
-      collapsed: true,
-      collapsible: true,
       bulkOperation: true,
       maxVisibleOptions: 5,
       options: [],
@@ -62,60 +62,50 @@ export default {
       },
       type: 'checkbox-filter',
       selection: [],
-      visible: true
+      active: false
     },
     {
       id: 'number',
       label: 'Number',
-      collapsed: true,
-      collapsible: true,
-      type: 'number-filter',
+      type: 'NumberFilter',
       min: Number.MIN_SAFE_INTEGER,
       max: Number.MAX_SAFE_INTEGER,
       useSlider: false,
       step: 1,
       selection: null,
-      visible: true
+      active: false
     },
     {
       id: 'age',
       label: 'Age',
-      collapsed: true,
-      collapsible: true,
       min: -10,
       max: 10,
       step: 0.01,
-      type: 'range-filter',
+      type: 'RangeFilter',
       useSlider: true,
       selection: [null, null],
-      visible: true
+      active: false
     },
     {
       id: 'name',
       label: 'Name',
       description: 'Name of object',
-      type: 'string-filter',
-      collapsed: false,
-      collapsible: true,
+      type: 'StringFilter',
       selection: null,
-      visible: false
+      active: false
     },
     {
       id: 'string',
       label: 'String',
       description: 'search by string',
       placeholder: 'placeholder',
-      type: 'string-filter',
-      collapsible: true,
-      collapsed: false,
+      type: 'StringFilter',
       selection: null,
-      visible: false
+      active: false
     },
     {
       id: 'checkbox',
       label: 'Checkbox',
-      collapsible: true,
-      collapsed: false,
       bulkOperation: true,
       maxVisibleOptions: 1,
       options: [],
@@ -124,15 +114,13 @@ export default {
           resolve(data.checkboxOptions)
         })
       },
-      type: 'checkbox-filter',
-      selection: null,
-      visible: true
+      type: 'CheckboxFilter',
+      selection: [],
+      active: false
     },
     {
       id: 'checkbox-options',
       label: 'Checkbox lots of options',
-      collapsed: false,
-      collapsible: true,
       bulkOperation: true,
       maxVisibleOptions: 1,
       options: [],
@@ -141,26 +129,30 @@ export default {
           resolve(data.checkboxOptions)
         })
       },
-      type: 'checkbox-filter',
+      type: 'CheckboxFilter',
       selection: null,
-      visible: false
+      active: false
     },
     {
       id: 'long-name',
       bulkOperation: true,
-      collapsed: true,
-      collapsible: true,
       label: 'Way too long name to really fit in the user interface',
       options: [],
       provider: () => {
         return new Promise(
           function (resolve) {
-            resolve([{ value: 'no', text: 'No' }, { value: 'yes', text: 'Yes' }])
+            resolve([{ id: 'no', name: 'No' }, { id: 'yes', name: 'Yes' }])
           })
       },
-      type: 'checkbox-filter',
+      type: 'CheckboxFilter',
       selection: null,
-      visible: false
+      active: false
     }
   ]
 }
+
+for (const filter of filterState.filters) {
+  Object.assign(filter, widget)
+}
+
+export default filterState

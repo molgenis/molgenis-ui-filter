@@ -28,11 +28,11 @@
       >
         <transition-group>
           <filter-card
-            v-for="filter in visibleFilters"
+            v-for="filter in activeFilters"
             :key="filter.id"
             :filter="filter"
             :can-remove="canEdit"
-            @removeFilter="filter.visible = false"
+            @removeFilter="filter.active = false"
           >
             <component
               :is="filter.type"
@@ -43,9 +43,8 @@
       </draggable>
 
       <add-filter-modal
-        v-if="canEdit && invisibleFilters.length > 0"
-        v-model="filters.visible"
-        :filters="invisibleFilters"
+        v-if="canEdit && inactiveFilters.length > 0"
+        :filters="inactiveFilters"
       />
     </b-collapse>
   </div>
@@ -82,11 +81,11 @@ export default {
     doDragDrop () {
       return this.canEdit && !this.doCollapse
     },
-    invisibleFilters () {
-      return this.filters.filter(filter => !filter.visible)
+    inactiveFilters () {
+      return this.filters.filter(filter => !filter.active)
     },
-    visibleFilters () {
-      return this.filters.filter(filter => filter.visible)
+    activeFilters () {
+      return this.filters.filter(filter => filter.active)
     }
   },
   created () {

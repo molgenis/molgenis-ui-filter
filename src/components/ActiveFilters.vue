@@ -32,15 +32,15 @@ export default Vue.extend({
       const filtersSelection = []
 
       for (const filter of this.filters) {
-        if (!filter.selection) {
+        if (!filter.active || !filter.selection) {
           continue
         } else if (Array.isArray(filter.selection)) {
-          if (['multi-filter', 'checkbox-filter'].includes(filter.type)) {
+          if (['MultiFilter', 'CheckboxFilter'].includes(filter.type)) {
             for (const [i, optionId] of filter.selection.entries()) {
               const option = filter.options.find((f) => f.id === optionId)
               filtersSelection.push({ id: i, filter, label: filter.label, name: option.name })
             }
-          } else if (filter.type === 'range-filter') {
+          } else if (filter.type === 'RangeFilter') {
             if (filter.selection[0] === null && filter.selection[1] === null) {
               continue
             }

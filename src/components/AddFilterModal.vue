@@ -21,7 +21,9 @@
       <b-form-select
         v-model="selected"
         name="filter"
-        :options="options"
+        :options="inactiveFilters"
+        value-field="id"
+        text-field="name"
       />
     </b-modal>
   </div>
@@ -38,16 +40,7 @@ library.add(faPlus)
 export default Vue.extend({
   name: 'AddFilterModal',
   components: { FontAwesomeIcon },
-  props: {
-    filters: {
-      type: Array,
-      required: true
-    },
-    value: {
-      type: Array,
-      default: () => []
-    }
-  },
+  store: ['filters'],
   data () {
     return {
       selected: null
@@ -55,9 +48,15 @@ export default Vue.extend({
   },
   computed: {
     options () {
-      return this.filters.map(it => ({
-        value: it.name,
-        text: it.label
+      return this.filters.map((filter) => ({
+        id: filter.name,
+        name: filter.label
+      }))
+    },
+    inactiveFilters () {
+      return this.filters.filter(filter => !filter.active).map((f) => ({
+        id: f.name,
+        name: f.label
       }))
     }
   },
@@ -66,9 +65,9 @@ export default Vue.extend({
       this.selected = this.filters[0].name
     },
     addFilter () {
-      if (this.selected != null) {
-        this.$emit('input', [ ...this.value, this.selected ])
-      }
+      console.log('ADD FILTER', this.selected)
+      const filter = this.filters.find((f) => f.label === this.selected)
+      filter.active = true
     }
   }
 })

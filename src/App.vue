@@ -9,7 +9,7 @@
       </div>
       <div class="col col-md-8">
         <active-filters />
-        <pre class="store-debug"><strong>filters:</strong>{{ visibleFilters }}</pre>
+        <pre class="store-debug"><strong>filters:</strong>{{ activeFilters }}</pre>
       </div>
     </div>
   </div>
@@ -24,8 +24,8 @@ export default Vue.extend({
   name: 'App',
   components: { FilterContainer, ActiveFilters, ...components },
   computed: {
-    visibleFilters () {
-      return this.filters.filter(filter => filter.visible)
+    activeFilters () {
+      return this.filters.filter(filter => filter.active)
     }
   },
   store: ['filters']
