@@ -1,11 +1,11 @@
 export default {
   checkboxOptions: [
-    { value: 'red', text: 'Red' },
-    { value: 'green', text: 'Green' },
-    { value: 'blue', text: 'Blue' },
-    { value: 'yellow', text: 'Yellow' },
-    { value: 'white', text: 'White' },
-    { value: 'purple', text: 'Purple' },
-    { value: 'black', text: 'Black' }
+    { id: 'red', name: 'Red' },
+    { id: 'green', name: 'Green' },
+    { id: 'blue', name: 'Blue' },
+    { id: 'yellow', name: 'Yellow' },
+    { id: 'white', name: 'White' },
+    { id: 'purple', name: 'Purple' },
+    { id: 'black', name: 'Black' }
   ]
 }

@@ -17,7 +17,7 @@ const providers = {
     // @ts-ignore
     const data = await api.get(`data/${api.entity}?q=${nameAttr}=like=${query}`)
     return data.data.items.map((i:any) => {
-      return { value: i.data.id, text: i.data[nameAttr] }
+      return { id: i.data.id, name: i.data[nameAttr] }
     })
   }
 }
@@ -25,53 +25,64 @@ const providers = {
 export default {
   filters: [
     {
-      name: 'multi-filter',
+      id: 'multi-filter',
       label: 'Multi filter',
       collapsed: false,
+      collapsible: true,
+      maxVisibleOptions: 5,
       search: '',
       options: [],
       provider: providers.multiFilter,
       type: 'multi-filter',
-      selection: [],
-      visible: true
+      selection: [], // Maps to b-form-checkbox-group model
+      visible: false
     },
     {
-      name: 'search',
+      id: 'search',
       label: 'Search',
       description: 'search by string',
       placeholder: 'placeholder',
       type: 'string-filter',
-      collapsable: false,
+      collapsible: false,
       selection: 'test',
       visible: false
     },
     {
-      name: 'color',
+      id: 'color',
       label: 'Color',
       collapsed: false,
+      collapsible: true,
       bulkOperation: true,
-      options: () => {
+      maxVisibleOptions: 5,
+      options: [],
+      provider: () => {
         return new Promise(
           function (resolve) {
             resolve(data.checkboxOptions)
           })
       },
       type: 'checkbox-filter',
-      active: false,
+      selection: [],
       visible: false
     },
     {
-      name: 'number',
+      id: 'number',
       label: 'Number',
-      collapsed: false,
+      collapsed: true,
+      collapsible: true,
       type: 'number-filter',
+      min: Number.MIN_SAFE_INTEGER,
+      max: Number.MAX_SAFE_INTEGER,
+      useSlider: false,
+      step: 1,
       selection: null,
-      visible: false
+      visible: true
     },
     {
-      name: 'age',
+      id: 'age',
       label: 'Age',
       collapsed: false,
+      collapsible: true,
       min: -10,
       max: 10,
       step: 0.01,
@@ -80,32 +91,35 @@ export default {
       visible: false
     },
     {
-      name: 'name',
+      id: 'name',
       label: 'Name',
       description: 'Name of object',
       type: 'string-filter',
       collapsed: false,
+      collapsible: true,
       selection: null,
       visible: false
     },
     {
-      name: 'string',
+      id: 'string',
       label: 'String',
       description: 'search by string',
       placeholder: 'placeholder',
       type: 'string-filter',
-      collapsable: true,
+      collapsible: true,
       collapsed: false,
       selection: null,
       visible: false
     },
     {
-      name: 'checkbox',
+      id: 'checkbox',
       label: 'Checkbox',
+      collapsible: true,
       collapsed: false,
       bulkOperation: true,
       maxVisibleOptions: 1,
-      options: () => {
+      options: [],
+      provider: () => {
         return new Promise(
           function (resolve) {
             resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
@@ -116,12 +130,14 @@ export default {
       visible: false
     },
     {
-      name: 'checkbox-options',
+      id: 'checkbox-options',
       label: 'Checkbox lots of options',
       collapsed: false,
+      collapsible: true,
       bulkOperation: true,
       maxVisibleOptions: 1,
-      options: () => {
+      options: [],
+      provider: () => {
         return new Promise(
           function (resolve) {
             resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
@@ -132,11 +148,13 @@ export default {
       visible: false
     },
     {
+      id: 'long-name',
       bulkOperation: true,
       collapsed: true,
+      collapsible: true,
       label: 'Way too long name to really fit in the user interface',
-      name: 'long-name',
-      options: () => {
+      options: [],
+      provider: () => {
         return new Promise(
           function (resolve) {
             resolve([{ value: 'no', text: 'No' }, { value: 'yes', text: 'Yes' }])

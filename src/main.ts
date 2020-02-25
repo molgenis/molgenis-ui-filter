@@ -15,7 +15,8 @@ Vue.config.productionTip = false
 Vue.use(i18n, {
   namespace: ['filters'],
   callback () {
-    new Vue({
+    // @ts-ignore
+    globalThis.app = new Vue({
       // @ts-ignore
       data: { store },
       render: h => h(App)

@@ -1,13 +1,13 @@
 <template>
   <div>
     <button
-      v-for="(item, key) in activeValues"
-      :key="key"
+      v-for="filterSelection in filtersSelection"
+      :key="`${filterSelection.filter.name}-${filterSelection.id}`"
       type="button"
       class="active-filter btn btn-light m-1 btn-outline-secondary"
-      @click="removeFilter(item)"
+      @click="deselectFilter(filterSelection)"
     >
-      {{ item.label }}: {{ item.value }}
+      {{ filterSelection.label }}: {{ filterSelection.name }}
       <font-awesome-icon
         icon="times"
         class="ml-1"
@@ -28,50 +28,45 @@ export default Vue.extend({
   name: 'ActiveFilters',
   components: { FontAwesomeIcon },
   computed: {
-    activeValues: function () {
-      const activeValues = []
+    filtersSelection: function () {
+      const filtersSelection = []
 
-      for (const filter of this.filters.filter((f) => f.selected)) {
-        const current = filter.active
-        // Clean op the values by removing undefined entry's
-        if (current === undefined) return
-
-        if (Array.isArray(current)) {
+      for (const filter of this.filters) {
+        if (!filter.selection) {
+          continue
+        } else if (Array.isArray(filter.selection)) {
           if (filter.type === 'multi-filter') {
-            for (const filter of current) {
-              activeValues.push({ key, value: filter.value, label: filter.text })
+            for (const [i, optionId] of filter.selection.entries()) {
+              const option = filter.options.find((f) => f.id === optionId)
+              filtersSelection.push({ id: i, filter, label: filter.label, name: option.name })
             }
           }
 
           if (filter.type === 'checkbox-filter') {
-            // API calls shouldn't be made this often; please use
-            // current value.
-            // const option = await filter.options()
-
-            current.forEach(subKey => {
-              const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
-              activeValues.push({ key, subKey, value: findTextFromValue.text, label: filter.label })
-            })
+            for (const [i, selection] of filter.selection.entries()) {
+              // const findTextFromValue = option.filter(filter => filter.value === subKey)[0]
+              // activeFilters.push({ id: findTextFromValue.text, label: findTextFromValue.text, name: filter.label })
+            }
           }
           // Range Filter
           if (filter.type === 'range-filter') {
-            activeValues.push({ key, value: `${current[0]} to ${current[1]}`, label: filter.label })
+            filtersSelection.push({ id: filter.id, filter, label: `${current[0]} to ${current[1]}`, name: filter.label })
           }
         } else {
           // Single item
-          activeValues.push({ key, value: current, label: filter.label })
+          filtersSelection.push({ id: filter.id, filter, label: filter.label, name: filter.selection })
         }
       }
 
-      return activeValues
+      return filtersSelection
     }
   },
   methods: {
-    removeFilter ({ key, subKey }) {
-      if (subKey === undefined) {
-        Vue.delete(this.filters.selected, key)
+    deselectFilter (filterSelection) {
+      if (Array.isArray(filterSelection.filter.selection)) {
+        filterSelection.filter.selection.splice(filterSelection.id, 1)
       } else {
-        Vue.set(this.filters.selected[key], selections[key].filter(key => key !== subKey))
+        filterSelection.filter.selection = ''
       }
     }
   },

@@ -29,10 +29,10 @@
         <transition-group>
           <filter-card
             v-for="filter in visibleFilters"
-            :key="filter.name"
-            v-bind="filter"
+            :key="filter.id"
+            :filter="filter"
             :can-remove="canEdit"
-            @removeFilter="removeFilter(filter.name)"
+            @removeFilter="filter.visible = false"
           >
             <component
               :is="filter.type"
@@ -99,13 +99,6 @@ export default {
   methods: {
     handleResize () {
       this.width = window.innerWidth
-    },
-    removeFilter (name) {
-      for (const filter of this.filters) {
-        if (filter.name === 'name') {
-          filter.visible = false
-        }
-      }
     }
   },
   store: ['filters']

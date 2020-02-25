@@ -7,6 +7,7 @@
         :placeholder="filter.placeholder"
         trim
       />
+
       <b-input-group-append>
         <b-button
           variant="outline-secondary"
@@ -28,14 +29,16 @@
     </b-input-group>
 
     <b-form-checkbox-group
-      v-if="slicedSelection.length"
+      v-if="visibleOptions.length"
       v-model="filter.selection"
       class="checkbox-list"
       :name="filter.name"
-      :options="slicedSelection"
+      value-field="id"
+      value="accepted"
+      :options="visibleOptions"
+      text-field="name"
       stacked
     />
-
     <b-link
       v-if="filter.options.length > filter.maxVisibleOptions"
       class="card-link"
@@ -60,27 +63,27 @@ export default {
   data () {
     return {
       isLoading: false,
+      // Holds additional context like name.
+      selectionOptions: [],
       showMoreToggled: false,
-      selected: [],
-      triggerQuery: Number,
-      inputOptions: [],
-      query: ''
+      triggerQuery: Number
     }
   },
   computed: {
-    slicedSelection: function () {
+    visibleOptions: function () {
+      // Always show selected options:
       if (this.showMoreToggled) {
         return this.filter.options
-      } else {
-        return this.filter.options.slice(0, this.maxVisibleOptions)
       }
+
+      return this.filter.options.slice(0, this.filter.maxVisibleOptions)
     },
     showMoreText () {
       if (this.showMoreToggled) {
         return 'Show less'
-      } else {
-        return `Show ${this.filter.options.length - this.maxVisibleOptions} more`
       }
+
+      return `Show ${this.filter.options.length - this.filter.maxVisibleOptions} more`
     }
   },
   store: ['filters'],
@@ -92,20 +95,22 @@ export default {
 
       this.triggerQuery = setTimeout(async () => {
         clearTimeout(this.triggerQuery)
+        // (!) Do not remove selected options from the state.
+        const selected = this.filter.options.filter((f) => this.filter.selection.includes(f.id))
 
         if (search.length) {
           this.isLoading = true
           try {
-            this.filter.options = await this.filter.provider(search)
-          } catch (err) {
-            console.log('ERR', err)
-          } finally {
+            // Supplement with addional options.
+            const newOptions = (await this.filter.provider(search)).filter((f) => !selected.find((i) => i.id === f.id))
+            this.filter.options = selected.concat(newOptions)
+          } catch (err) {} finally {
             this.isLoading = false
           }
         } else {
-          this.filter.options = []
+          this.filter.options = selected
         }
-      }, 500)
+      }, 250)
     }
   }
 }

@@ -4,32 +4,33 @@
     class="filter-card mb-2"
   >
     <b-card-header
-      :class="collapsable ? 'collapsable' : ''"
-      @click="toggleState"
+      :class="filter.collapsible ? 'collapsable' : ''"
+      @click="toggleCollapse"
     >
       <div
         class="title mr-3 px-1"
-        :title="label"
+        :title="filter.label"
       >
         <font-awesome-icon
-          v-if="collapsable"
+          v-if="filter.collapsible"
           icon="caret-right"
           :style="iconStyle"
           class="mr-2"
         />
-        {{ label }}
-        <span
+        {{ filter.label }}
+        <button
           v-if="canRemove"
           class="remove-button"
           @click.stop="removeFilter"
         >
           <font-awesome-icon icon="times" />
-        </span>
+        </button>
       </div>
     </b-card-header>
+
     <b-collapse
-      :id="name"
-      v-model="isOpen"
+      :id="filter.id"
+      :visible="isOpen"
     >
       <b-card-body>
         <b-form-group :description="description">
@@ -52,24 +53,9 @@ export default Vue.extend({
   name: 'FilterCard',
   components: { FontAwesomeIcon },
   props: {
-    name: {
-      type: String,
-      required: true
-    },
-    label: {
-      type: String,
-      required: false,
-      default: () => ''
-    },
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: () => true
-    },
-    collapsable: {
-      type: Boolean,
-      required: false,
-      default: () => true
+    filter: {
+      type: Object,
+      default: () => {}
     },
     description: {
       type: String,
@@ -82,29 +68,29 @@ export default Vue.extend({
       default: () => false
     }
   },
-  data () {
-    return {
-      isOpen: this.collapsable ? !this.collapsed : true
-    }
-  },
   computed: {
     iconStyle () {
       return {
-        transform: `rotate(${this.isOpen ? 90 : 0}deg)`,
+        transform: `rotate(${this.filter.collapsed ? 90 : 0}deg)`,
         transition: 'transform 0.2s'
       }
+    },
+    isOpen: function () {
+      if (this.filter.collapsible) {
+        return this.filter.collapsed
+      }
+
+      return true
     }
   },
   methods: {
     removeFilter () {
-      this.$emit('removeFilter', this.name)
+      this.filter.visible = false
     },
-    toggleState () {
-      if (this.collapsable) {
-        this.isOpen = !this.isOpen
-        return this.isOpen
+    toggleCollapse: function () {
+      if (this.filter.collapsible) {
+        this.filter.collapsed = !this.filter.collapsed
       }
-      return false
     }
   }
 })
@@ -123,6 +109,8 @@ export default Vue.extend({
     text-overflow: ellipsis;
   }
   .remove-button{
+    background: none;
+    border: 0;
     transition: opacity 0.2s, color 0.2s;
     opacity: 0;
     height: inherit;

@@ -1,15 +1,15 @@
 <template>
   <b-input-group>
     <b-form-input
-      v-model="model"
-      :name="name"
-      :placeholder="placeholder"
+      v-model="filter.selection"
+      :name="filter.name"
+      :placeholder="filter.placeholder"
       trim
     />
     <b-input-group-append>
       <b-button
         variant="outline-secondary"
-        @click.prevent="model=''"
+        @click.prevent="filter.selection=''"
       >
         <font-awesome-icon icon="times" />
       </b-button>
@@ -28,30 +28,7 @@ library.add(faTimes)
 export default Vue.extend({
   name: 'StringFilter',
   components: { FontAwesomeIcon },
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    placeholder: {
-      type: String,
-      required: false,
-      default: () => ''
-    },
-    value: {
-      type: String,
-      default: () => ''
-    }
-  },
-  computed: {
-    model: {
-      get () {
-        return this.value || ''
-      },
-      set (value) {
-        this.$emit('input', value === '' ? undefined : value)
-      }
-    }
-  }
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['filter']
 })
 </script>

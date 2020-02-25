@@ -2,19 +2,19 @@
   <div>
     <b-input-group>
       <b-form-input
-        v-model="model"
+        v-model.number="filter.selection"
         type="number"
-        :min="min"
-        :max="max"
-        :step="step"
+        :min="filter.min"
+        :max="filter.max"
+        :step="filter.step"
       />
     </b-input-group>
     <vue-slider
-      v-if="useSlider"
-      v-model="model"
-      :min="min"
-      :max="max"
-      :interval="step"
+      v-if="filter.useSlider"
+      v-model="filter.selection"
+      :min="filter.min"
+      :max="filter.max"
+      :interval="filter.step"
       class="mt-2"
     />
   </div>
@@ -28,46 +28,7 @@ import 'vue-slider-component/theme/default.css'
 export default Vue.extend({
   name: 'NumberFilter',
   components: { VueSlider },
-  props: {
-    name: {
-      type: String,
-      required: true
-    },
-    min: {
-      type: Number,
-      default: () => Number.MIN_SAFE_INTEGER
-    },
-    max: {
-      type: Number,
-      default: () => Number.MAX_SAFE_INTEGER
-    },
-    step: {
-      type: Number,
-      default: () => 1
-    },
-    value: {
-      type: Number,
-      default: () => null
-    },
-    useSlider: {
-      type: Boolean,
-      default: () => false
-    }
-  },
-  computed: {
-    model: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        if (typeof value === 'string' && value === '') {
-          this.$emit('input', undefined)
-        } else {
-          value = Math.min(Math.max(value, this.min), this.max)
-          this.$emit('input', parseFloat(value))
-        }
-      }
-    }
-  }
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['filter']
 })
 </script>
