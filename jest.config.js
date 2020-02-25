@@ -1,3 +1,8 @@
+// Force use of modules in Babel when running tests
+// with an external tool like vscode-jest.
+process.env.VUE_CLI_BABEL_TARGET_NODE = true
+process.env.VUE_CLI_BABEL_TRANSPILE_MODULES = true
+
 module.exports = {
   moduleFileExtensions: [
     'js',
