@@ -3,6 +3,7 @@
     <b-input-group>
       <b-form-input
         v-model="filter.search"
+        :class="{'is-invalid': isInvalid}"
         :name="filter.name"
         :placeholder="filter.placeholder"
         trim
@@ -53,6 +54,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 library.add(faTimes)
 library.add(faSpinner)
 
@@ -63,6 +65,7 @@ export default {
   data () {
     return {
       isLoading: false,
+      isInvalid: false,
       // Holds additional context like name.
       selectionOptions: [],
       showMoreToggled: false,
@@ -86,7 +89,6 @@ export default {
       return `Show ${this.filter.options.length - this.filter.maxVisibleOptions} more`
     }
   },
-  store: ['filters'],
   watch: {
     'filter.search': function (search) {
       if (this.triggerQuery) {
@@ -103,8 +105,11 @@ export default {
           try {
             // Supplement with addional options.
             const newOptions = (await this.filter.provider(search)).filter((f) => !selected.find((i) => i.id === f.id))
+            this.isInvalid = false
             this.filter.options = selected.concat(newOptions)
-          } catch (err) {} finally {
+          } catch (err) {
+            this.isInvalid = true
+          } finally {
             this.isLoading = false
           }
         } else {
@@ -121,6 +126,10 @@ export default {
   max-height: 250px;
   overflow-y: auto;
   margin: 0.75rem 0;
+}
+
+.is-invalid {
+  background-image: none;
 }
 </style>
 

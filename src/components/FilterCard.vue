@@ -29,7 +29,7 @@
     </b-card-header>
 
     <b-collapse
-      :id="filter.id"
+      :id="`collapse-${filter.id}`"
       :visible="isOpen"
     >
       <b-card-body>

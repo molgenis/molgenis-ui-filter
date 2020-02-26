@@ -17,18 +17,21 @@
 
 <script>
 import Vue from 'vue'
-import * as components from './components/filters'
 import { FilterContainer, ActiveFilters } from './components/'
 
 export default Vue.extend({
   name: 'App',
-  components: { FilterContainer, ActiveFilters, ...components },
+  components: { FilterContainer, ActiveFilters },
   computed: {
     activeFilters () {
-      return this.filters.filter(filter => filter.active)
+      return this.filters.filter(filter => filter.active).map((f) => {
+        return { label: f.label, selection: f.selection }
+      })
     }
   },
-  store: ['filters']
+  store: {
+    'filters': 'filters.available'
+  }
 })
 </script>
 <style>

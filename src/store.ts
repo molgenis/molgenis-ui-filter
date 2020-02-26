@@ -22,137 +22,129 @@ const providers = {
   }
 }
 
-const widget = {
-  collapsed: true,
-  collapsible: true
-}
-
-const filterState = {
-  filters: [
-    {
-      id: 'multi-filter',
-      label: 'Multi filter',
-      maxVisibleOptions: 5,
-      search: '',
-      options: [],
-      provider: providers.multiFilter,
-      type: 'MultiFilter',
-      selection: [], // Maps to b-form-checkbox-group model
-      active: true
-    },
-    {
-      id: 'search',
-      label: 'Search',
-      description: 'search by string',
-      placeholder: 'placeholder',
-      type: 'StringFilter',
-      selection: 'test',
-      active: false
-    },
-    {
-      id: 'color',
-      label: 'Color',
-      bulkOperation: true,
-      maxVisibleOptions: 5,
-      options: [],
-      provider: () => {
-        return new Promise((resolve) => {
-          resolve(data.checkboxOptions)
-        })
+const state = {
+  filters: {
+    canEdit: true,
+    available: [
+      {
+        active: true,
+        label: 'DateTime filter',
+        max: null,
+        min: null,
+        opens: 'right',
+        range: true,
+        selection: null, // range ? [null, null] : null
+        time: true,
+        type: 'DateTimeFilter'
       },
-      type: 'checkbox-filter',
-      selection: [],
-      active: false
-    },
-    {
-      id: 'number',
-      label: 'Number',
-      type: 'NumberFilter',
-      min: Number.MIN_SAFE_INTEGER,
-      max: Number.MAX_SAFE_INTEGER,
-      useSlider: false,
-      step: 1,
-      selection: null,
-      active: false
-    },
-    {
-      id: 'age',
-      label: 'Age',
-      min: -10,
-      max: 10,
-      step: 0.01,
-      type: 'RangeFilter',
-      useSlider: true,
-      selection: [null, null],
-      active: false
-    },
-    {
-      id: 'name',
-      label: 'Name',
-      description: 'Name of object',
-      type: 'StringFilter',
-      selection: null,
-      active: false
-    },
-    {
-      id: 'string',
-      label: 'String',
-      description: 'search by string',
-      placeholder: 'placeholder',
-      type: 'StringFilter',
-      selection: null,
-      active: false
-    },
-    {
-      id: 'checkbox',
-      label: 'Checkbox',
-      bulkOperation: true,
-      maxVisibleOptions: 1,
-      options: [],
-      provider: () => {
-        return new Promise((resolve) => {
-          resolve(data.checkboxOptions)
-        })
+      {
+        active: true,
+        label: 'Multi filter',
+        maxVisibleOptions: 5,
+        options: [],
+        provider: providers.multiFilter,
+        search: '',
+        selection: [],
+        type: 'MultiFilter'
       },
-      type: 'CheckboxFilter',
-      selection: [],
-      active: false
-    },
-    {
-      id: 'checkbox-options',
-      label: 'Checkbox lots of options',
-      bulkOperation: true,
-      maxVisibleOptions: 1,
-      options: [],
-      provider: () => {
-        return new Promise((resolve) => {
-          resolve(data.checkboxOptions)
-        })
+      {
+        active: false,
+        description: 'search by string',
+        label: 'Search',
+        placeholder: 'placeholder',
+        selection: 'test',
+        type: 'StringFilter'
       },
-      type: 'CheckboxFilter',
-      selection: null,
-      active: false
-    },
-    {
-      id: 'long-name',
-      bulkOperation: true,
-      label: 'Way too long name to really fit in the user interface',
-      options: [],
-      provider: () => {
-        return new Promise(
-          function (resolve) {
-            resolve([{ id: 'no', name: 'No' }, { id: 'yes', name: 'Yes' }])
+      {
+        active: true,
+        bulkOperation: true,
+        label: 'Color',
+        maxVisibleOptions: 5,
+        options: [],
+        provider: () => {
+          return new Promise((resolve) => {
+            resolve(data.checkboxOptions)
           })
+        },
+        selection: [],
+        type: 'CheckboxFilter'
       },
-      type: 'CheckboxFilter',
-      selection: null,
-      active: false
-    }
-  ]
+      {
+        active: false,
+        label: 'Number',
+        max: 15,
+        min: -5,
+        selection: null,
+        step: 1,
+        type: 'NumberFilter',
+        useSlider: false
+      },
+      {
+        active: false,
+        label: 'Age',
+        max: 10,
+        min: -10,
+        selection: [null, null],
+        step: 0.01,
+        type: 'RangeFilter',
+        useSlider: true
+      },
+      {
+        active: false,
+        description: 'Name of object',
+        label: 'Name',
+        selection: null,
+        type: 'StringFilter'
+      },
+      {
+        active: false,
+        description: 'search by string',
+        label: 'String',
+        placeholder: 'placeholder',
+        selection: null,
+        type: 'StringFilter'
+      },
+      {
+        active: false,
+        bulkOperation: true,
+        label: 'Checkbox',
+        maxVisibleOptions: 1,
+        options: [],
+        provider: () => {
+          return new Promise((resolve) => {
+            resolve(data.checkboxOptions)
+          })
+        },
+        selection: [],
+        type: 'CheckboxFilter'
+      },
+      {
+        active: false,
+        bulkOperation: true,
+        label: 'Way too long name to really fit in the user interface',
+        maxVisibleOptions: 1,
+        options: [],
+        provider: () => {
+          return new Promise((resolve) => {
+            resolve(data.checkboxOptions)
+          })
+        },
+        selection: null,
+        type: 'CheckboxFilter'
+      }
+    ]
+  }
 }
 
-for (const filter of filterState.filters) {
-  Object.assign(filter, widget)
+let id = 1
+for (const filter of state.filters.available) {
+  Object.assign(filter, {
+    id,
+    collapsed: true,
+    collapsible: true
+  })
+
+  id += 1
 }
 
-export default filterState
+export default state

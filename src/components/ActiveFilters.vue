@@ -2,7 +2,7 @@
   <div>
     <button
       v-for="filterSelection in filtersSelection"
-      :key="`${filterSelection.filter.name}-${filterSelection.id}`"
+      :key="`${filterSelection.filter.id}-${filterSelection.id}`"
       type="button"
       class="active-filter btn btn-light m-1 btn-outline-secondary"
       @click="deselectFilter(filterSelection)"
@@ -72,7 +72,9 @@ export default Vue.extend({
       }
     }
   },
-  store: ['filters']
+  store: {
+    'filters': 'filters.available'
+  }
 })
 </script>
 

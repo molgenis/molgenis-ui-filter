@@ -20,7 +20,7 @@
       :visible="!doCollapse || mobileToggle"
     >
       <draggable
-        v-model="filters"
+        v-model="activeFilters"
         :disabled="!doDragDrop"
         :class="{'dragdrop': doDragDrop, 'dragging': drag}"
         @choose="drag=true"
@@ -53,19 +53,12 @@
 <script>
 import AddFilterModal from './AddFilterModal.vue'
 import { FilterCard } from '.'
-import { StringFilter, CheckboxFilter, NumberFilter, RangeFilter, MultiFilter } from './filters/'
+import * as components from '../components/filters'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'FilterContainer',
-  components: { AddFilterModal, StringFilter, CheckboxFilter, FilterCard, NumberFilter, RangeFilter, MultiFilter, draggable },
-  props: {
-    canEdit: {
-      type: Boolean,
-      required: false,
-      default: () => false
-    }
-  },
+  components: { AddFilterModal, FilterCard, draggable, ...components },
   data () {
     return {
       drag: false,
@@ -84,8 +77,19 @@ export default {
     inactiveFilters () {
       return this.filters.filter(filter => !filter.active)
     },
-    activeFilters () {
-      return this.filters.filter(filter => filter.active)
+    /**
+     * A setter is required, because the <draggable> component
+     * uses this computed property to update the filter order.
+     */
+    activeFilters: {
+      get () {
+        return this.filters.filter(filter => filter.active)
+      },
+      set (value) {
+        // Reordering the active filter order to the start
+        // of the array. Inactive filters are stacked after.
+        this.filters = value.concat(this.inactiveFilters)
+      }
     }
   },
   created () {
@@ -100,7 +104,10 @@ export default {
       this.width = window.innerWidth
     }
   },
-  store: ['filters']
+  store: {
+    canEdit: 'filters.canEdit',
+    filters: 'filters.available'
+  }
 }
 </script>
 
