@@ -48,7 +48,7 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner, faTimes, faClosedCaptioning } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faTimes)
 library.add(faSpinner)
@@ -70,16 +70,8 @@ export default {
       required: false,
       default: () => ''
     },
-    entity: {
-      type: String,
-      required: true
-    },
-    metaQuery: {
-      type: [Function],
-      required: true
-    },
-    dataQuery: {
-      type: [Function],
+    options: {
+      type: Function,
       required: true
     },
     value: {
@@ -137,12 +129,9 @@ export default {
         } else {
           this.isLoading = true
           try {
-            if (!this.metaData) {
-              this.metaData = await this.metaQuery(this.entity)
-            }
-            const checkboxOptions = await this.dataQuery(this.query, this.entity, this.metaData)
-            this.inputOptions = checkboxOptions
+            this.inputOptions = await this.options(`?q=${this.name}=like=${this.query}`)
           } catch (err) {
+            console.log(err)
           } finally {
             this.isLoading = false
           }
@@ -166,4 +155,13 @@ export default {
   font-style: italic;
   font-size: small;
 }
+/* // dataQuery2: async (query, entity, name, metadata) => {
+//             const data = await api.get(`)
+//             return data.data.items.map((i) => {
+//               return { value: i.data.id, text: i.data[name] }
+//             })
+//           },
+// options2: (checked, entity) => api.get(`data/${entity}?q=id=in=(${checked.join(',')})`),
+
+ metaQuery: async (entity) => api.get(`metadata/${entity}`), */
 </style>

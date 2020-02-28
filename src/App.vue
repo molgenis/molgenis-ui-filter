@@ -49,22 +49,20 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['multi-filter', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filtersShown: ['disease', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
       filters: [
         {
-          name: 'multi-filter',
+          name: 'disease', // attribute name
           label: 'Filter with multiple options',
           collapsed: false,
-          entity: 'root_hospital_diagnosis',
-          metaQuery: async (entity) => api.get(`metadata/${entity}`),
-          dataQuery: async (query, entity, metadata) => {
-            const nameAttr = metadata.data.data.attributes.items.filter((i) => i.data.labelAttribute).map((i) => i.data.name)[0]
-            const data = await api.get(`data/${entity}?q=${nameAttr}=like=${query}`)
-            return data.data.items.map((i) => {
-              return { value: i.data.id, text: i.data[nameAttr] }
-            })
+          options: async (params) => { // Uses a custom endpoint, called queryApi. (mock implementation)
+            const data = await api.get(`/data/root_hospital_diagnosis${params}`)
+            return Promise.resolve(
+              data.data.items.map((i) => {
+                return { value: i.data.id, text: i.data['disease'] }
+              })
+            )
           },
-          options: (checked, entity) => api.get(`data/${entity}?q=id=in=(${checked.join(',')})`),
           type: 'multi-filter'
         },
         {

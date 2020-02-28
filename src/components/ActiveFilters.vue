@@ -86,14 +86,7 @@ export default Vue.extend({
             })
           }
           if (filter.type === 'multi-filter') {
-            const metaData = await filter.metaQuery(filter.entity)
-            const rawOptions = await filter.options(current, filter.entity)
-            const nameAttr = metaData.data.data.attributes.items
-              .filter(i => i.data.labelAttribute)
-              .map(i => i.data.name)[0]
-            const options = rawOptions.data.items.map(i => {
-              return { value: i.data.id, text: i.data[nameAttr] }
-            })
+            const options = await filter.options(`?q=id=in=(${current.join(',')})`)
             current.forEach(subKey => {
               const findTextFromValue = options.filter(
                 filter => filter.value === subKey
