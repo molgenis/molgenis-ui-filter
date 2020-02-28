@@ -47,14 +47,7 @@ export default Vue.extend({
           name: 'disease', // attribute name
           label: 'Filter with multiple options',
           collapsed: false,
-          options: async (params) => { // Uses a custom endpoint, called queryApi. (mock implementation)
-            const data = await mockData.api.get(`/data/root_hospital_diagnosis${params}`)
-            return Promise.resolve(
-              data.data.items.map((i) => {
-                return { value: i.data.id, text: i.data['disease'] }
-              })
-            )
-          },
+          options: mockData.multifilterOptions,
           type: 'multi-filter'
         },
         {

@@ -26,7 +26,13 @@
         </b-button>
       </b-input-group-append>
     </b-input-group>
-
+    <font-awesome-icon
+      v-if="foundOptionCount === 100"
+      icon="exclamation-triangle"
+      class="warning text-danger"
+      size="xs"
+      title="There are 100 or more results found, only the first 100 are available. Please refine your search."
+    />
     <b-form-checkbox-group
       v-if="slicedOptions.length"
       v-model="selection"
@@ -37,9 +43,9 @@
     />
 
     <b-link
-      v-if="inputOptions.length > maxVisibleOptions"
+      v-if="showCount < inputOptions.length"
       class="card-link"
-      @click="showMoreToggled = !showMoreToggled"
+      @click="showMore"
     >
       {{ showMoreText }}
     </b-link>
@@ -51,10 +57,11 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faSpinner,
   faTimes,
-  faClosedCaptioning
+  faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faTimes)
+library.add(faExclamationTriangle)
 library.add(faSpinner)
 
 export default {
@@ -89,8 +96,8 @@ export default {
   },
   data () {
     return {
+      showCount: 0,
       isLoading: false,
-      showMoreToggled: false,
       selected: [],
       triggerQuery: Number,
       inputOptions: [],
@@ -99,11 +106,10 @@ export default {
   },
   computed: {
     slicedOptions: function () {
-      if (this.showMoreToggled) {
-        return this.inputOptions
-      } else {
-        return this.inputOptions.slice(0, this.maxVisibleOptions)
-      }
+      return this.inputOptions.slice(0, this.showCount)
+    },
+    foundOptionCount () {
+      return this.inputOptions.length
     },
     selection: {
       get () {
@@ -114,10 +120,10 @@ export default {
       }
     },
     showMoreText () {
-      if (this.showMoreToggled) {
-        return 'Show less'
+      if (this.foundOptionCount - this.showCount <= this.maxVisibleOptions) {
+        return `Show remaining ${this.maxVisibleOptions}`
       } else {
-        return `Show ${this.inputOptions.length - this.maxVisibleOptions} more`
+        return `Show ${this.maxVisibleOptions} more`
       }
     }
   },
@@ -131,11 +137,12 @@ export default {
         if (!newVal.length) {
           this.inputOptions = []
         } else {
+          this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
-            this.inputOptions = await this.options(
-              `?q=${this.name}=like=${this.query}`
-            )
+            this.inputOptions = await this.options({
+              'q': `${this.name}=q=(${this.query})` // this should be escaped using the rsql lib
+            })
           } catch (err) {
             console.log(err)
           } finally {
@@ -144,11 +151,29 @@ export default {
         }
       }, 500)
     }
+  },
+  created () {
+    this.showCount = this.maxVisibleOptions
+  },
+  methods: {
+    showMore () {
+      this.showCount += this.maxVisibleOptions
+    }
   }
 }
 </script>
 
 <style scoped>
+.warning {
+  position: absolute;
+  right: 0.3rem;
+  top: 3.3rem;
+}
+
+.warning:hover{
+  cursor: pointer;
+}
+
 .checkbox-list {
   max-height: 250px;
   overflow-y: auto;

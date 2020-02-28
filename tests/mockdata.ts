@@ -1,4 +1,4 @@
-
+/* istanbul ignore file */
 // API setup for testing filters.
 import axios from 'axios'
 
@@ -6,6 +6,16 @@ const api = axios.create({
   baseURL: 'http://localhost:8080/api/',
   timeout: 15000
 })
+
+const multifilterOptions = async (params: object) => {
+  const data = await api.get(`/data/root_hospital_diagnosis`, { params })
+
+  return Promise.resolve(
+    data.data.items.map((i: any) => {
+      return { value: i.data.id, text: i.data['disease'] }
+    })
+  )
+}
 
 const checkboxOptions =
   [
@@ -26,4 +36,4 @@ const checkboxLotsOptions = [
 
 const boolCheckboxes = [{ value: 'no', text: 'No' }, { value: 'yes', text: 'Yes' }]
 
-export default { api, checkboxOptions, checkboxLotsOptions, boolCheckboxes }
+export default { api, multifilterOptions, checkboxOptions, checkboxLotsOptions, boolCheckboxes }

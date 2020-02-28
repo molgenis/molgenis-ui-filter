@@ -50,5 +50,7 @@ exports[`MultiFilter.vue matches the snapshot 1`] = `
   <!---->
    
   <!---->
+   
+  <!---->
 </div>
 `;

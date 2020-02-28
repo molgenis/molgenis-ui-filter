@@ -45,22 +45,20 @@ describe('MultiFilter.vue', () => {
     })
   })
 
-  it('shows "show all" text when input options exceed maxVisibleOptions', () => {
+  it('shows "show {maxVisibleOptions} more" text when input options exceed maxVisibleOptions', () => {
     wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
 
-    const text = `Show ${mockData.checkboxLotsOptions.length - propsData.maxVisibleOptions} more`
+    const text = `Show ${propsData.maxVisibleOptions} more`
     expect(wrapper.find('.card-link').text()).toEqual(text)
   })
 
-  it('shows "show less" text when show all is clicked', () => {
+  it('shows next three items show more is clicked', () => {
     wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
     wrapper.find('.card-link').trigger('click')
 
     const checkboxes = wrapper.findAll('input[type=checkbox]')
-    expect(checkboxes.length).toEqual(mockData.checkboxLotsOptions.length)
 
-    const text = `Show less`
-    expect(wrapper.find('.card-link').text()).toEqual(text)
+    expect(checkboxes.length).toEqual(propsData.maxVisibleOptions * 2)
   })
 
   it('updates the selected value to its parent', () => {
