@@ -14,7 +14,7 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
       <filter-container-stub
         canedit="true"
         filters="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
-        filtersshown="multi-filter,search,color,name,age,number,checkbox-options"
+        filtersshown="disease,search,color,name,age,number,checkbox-options"
         value="[object Object]"
       />
     </div>
@@ -44,7 +44,7 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
           visibility:
         </strong>
         [
-  "multi-filter",
+  "disease",
   "search",
   "color",
   "name",

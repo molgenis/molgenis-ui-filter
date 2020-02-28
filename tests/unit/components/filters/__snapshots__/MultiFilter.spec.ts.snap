@@ -2,11 +2,6 @@
 
 exports[`MultiFilter.vue matches the snapshot 1`] = `
 <div
-  options="() => {
-    return new Promise(function (resolve) {
-      resolve(_mockdata.default.checkboxOptions);
-    });
-  }"
   type="multi-filter"
 >
   <div

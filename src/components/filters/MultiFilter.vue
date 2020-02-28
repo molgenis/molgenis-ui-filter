@@ -48,7 +48,11 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSpinner, faTimes, faClosedCaptioning } from '@fortawesome/free-solid-svg-icons'
+import {
+  faSpinner,
+  faTimes,
+  faClosedCaptioning
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faTimes)
 library.add(faSpinner)
@@ -129,7 +133,9 @@ export default {
         } else {
           this.isLoading = true
           try {
-            this.inputOptions = await this.options(`?q=${this.name}=like=${this.query}`)
+            this.inputOptions = await this.options(
+              `?q=${this.name}=like=${this.query}`
+            )
           } catch (err) {
             console.log(err)
           } finally {
@@ -155,13 +161,4 @@ export default {
   font-style: italic;
   font-size: small;
 }
-/* // dataQuery2: async (query, entity, name, metadata) => {
-//             const data = await api.get(`)
-//             return data.data.items.map((i) => {
-//               return { value: i.data.id, text: i.data[name] }
-//             })
-//           },
-// options2: (checked, entity) => api.get(`data/${entity}?q=id=in=(${checked.join(',')})`),
-
- metaQuery: async (entity) => api.get(`metadata/${entity}`), */
 </style>
