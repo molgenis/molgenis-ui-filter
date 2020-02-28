@@ -31,15 +31,7 @@ import Vue from 'vue'
 import * as components from './components/filters'
 import { FilterContainer, ActiveFilters } from './components/'
 
-import data from '../tests/mockdata'
-
-// API setup for testing filters.
-import axios from 'axios'
-
-const api = axios.create({
-  baseURL: 'http://localhost:8080/api/',
-  timeout: 15000
-})
+import mockData from '../tests/mockdata'
 
 export default Vue.extend({
   name: 'App',
@@ -56,7 +48,7 @@ export default Vue.extend({
           label: 'Filter with multiple options',
           collapsed: false,
           options: async (params) => { // Uses a custom endpoint, called queryApi. (mock implementation)
-            const data = await api.get(`/data/root_hospital_diagnosis${params}`)
+            const data = await mockData.api.get(`/data/root_hospital_diagnosis${params}`)
             return Promise.resolve(
               data.data.items.map((i) => {
                 return { value: i.data.id, text: i.data['disease'] }
@@ -81,7 +73,7 @@ export default Vue.extend({
           options: () => {
             return new Promise(
               function (resolve) {
-                resolve(data.checkboxOptions)
+                resolve(mockData.checkboxOptions)
               })
           },
           type: 'checkbox-filter'
@@ -126,7 +118,7 @@ export default Vue.extend({
           options: () => {
             return new Promise(
               function (resolve) {
-                resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+                resolve(mockData.checkboxOptions)
               })
           },
           type: 'checkbox-filter'
@@ -140,7 +132,7 @@ export default Vue.extend({
           options: () => {
             return new Promise(
               function (resolve) {
-                resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+                resolve(mockData.checkboxLotsOptions)
               })
           },
           type: 'checkbox-filter'
@@ -153,7 +145,7 @@ export default Vue.extend({
           options: () => {
             return new Promise(
               function (resolve) {
-                resolve([{ value: 'no', text: 'No' }, { value: 'yes', text: 'Yes' }])
+                resolve(mockData.boolCheckboxes)
               })
           },
           type: 'checkbox-filter'

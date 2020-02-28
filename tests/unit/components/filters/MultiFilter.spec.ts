@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils'
 import { MultiFilter } from '@/components/filters/'
 
-import data from '../../../mockdata'
+import mockData from '../../../mockdata'
 
 describe('MultiFilter.vue', () => {
   const optionsPromise = () => {
     return new Promise(
       function (resolve) {
-        resolve(data.checkboxOptions)
+        resolve(mockData.checkboxLotsOptions)
       }
     )
   }
@@ -46,25 +46,25 @@ describe('MultiFilter.vue', () => {
   })
 
   it('shows "show all" text when input options exceed maxVisibleOptions', () => {
-    wrapper.setData({ inputOptions: data.checkboxOptions })
+    wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
 
-    const text = `Show ${data.checkboxOptions.length - propsData.maxVisibleOptions} more`
+    const text = `Show ${mockData.checkboxLotsOptions.length - propsData.maxVisibleOptions} more`
     expect(wrapper.find('.card-link').text()).toEqual(text)
   })
 
   it('shows "show less" text when show all is clicked', () => {
-    wrapper.setData({ inputOptions: data.checkboxOptions })
+    wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
     wrapper.find('.card-link').trigger('click')
 
     const checkboxes = wrapper.findAll('input[type=checkbox]')
-    expect(checkboxes.length).toEqual(data.checkboxOptions.length)
+    expect(checkboxes.length).toEqual(mockData.checkboxLotsOptions.length)
 
     const text = `Show less`
     expect(wrapper.find('.card-link').text()).toEqual(text)
   })
 
   it('updates the selected value to its parent', () => {
-    wrapper.setData({ inputOptions: data.checkboxOptions })
+    wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
 
     wrapper.find('input[type=checkbox]').trigger('click')
     expect(wrapper.emitted().input).toBeTruthy()

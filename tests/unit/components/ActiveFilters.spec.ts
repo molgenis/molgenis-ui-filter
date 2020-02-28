@@ -1,11 +1,12 @@
 import { mount } from '@vue/test-utils'
 import { ActiveFilters } from '@/components'
+import mockData from '../../mockdata'
 
 describe('ActiveFilters.vue', () => {
   const optionsPromise = () => {
     return new Promise(
       function (resolve) {
-        resolve([{ value: 'red', text: 'Red' }, { value: 'green', text: 'Green' }, { value: 'blue', text: 'Blue' }])
+        resolve(mockData.checkboxLotsOptions)
       }
     )
   }
@@ -14,6 +15,7 @@ describe('ActiveFilters.vue', () => {
       value: {
         string: 'blah',
         checkbox: ['red'],
+        multi: ['blue', 'purple'],
         range: [-5, 5]
       },
       filters: [ {
@@ -30,6 +32,14 @@ describe('ActiveFilters.vue', () => {
         bulkOperation: true,
         options: optionsPromise,
         type: 'checkbox-filter'
+      }, {
+      }, {
+        name: 'multi',
+        label: 'Checkbox',
+        collapsed: false,
+        bulkOperation: true,
+        options: optionsPromise,
+        type: 'multi-filter'
       }, {
         name: 'range',
         label: 'Range',
@@ -49,9 +59,9 @@ describe('ActiveFilters.vue', () => {
   it('removes filter values on click', () => {
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'string' })
-    expect(wrapper.emitted().input[0][0]).toEqual({ checkbox: [ 'red' ], 'range': [-5, 5] })
+    expect(wrapper.emitted().input[0][0]).toEqual({ checkbox: [ 'red' ], 'range': [-5, 5], 'multi': ['blue', 'purple'] })
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'checkbox', subKey: 'red' })
-    expect(wrapper.emitted().input[1][0]).toEqual({ 'checkbox': [], 'range': [-5, 5], string: 'blah' })
+    expect(wrapper.emitted().input[1][0]).toEqual({ 'checkbox': [], 'range': [-5, 5], 'multi': ['blue', 'purple'], 'string': 'blah' })
   })
 })
