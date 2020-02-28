@@ -49,7 +49,7 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['disease', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filtersShown: ['search', 'color', 'name', 'age', 'number', 'checkbox-options'],
       filters: [
         {
           name: 'disease', // attribute name
