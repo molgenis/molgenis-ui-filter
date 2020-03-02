@@ -55,6 +55,7 @@ Every filter will have the following global properties:
 | collapsed            | false    | true          | boolean: Open/Closed state of the card that holds the filter |
 | collapsable          | false    | true          | boolean: Can the card be collapsed. This will force the card to be open by default if set to false |
 | type                 | true     | *na*          | vue object that renders the filter |
+| value                | false    | empty         | the (pre)selected option(s) | 
 
 The `type` field takes a VUE object that renders a filter. Note that every object can have additional filter properties
 
@@ -63,7 +64,7 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 
 | name                 | required | default value | description | 
 |----------------------|----------|---------------|-------------|
-| options              | true     | *na*          | describe the checkboxes. This is a function holding a promise holding holding the options (see example below) |
+| options              | true     | *na*          | describe the checkboxes. This is a function holding a promise holding the options (see example below) |
 | bulkOperation        | false    | true          | adds 'select all' and or 'Deselect all' button |
 | maxVisibleOptions    | false    | undefined *(show all options)* | limit the amount of initially shown options | 
 
@@ -75,6 +76,30 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
             resolve([{ value: 'value1', text: 'Checkbox 1' }, { value: 'value2', text: 'Checkbox 2' }])
         }
     )
+}
+```
+
+#### Multifilter
+
+The multifilter is a composite filter. It uses a searchbox, which searches for options. 
+The usecase is to generate a list of checkboxes based on a user query (capped to first 100) when the options are of _n_ length.
+
+| name                 | required | default value | description | 
+|----------------------|----------|---------------|-------------|
+| options              | true     | *na* `: Function` | describe the checkboxes. This is a function returns a promise which can query and return options (see example below) |
+| placeholder          | false    | empty `: String` | fill the placeholder in the searchbox | 
+| maxVisibleOptions    | false    | undefined `: Number` | limit the amount of initially shown options by _n_ | 
+
+*options example*
+```
+(params: object) => {
+  const data = await axios.get(url, { params })
+
+  return Promise.resolve(
+    data.data.items.map((i: any) => {
+      return { value: i.data[*idName*], text: i.data[*attrName*] }
+    })
+  )
 }
 ```
 
