@@ -35,6 +35,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "@molgenis/molgenis-api-client": "^3.1.0",
     "@molgenis/molgenis-i18n-js": "^0.1.1",
+    "@molgenis/rsql": "^0.2.5",
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",

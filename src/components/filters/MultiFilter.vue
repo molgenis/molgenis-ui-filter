@@ -54,6 +54,7 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { toRsqlValue } from '@molgenis/rsql'
 import {
   faSpinner,
   faTimes,
@@ -141,7 +142,7 @@ export default {
           this.isLoading = true
           try {
             this.inputOptions = await this.options({
-              'q': `${this.name}=q=(${this.query})` // this should be escaped using the rsql lib
+              'q': `${this.name}=like=${toRsqlValue(this.query)}`
             })
           } catch (err) {
             console.log(err)
