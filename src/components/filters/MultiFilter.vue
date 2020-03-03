@@ -11,7 +11,7 @@
         <b-button
           variant="outline-secondary"
           :disabled="isLoading"
-          @click.prevent="clearFilter"
+          @click.prevent="query= ''"
         >
           <font-awesome-icon
             v-if="isLoading"
@@ -101,7 +101,8 @@ export default {
       isLoading: false,
       triggerQuery: Number,
       inputOptions: [],
-      query: ''
+      query: '',
+      checkedOptions: []
     }
   },
   computed: {
@@ -129,29 +130,22 @@ export default {
   },
   watch: {
     query: function (newVal) {
+      const previousSelection = this.inputOptions.filter(option => this.selection.indexOf(option.value) >= 0)
       if (this.triggerQuery) {
         clearTimeout(this.triggerQuery)
       }
       this.triggerQuery = setTimeout(async () => {
         clearTimeout(this.triggerQuery)
         if (!newVal.length) {
-          this.resetSelected()
+          this.inputOptions = previousSelection
         } else {
           this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
-            const previousSelection = this.inputOptions
             this.inputOptions = await this.options({
               'q': `${this.name}=like=${toRsqlValue(this.query)}`
             })
-
-            previousSelection.forEach(function (prevSel, prevIndex) {
-              this.inputOptions.forEach(function (inputOption) {
-                if (prevSel.value !== inputOption.value) this.inputOptions.push(previousSelection[prevIndex])
-              }, { inputOptions: this.inputOptions })
-            }, { inputOptions: this.inputOptions })
           } catch (err) {
-            console.log(err)
           } finally {
             this.isLoading = false
           }
@@ -163,13 +157,6 @@ export default {
     this.showCount = this.maxVisibleOptions
   },
   methods: {
-    clearFilter () {
-      this.query = ''
-      this.resetSelected()
-    },
-    resetSelected () {
-      this.inputOptions = this.inputOptions.filter(option => this.selection.includes(option.value))
-    },
     showMore () {
       this.showCount += this.maxVisibleOptions
     }
@@ -189,7 +176,7 @@ export default {
 }
 
 .checkbox-list {
-  max-height: 250px;
+  max-height: 16rem;
   overflow-y: auto;
   margin: 0.75rem 0;
 }
