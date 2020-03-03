@@ -101,17 +101,11 @@ export default {
       isLoading: false,
       triggerQuery: Number,
       inputOptions: [],
-      query: '',
-      checkedOptions: []
+      query: ''
+
     }
   },
   computed: {
-    slicedOptions: function () {
-      return this.inputOptions.slice(0, this.showCount)
-    },
-    foundOptionCount () {
-      return this.inputOptions.length
-    },
     selection: {
       get () {
         return this.value
@@ -119,6 +113,12 @@ export default {
       set (value) {
         this.$emit('input', value.length === 0 ? undefined : value)
       }
+    },
+    slicedOptions: function () {
+      return this.inputOptions.slice(0, this.showCount)
+    },
+    foundOptionCount () {
+      return this.inputOptions.length
     },
     showMoreText () {
       if (this.foundOptionCount - this.showCount <= this.maxVisibleOptions) {
@@ -130,21 +130,32 @@ export default {
   },
   watch: {
     query: function (newVal) {
-      const previousSelection = this.inputOptions.filter(option => this.selection.indexOf(option.value) >= 0)
+      const previousSelection = this.inputOptions.filter(
+        option => this.selection.indexOf(option.value) >= 0
+      )
+      this.inputOptions = previousSelection
+
       if (this.triggerQuery) {
         clearTimeout(this.triggerQuery)
       }
       this.triggerQuery = setTimeout(async () => {
         clearTimeout(this.triggerQuery)
-        if (!newVal.length) {
-          this.inputOptions = previousSelection
-        } else {
+        if (newVal.length) {
           this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
-            this.inputOptions = await this.options({
-              'q': `${this.name}=like=${toRsqlValue(this.query)}`
+            const fetched = await this.options({
+              q: `${this.name}=like=${toRsqlValue(this.query)}`
             })
+
+            const valuesPresent = previousSelection.map(prev => prev.value)
+
+            if (valuesPresent) {
+              const difference = fetched.filter(prev => !valuesPresent.includes(prev.value))
+              this.inputOptions = previousSelection.concat(difference)
+            } else {
+              this.inputOptions = fetched
+            }
           } catch (err) {
           } finally {
             this.isLoading = false
