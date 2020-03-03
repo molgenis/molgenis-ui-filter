@@ -121,8 +121,9 @@ export default {
       return this.inputOptions.length
     },
     showMoreText () {
-      if (this.foundOptionCount - this.showCount <= this.maxVisibleOptions) {
-        return `Show remaining ${this.maxVisibleOptions}`
+      const remaining = this.foundOptionCount - this.showCount
+      if (remaining <= this.maxVisibleOptions) {
+        return `Show remaining ${remaining}`
       } else {
         return `Show ${this.maxVisibleOptions} more`
       }
