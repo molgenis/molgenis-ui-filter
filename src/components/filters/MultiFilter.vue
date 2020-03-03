@@ -100,7 +100,6 @@ export default {
       triggerQuery: Number,
       inputOptions: [],
       query: ''
-
     }
   },
   computed: {
