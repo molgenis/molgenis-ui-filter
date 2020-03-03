@@ -11,7 +11,7 @@
         <b-button
           variant="outline-secondary"
           :disabled="isLoading"
-          @click.prevent="query=''"
+          @click.prevent="clearFilter"
         >
           <font-awesome-icon
             v-if="isLoading"
@@ -99,7 +99,6 @@ export default {
     return {
       showCount: 0,
       isLoading: false,
-      selected: [],
       triggerQuery: Number,
       inputOptions: [],
       query: ''
@@ -136,14 +135,21 @@ export default {
       this.triggerQuery = setTimeout(async () => {
         clearTimeout(this.triggerQuery)
         if (!newVal.length) {
-          this.inputOptions = []
+          this.resetSelected()
         } else {
           this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
+            const previousSelection = this.inputOptions
             this.inputOptions = await this.options({
               'q': `${this.name}=like=${toRsqlValue(this.query)}`
             })
+
+            previousSelection.forEach(function (prevSel, prevIndex) {
+              this.inputOptions.forEach(function (inputOption) {
+                if (prevSel.value !== inputOption.value) this.inputOptions.push(previousSelection[prevIndex])
+              }, { inputOptions: this.inputOptions })
+            }, { inputOptions: this.inputOptions })
           } catch (err) {
             console.log(err)
           } finally {
@@ -157,6 +163,13 @@ export default {
     this.showCount = this.maxVisibleOptions
   },
   methods: {
+    clearFilter () {
+      this.query = ''
+      this.resetSelected()
+    },
+    resetSelected () {
+      this.inputOptions = this.inputOptions.filter(option => this.selection.includes(option.value))
+    },
     showMore () {
       this.showCount += this.maxVisibleOptions
     }
@@ -171,7 +184,7 @@ export default {
   top: 3.3rem;
 }
 
-.warning:hover{
+.warning:hover {
   cursor: pointer;
 }
 
