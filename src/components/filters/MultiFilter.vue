@@ -61,9 +61,7 @@ import {
   faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faTimes)
-library.add(faExclamationTriangle)
-library.add(faSpinner)
+library.add(faTimes, faExclamationTriangle, faSpinner)
 
 export default {
   components: { FontAwesomeIcon },
