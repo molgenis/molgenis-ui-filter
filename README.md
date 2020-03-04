@@ -79,6 +79,16 @@ The `type` field takes a VUE object that renders a filter. Note that every objec
 }
 ```
 
+#### DateTimefilter
+
+| name                 | required | default value    | description | 
+|----------------------|----------|------------------|-------------|
+| max                  | false    | null `: string`  | Set the minimal date you can select, needs to be able to be parsed by the Date object |
+| min                  | false    | null `: string`  | Set the maximum date you can select, needs to be able to be parsed by the Date object | 
+| opens                | false    | 'right' `: string` | Set the alignment of the popup. Possible options: 'left', 'right', 'center' | 
+| time                 | false    | true `: boolean` | Add a time selection to the data time picker | 
+| range                | false    | true `: boolean` | Add a range selection to be able to make a from-to selection | 
+
 #### Multifilter
 
 The multifilter is a composite filter. It uses a searchbox, which searches for options. 
