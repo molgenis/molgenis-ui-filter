@@ -26,13 +26,6 @@
         </b-button>
       </b-input-group-append>
     </b-input-group>
-    <font-awesome-icon
-      v-if="foundOptionCount === 100"
-      icon="exclamation-triangle"
-      class="warning text-danger"
-      size="xs"
-      title="There are 100 or more results found, only the first 100 are available. Please refine your search."
-    />
     <b-form-checkbox-group
       v-if="slicedOptions.length"
       v-model="selection"
@@ -49,6 +42,12 @@
     >
       {{ showMoreText }}
     </b-link>
+    <font-awesome-icon
+      v-if="foundOptionCount >= 100"
+      v-b-popover.hover="'There are 100 or more results found, only the first 100 are available. Please refine your search.'"
+      icon="exclamation-triangle"
+      class="warning text-danger"
+    />
   </div>
 </template>
 
@@ -175,9 +174,6 @@ export default {
 
 <style scoped>
 .warning {
-  position: absolute;
-  right: 0.3rem;
-  top: 3.3rem;
 }
 
 .warning:hover {
