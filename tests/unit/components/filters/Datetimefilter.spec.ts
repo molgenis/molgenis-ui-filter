@@ -36,8 +36,8 @@ describe('Datetimefilter.vue', () => {
     wrapper.find('.applyBtn').trigger('click')
     await localVue.nextTick()
 
-    expect(vm.dateRange.startDate.toISOString()).toBe('2020-03-01T11:00:00.000Z')
-    expect(vm.dateRange.endDate.toISOString()).toBe('2020-03-09T11:00:00.000Z')
+    expect(vm.dateRange.startDate.toISOString()).toBe('2020-03-01T12:00:00.000Z')
+    expect(vm.dateRange.endDate.toISOString()).toBe('2020-03-09T12:00:00.000Z')
     expect(wrapper.emitted().input).toBeTruthy()
     wrapper.find('.t-btn-clear').trigger('click')
     expect(vm.dateRange.startDate).toBe(null)
