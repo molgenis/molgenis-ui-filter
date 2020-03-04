@@ -1,0 +1,5 @@
+{
+    "development": {
+        "proxy": "https://master.dev.molgenis.org"
+    }
+}
