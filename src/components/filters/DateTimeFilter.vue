@@ -20,11 +20,8 @@
       :max-date="max"
       @update="updateValues"
     >
-      <template
-        slot="input"
-        slot-scope="picker"
-      >
-        {{ picker | date }}
+      <template slot="input">
+        {{ formattedDate }}
       </template>
     </date-range-picker>
     <b-input-group-append>
@@ -57,16 +54,6 @@ const emptyDateRange = {
 export default Vue.extend({
   name: 'DateTimeFilter',
   components: { DateRangePicker, FontAwesomeIcon },
-  filters: {
-    date: function (date) {
-      if (!date.startDate || !date.endDate) return 'Select...'
-      if (date.startDate.toISOString() === date.endDate.toISOString()) {
-        return date.startDate.toLocaleString()
-      } else {
-        return `${date.startDate.toLocaleString()} - ${date.endDate.toLocaleString()}`
-      }
-    }
-  },
   props: {
     max: {
       default: () => null,
@@ -104,6 +91,17 @@ export default Vue.extend({
       dateRange: {
         startDate: this.value.startDate,
         endDate: this.value.endDate
+      }
+    }
+  },
+  computed: {
+    formattedDate: function () {
+      const date = this.dateRange
+      if (!date.startDate || !date.endDate) return 'Select...'
+      if (date.startDate.toISOString() === date.endDate.toISOString()) {
+        return date.startDate.toLocaleString()
+      } else {
+        return `${date.startDate.toLocaleString()} - ${date.endDate.toLocaleString()}`
       }
     }
   },
