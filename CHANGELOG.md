@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.4.2...v1.5.0) (2020-03-04)
+
+
+### Features
+
+* Multifilter, DataTimeFilter ([#32](https://github.com/molgenis/molgenis-ui-filter/issues/32)) ([922efec](https://github.com/molgenis/molgenis-ui-filter/commit/922efec))
+
 ## [1.4.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.4.1...v1.4.2) (2019-10-28)
 
 
