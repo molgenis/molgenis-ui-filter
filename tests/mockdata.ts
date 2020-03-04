@@ -7,14 +7,20 @@ const api = axios.create({
   timeout: 15000
 })
 
+// Prevent triggering options multiple times.
+let cache:any = { params: {}, results: null }
+
 const multifilterOptions = async (params: object) => {
+  if (params === cache.params) return cache.results
+  cache.params = params
+
   const data = await api.get(`/data/root_hospital_diagnosis`, { params })
 
-  return Promise.resolve(
-    data.data.items.map((i: any) => {
-      return { value: i.data.id, text: i.data['disease'] }
-    })
-  )
+  cache.results = data.data.items.map((i: any) => {
+    return { value: i.data.id, text: i.data['disease'] }
+  })
+
+  return cache.results
 }
 
 const checkboxOptions =

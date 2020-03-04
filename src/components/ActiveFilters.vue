@@ -57,14 +57,15 @@ export default Vue.extend({
         const filter = this.selectFilter(key)
 
         // Clean op the values by removing undefined entry's
-        if (current === undefined || !current.length) return
+        if (current === undefined || (Array.isArray(current) && !current.length)) return
 
         if (filter.type === 'date-time-filter') {
           let value
-          if (current.startDate && current.startDate) {
-            value = `${current.startDate.toLocaleDateString()} - ${current.endDate.toLocaleDateString()}`
-          } else {
+
+          if (current.startDate.toISOString() === current.endDate.toISOString()) {
             value = current.startDate.toLocaleDateString()
+          } else {
+            value = `${current.startDate.toLocaleDateString()} - ${current.endDate.toLocaleDateString()}`
           }
 
           activeValues.push({ key, value, label: filter.label })

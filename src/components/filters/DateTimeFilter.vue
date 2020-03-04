@@ -7,15 +7,17 @@
       class="flex-grow-1"
       :opens="opens"
       :locale-data="{ firstDay: 1, format: 'yyyy-mm-dd HH:MM:ss' }"
-      :single-date-picker="singleDatePicker"
+      :single-date-picker="!range"
       :time-picker="time"
-      :time-picker24hour="timePicker24Hour"
-      :show-week-numbers="showWeekNumbers"
-      :show-dropdowns="showDropdowns"
+      :time-picker24hour="true"
+      :show-week-numbers="false"
+      :show-dropdowns="true"
       :auto-apply="false"
-      :ranges="show_ranges ? undefined : false"
+      :ranges="false"
       :linked-calendars="linkedCalendars"
       :always-show-calendars="alwaysShowCalendars"
+      :min-date="min"
+      :max-date="max"
       @update="updateValues"
     >
       <div
@@ -62,9 +64,21 @@ export default Vue.extend({
     }
   },
   props: {
+    max: {
+      default: () => null,
+      type: [String, null]
+    },
+    min: {
+      default: () => null,
+      type: [String, null]
+    },
     name: {
       type: String,
       required: true
+    },
+    opens: {
+      default: () => 'right',
+      type: String
     },
     time: {
       type: Boolean,
@@ -83,16 +97,11 @@ export default Vue.extend({
   },
   data: function () {
     return {
-      opens: 'right',
       dateRange: {
         startDate: this.value.startDate,
         endDate: this.value.endDate
       },
-      show_ranges: false,
       singleDatePicker: false,
-      timePicker24Hour: true,
-      showDropdowns: true,
-      showWeekNumbers: false,
       linkedCalendars: false,
       alwaysShowCalendars: true
     }
