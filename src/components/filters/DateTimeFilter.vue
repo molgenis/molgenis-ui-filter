@@ -14,22 +14,23 @@
       :show-dropdowns="true"
       :auto-apply="false"
       :ranges="false"
-      :linked-calendars="linkedCalendars"
-      :always-show-calendars="alwaysShowCalendars"
+      :linked-calendars="false"
+      :always-show-calendars="true"
       :min-date="min"
       :max-date="max"
       @update="updateValues"
     >
-      <div
+      <template
         slot="input"
         slot-scope="picker"
       >
-        {{ picker.startDate | date }}
-      </div>
+        {{ picker | date }}
+      </template>
     </date-range-picker>
     <b-input-group-append>
       <b-button
         variant="outline-secondary"
+        class="t-btn-clear"
         @click="clearValue"
       >
         <font-awesome-icon icon="times" />
@@ -58,8 +59,11 @@ export default Vue.extend({
   components: { DateRangePicker, FontAwesomeIcon },
   filters: {
     date: function (date) {
-      if (date) {
-        return date.toLocaleString()
+      if (!date.startDate || !date.endDate) return 'Select...'
+      if (date.startDate.toISOString() === date.endDate.toISOString()) {
+        return date.startDate.toLocaleString()
+      } else {
+        return `${date.startDate.toLocaleString()} - ${date.endDate.toLocaleString()}`
       }
     }
   },
@@ -100,10 +104,7 @@ export default Vue.extend({
       dateRange: {
         startDate: this.value.startDate,
         endDate: this.value.endDate
-      },
-      singleDatePicker: false,
-      linkedCalendars: false,
-      alwaysShowCalendars: true
+      }
     }
   },
   watch: {
@@ -123,7 +124,7 @@ export default Vue.extend({
 })
 </script>
 <style lang="css">
-  .form-control.reportrange-text div {
+  .form-control.reportrange-text {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

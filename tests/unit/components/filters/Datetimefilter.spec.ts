@@ -1,70 +1,46 @@
-import { mount } from '@vue/test-utils'
-import { MultiFilter } from '@/components/filters/'
+// @ts-ignore
+import { createLocalVue, mount } from '@vue/test-utils'
+import { DateTimeFilter } from '@/components/filters/'
 
-import mockData from '../../../mockdata'
+const localVue = createLocalVue()
 
-describe('MultiFilter.vue', () => {
-  const optionsPromise = () => {
-    return new Promise(
-      function (resolve) {
-        resolve(mockData.checkboxLotsOptions)
-      }
-    )
-  }
-
+describe('Datetimefilter.vue', () => {
   const propsData = {
-    name: 'multi-filter',
-    label: 'Filter with multiple options',
+    name: 'datetime',
+    label: 'Datetime',
     collapsed: false,
-    maxVisibleOptions: 3,
-    options: optionsPromise,
-    type: 'multi-filter'
+    max: null,
+    min: null,
+    opens: 'right',
+    range: true,
+    time: true,
+    type: 'date-time-filter'
   }
 
-  const wrapper = mount(MultiFilter, { propsData })
+  const wrapper = mount(DateTimeFilter, { localVue, propsData })
+  const vm:any = wrapper.vm
 
   it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('does not show checkbox fields when input options are not set', () => {
-    const background = wrapper.find('.checkbox-list')
-    expect(background.exists()).toBeFalsy()
-  })
+  it('sets a date range', async () => {
+    wrapper.find('.vue-daterange-picker div').trigger('click')
+    wrapper.findAll('.yearselect').setValue('2020')
 
-  it('shows checkbox fields when input options are set', () => {
-    jest.useFakeTimers()
-    wrapper.setData({ query: 'search' })
-    jest.runAllTimers()
-    wrapper.vm.$nextTick(() => {
-      const background = wrapper.find('.checkbox-list')
-      expect(background.exists()).toBeTruthy()
+    wrapper.find('.drp-calendar.left .monthselect').setValue('3')
+    wrapper.find('.drp-calendar.left .monthselect').setValue('3')
 
-      const checkboxes = wrapper.findAll('input[type=checkbox]')
-      expect(checkboxes.length).toEqual(propsData.maxVisibleOptions)
-    })
-  })
+    wrapper.find('.vue-daterange-picker div table tr:nth-child(2) td:nth-child(7)').trigger('click')
+    wrapper.find('.vue-daterange-picker div table tr:nth-child(4) td:nth-child(1)').trigger('click')
+    wrapper.find('.applyBtn').trigger('click')
+    await localVue.nextTick()
 
-  it('shows "show {maxVisibleOptions} more" text when input options exceed maxVisibleOptions', () => {
-    wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
-
-    const text = `Show ${propsData.maxVisibleOptions} more`
-    expect(wrapper.find('.card-link').text()).toEqual(text)
-  })
-
-  it('shows next three items show more is clicked', () => {
-    wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
-    wrapper.find('.card-link').trigger('click')
-
-    const checkboxes = wrapper.findAll('input[type=checkbox]')
-
-    expect(checkboxes.length).toEqual(propsData.maxVisibleOptions * 2)
-  })
-
-  it('updates the selected value to its parent', () => {
-    wrapper.setData({ inputOptions: mockData.checkboxLotsOptions })
-
-    wrapper.find('input[type=checkbox]').trigger('click')
+    expect(vm.dateRange.startDate.toISOString()).toBe('2020-03-01T11:00:00.000Z')
+    expect(vm.dateRange.endDate.toISOString()).toBe('2020-03-09T11:00:00.000Z')
     expect(wrapper.emitted().input).toBeTruthy()
+    wrapper.find('.t-btn-clear').trigger('click')
+    expect(vm.dateRange.startDate).toBe(null)
+    expect(vm.dateRange.endDate).toBe(null)
   })
 })
