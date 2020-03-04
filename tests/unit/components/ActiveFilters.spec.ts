@@ -33,7 +33,6 @@ describe('ActiveFilters.vue', () => {
         options: optionsPromise,
         type: 'checkbox-filter'
       }, {
-      }, {
         name: 'multi',
         label: 'Checkbox',
         collapsed: false,

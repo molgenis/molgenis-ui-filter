@@ -12,7 +12,7 @@
       :time-picker24hour="timePicker24Hour"
       :show-week-numbers="showWeekNumbers"
       :show-dropdowns="showDropdowns"
-      :auto-apply="autoApply"
+      :auto-apply="false"
       :ranges="show_ranges ? undefined : false"
       :linked-calendars="linkedCalendars"
       :always-show-calendars="alwaysShowCalendars"
@@ -92,7 +92,6 @@ export default Vue.extend({
       singleDatePicker: false,
       timePicker24Hour: true,
       showDropdowns: true,
-      autoApply: true,
       showWeekNumbers: false,
       linkedCalendars: false,
       alwaysShowCalendars: true
