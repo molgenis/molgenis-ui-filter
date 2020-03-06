@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.0...v1.5.1) (2020-03-06)
+
+
+### Bug Fixes
+
+* added the correct parameters ([0759274](https://github.com/molgenis/molgenis-ui-filter/commit/0759274))
+
 # [1.5.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.4.2...v1.5.0) (2020-03-04)
 
 
