@@ -1,3 +1,10 @@
+## [1.5.3](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.2...v1.5.3) (2020-03-06)
+
+
+### Bug Fixes
+
+* add build step ([b326d13](https://github.com/molgenis/molgenis-ui-filter/commit/b326d13))
+
 ## [1.5.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.1...v1.5.2) (2020-03-06)
 
 
