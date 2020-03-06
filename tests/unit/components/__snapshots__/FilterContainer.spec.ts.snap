@@ -118,7 +118,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
         <div
           bulkoperation="true"
           class="card filter-card mb-2"
-          options="function () {
+          options="() => {
     return new Promise(function (resolve) {
       resolve([{
         value: 'red',
