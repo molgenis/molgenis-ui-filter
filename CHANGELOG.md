@@ -1,3 +1,11 @@
+## [1.5.4](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.3...v1.5.4) (2020-03-06)
+
+
+### Bug Fixes
+
+* reverted changes, as the package is not a module, but is a vue app with a folder that wants to be a module. ([c687b0f](https://github.com/molgenis/molgenis-ui-filter/commit/c687b0f))
+* update snapshot, removed buildstep ([d7071fd](https://github.com/molgenis/molgenis-ui-filter/commit/d7071fd))
+
 ## [1.5.3](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.2...v1.5.3) (2020-03-06)
 
 
