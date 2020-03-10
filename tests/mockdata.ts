@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 // API setup for testing filters.
 import axios from 'axios'
+import { toRsqlValue } from '@molgenis/rsql'
 
 const api = axios.create({
   baseURL: 'http://localhost:8080/api/',
@@ -8,11 +9,15 @@ const api = axios.create({
 })
 
 // Prevent triggering options multiple times.
-let cache:any = { params: {}, results: null }
+let cache:any = { query: '', results: null }
 
-const multifilterOptions = async (params: object) => {
-  if (params === cache.params) return cache.results
-  cache.params = params
+const multifilterOptions = async (nameAttribute:boolean = true, queryType: string = 'like', query?: string) => {
+  let params = {}
+  if (query) {
+    params = { q: `${nameAttribute ? 'disease' : 'id'}=${queryType}=${queryType === 'in' ? `(${query})` : toRsqlValue(query)}` }
+    if (query === cache.query) return cache.results
+    cache.query = query
+  }
 
   const data = await api.get(`/data/root_hospital_diagnosis`, { params })
 

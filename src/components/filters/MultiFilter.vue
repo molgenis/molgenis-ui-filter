@@ -53,7 +53,6 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { toRsqlValue } from '@molgenis/rsql'
 import {
   faSpinner,
   faTimes,
@@ -141,10 +140,7 @@ export default {
           this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
-            const fetched = await this.options({
-              q: `${this.name}=like=${toRsqlValue(this.query)}`
-            })
-
+            const fetched = await this.options(this.query)
             const valuesPresent = previousSelection.map(prev => prev.value)
 
             if (valuesPresent) {
@@ -173,8 +169,6 @@ export default {
 </script>
 
 <style scoped>
-.warning {
-}
 
 .warning:hover {
   cursor: pointer;
