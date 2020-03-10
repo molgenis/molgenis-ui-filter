@@ -1,3 +1,11 @@
+## [1.5.5](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.4...v1.5.5) (2020-03-10)
+
+
+### Bug Fixes
+
+* fixed logic from options to accomodate like and in queries ([b64ea47](https://github.com/molgenis/molgenis-ui-filter/commit/b64ea47))
+* updated readme ([a03464a](https://github.com/molgenis/molgenis-ui-filter/commit/a03464a))
+
 ## [1.5.4](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.3...v1.5.4) (2020-03-06)
 
 
