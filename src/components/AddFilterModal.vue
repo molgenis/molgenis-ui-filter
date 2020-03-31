@@ -15,6 +15,7 @@
     <b-modal
       id="modal-add-filter"
       title="Add filter"
+      :static="true"
       @ok="addFilter"
       @show="resetModal"
     >
