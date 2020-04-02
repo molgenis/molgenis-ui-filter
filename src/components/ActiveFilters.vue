@@ -44,25 +44,40 @@ export default Vue.extend({
   },
   watch: {
     value: {
-      handler (newValue) {
-        this.buildActiveValues(newValue)
+      handler (newActiveValues, oldActiveValues) {
+        if (newActiveValues !== oldActiveValues && (this.filters && this.filters.length > 0)) { // We need to have filterdefinitions
+          this.buildActiveValues(newActiveValues)
+        }
+      },
+      immediate: true
+    },
+    filters: {
+      handler (newDefinitions, oldDefinitions) {
+        if (newDefinitions !== oldDefinitions && newDefinitions.length > 0) {
+          this.buildActiveValues(this.value) // render with the already known values
+        }
       },
       immediate: true
     }
   },
   methods: {
-    async buildActiveValues (newValue) {
+    async buildActiveValues (activeFilterValues) {
       const activeValues = []
-      Object.entries(newValue).forEach(async ([key, current]) => {
+      Object.entries(activeFilterValues).forEach(async ([key, current]) => {
         const filter = this.selectFilter(key)
 
         // Clean op the values by removing undefined entry's
-        if (current === undefined || (Array.isArray(current) && !current.length)) return
+        if (
+          current === undefined ||
+          (Array.isArray(current) && !current.length)
+        ) { return }
 
         if (filter.type === 'date-time-filter') {
           let value
 
-          if (current.startDate.toISOString() === current.endDate.toISOString()) {
+          if (
+            current.startDate.toISOString() === current.endDate.toISOString()
+          ) {
             value = current.startDate.toLocaleDateString()
           } else {
             value = `${current.startDate.toLocaleDateString()} - ${current.endDate.toLocaleDateString()}`
@@ -117,7 +132,7 @@ export default Vue.extend({
           activeValues.push({ key, value: current, label: filter.label })
         }
       })
-      if (this.value === newValue) {
+      if (this.value === activeFilterValues) {
         this.activeValues = activeValues
       }
     },
