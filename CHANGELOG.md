@@ -1,3 +1,10 @@
+## [1.5.6](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.5...v1.5.6) (2020-04-03)
+
+
+### Bug Fixes
+
+* [#16](https://github.com/molgenis/molgenis-ui-filter/issues/16) remove vue-bootstrap warning from test output ([9cb6a8d](https://github.com/molgenis/molgenis-ui-filter/commit/9cb6a8d))
+
 ## [1.5.5](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.4...v1.5.5) (2020-03-10)
 
 
