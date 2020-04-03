@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.6...v1.6.0) (2020-04-03)
+
+
+### Features
+
+* bump bootstrap-vue version from rc version to latest stable (2.9.0) ([8e91fe9](https://github.com/molgenis/molgenis-ui-filter/commit/8e91fe9))
+
 ## [1.5.6](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.5...v1.5.6) (2020-04-03)
 
 
