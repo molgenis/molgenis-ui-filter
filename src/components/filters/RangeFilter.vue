@@ -74,12 +74,6 @@ export default Vue.extend({
       sliderValue: [null, null]
     }
   },
-  watch: {
-    value (newValue) {
-      this.sliderValue[0] = Math.min(newValue[0], newValue[1])
-      this.sliderValue[1] = Math.max(newValue[0], newValue[1])
-    }
-  },
   methods: {
     handleChange () {
       if (this.sliderValue[0] === this.min && this.sliderValue[1] === this.max) {
