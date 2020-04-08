@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.0...v1.6.1) (2020-04-08)
+
+
+### Bug Fixes
+
+* Show filters in correct chosen order, add unit test ([08f031f](https://github.com/molgenis/molgenis-ui-filter/commit/08f031f))
+
 # [1.6.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.6...v1.6.0) (2020-04-03)
 
 
