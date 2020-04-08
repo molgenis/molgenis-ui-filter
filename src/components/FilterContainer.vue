@@ -21,8 +21,9 @@
     >
       <draggable
         v-model="filtersToShow"
-        :disabled="!doDragDrop"
+        handle=".drag-handle"
         :class="{'dragdrop': doDragDrop, 'dragging': drag}"
+        :disabled="!doDragDrop"
         @choose="drag=true"
         @end="drag=false"
         @input="selectionUpdate"
@@ -137,11 +138,12 @@ export default {
 }
 </script>
 
-<style scoped>
-  .dragdrop{
+<style>
+  .dragdrop .drag-handle {
     cursor: grab;
   }
-  .dragdrop.dragging{
+
+  .dragdrop.dragging .drag-handle {
     cursor: grabbing;
   }
 </style>

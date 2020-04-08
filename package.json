@@ -41,7 +41,7 @@
     "vue": "^2.6.10",
     "vue-slider-component": "^3.0.41",
     "vue2-daterange-picker": "^0.4.4",
-    "vuedraggable": "^2.21.0"
+    "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
