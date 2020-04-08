@@ -7,7 +7,7 @@ exports[`FilterCard.vue matches the snapshot 1`] = `
   <!---->
   <!---->
   <div
-    class="card-header collapsable"
+    class="card-header drag-handle collapsable"
   >
     <div
       class="title mr-3 px-1"
