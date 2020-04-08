@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.1...v1.6.2) (2020-04-08)
+
+
+### Bug Fixes
+
+* Make only the cart title listen to drag events ([#48](https://github.com/molgenis/molgenis-ui-filter/issues/48)) ([b95ee66](https://github.com/molgenis/molgenis-ui-filter/commit/b95ee66))
+
 ## [1.6.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.0...v1.6.1) (2020-04-08)
 
 
