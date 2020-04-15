@@ -1,3 +1,31 @@
+## [1.6.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.1...v1.6.2) (2020-04-08)
+
+
+### Bug Fixes
+
+* Make only the cart title listen to drag events ([#48](https://github.com/molgenis/molgenis-ui-filter/issues/48)) ([b95ee66](https://github.com/molgenis/molgenis-ui-filter/commit/b95ee66))
+
+## [1.6.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.0...v1.6.1) (2020-04-08)
+
+
+### Bug Fixes
+
+* Show filters in correct chosen order, add unit test ([08f031f](https://github.com/molgenis/molgenis-ui-filter/commit/08f031f))
+
+# [1.6.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.6...v1.6.0) (2020-04-03)
+
+
+### Features
+
+* bump bootstrap-vue version from rc version to latest stable (2.9.0) ([8e91fe9](https://github.com/molgenis/molgenis-ui-filter/commit/8e91fe9))
+
+## [1.5.6](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.5...v1.5.6) (2020-04-03)
+
+
+### Bug Fixes
+
+* [#16](https://github.com/molgenis/molgenis-ui-filter/issues/16) remove vue-bootstrap warning from test output ([9cb6a8d](https://github.com/molgenis/molgenis-ui-filter/commit/9cb6a8d))
+
 ## [1.5.5](https://github.com/molgenis/molgenis-ui-filter/compare/v1.5.4...v1.5.5) (2020-03-10)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@molgenis/molgenis-ui-filter",
-  "version": "1.5.5",
+  "version": "1.6.2",
   "license": "LGPL-3.0",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -36,12 +36,12 @@
     "@molgenis/molgenis-api-client": "^3.1.0",
     "@molgenis/molgenis-i18n-js": "^0.1.1",
     "@molgenis/rsql": "^0.2.5",
-    "bootstrap-vue": "^2.0.0-rc.19",
+    "bootstrap-vue": "^2.9.0",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue-slider-component": "^3.0.41",
     "vue2-daterange-picker": "^0.4.4",
-    "vuedraggable": "^2.21.0"
+    "vuedraggable": "^2.23.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",

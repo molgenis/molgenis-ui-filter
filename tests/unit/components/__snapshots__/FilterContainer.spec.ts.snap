@@ -34,7 +34,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
           <!---->
           <!---->
           <div
-            class="card-header"
+            class="card-header drag-handle"
           >
             <div
               class="title mr-3 px-1"
@@ -58,12 +58,13 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
               <!---->
               <!---->
               <fieldset
-                aria-describedby="__BVID__38__BV_description_"
+                aria-describedby="__BVID__39__BV_description_"
                 class="form-group"
-                id="__BVID__38"
+                id="__BVID__39"
               >
                 <!---->
                 <div
+                  class="bv-no-focus-ring"
                   role="group"
                   tabindex="-1"
                 >
@@ -75,10 +76,9 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                     type="string-filter"
                   >
                     <!---->
-                    <!---->
                     <input
                       class="form-control"
-                      id="__BVID__40"
+                      id="__BVID__41"
                       name="string"
                       placeholder="placeholder"
                       type="text"
@@ -97,13 +97,12 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                       </button>
                     </div>
                     <!---->
-                    <!---->
                   </div>
                   <!---->
                   <!---->
                   <small
                     class="form-text text-muted"
-                    id="__BVID__38__BV_description_"
+                    id="__BVID__39__BV_description_"
                     tabindex="-1"
                   >
                     search by string
@@ -137,7 +136,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
           <!---->
           <!---->
           <div
-            class="card-header collapsable"
+            class="card-header drag-handle collapsable"
           >
             <div
               class="title mr-3 px-1"
@@ -166,10 +165,11 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
               <!---->
               <fieldset
                 class="form-group"
-                id="__BVID__46"
+                id="__BVID__47"
               >
                 <!---->
                 <div
+                  class="bv-no-focus-ring"
                   role="group"
                   tabindex="-1"
                 >
@@ -177,8 +177,8 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                     type="checkbox-filter"
                   >
                     <div
-                      class=""
-                      id="__BVID__48"
+                      class="bv-no-focus-ring"
+                      id="__BVID__49"
                       role="group"
                       tabindex="-1"
                     >
@@ -188,14 +188,14 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                         <input
                           autocomplete="off"
                           class="custom-control-input"
-                          id="__BVID__48__BV_option_0_"
+                          id="__BVID__49__BV_option_0_"
                           name="checkbox"
                           type="checkbox"
                           value="red"
                         />
                         <label
                           class="custom-control-label"
-                          for="__BVID__48__BV_option_0_"
+                          for="__BVID__49__BV_option_0_"
                         >
                           <span>
                             Red
@@ -208,14 +208,14 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                         <input
                           autocomplete="off"
                           class="custom-control-input"
-                          id="__BVID__48__BV_option_1_"
+                          id="__BVID__49__BV_option_1_"
                           name="checkbox"
                           type="checkbox"
                           value="green"
                         />
                         <label
                           class="custom-control-label"
-                          for="__BVID__48__BV_option_1_"
+                          for="__BVID__49__BV_option_1_"
                         >
                           <span>
                             Green
@@ -228,14 +228,14 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                         <input
                           autocomplete="off"
                           class="custom-control-input"
-                          id="__BVID__48__BV_option_2_"
+                          id="__BVID__49__BV_option_2_"
                           name="checkbox"
                           type="checkbox"
                           value="blue"
                         />
                         <label
                           class="custom-control-label"
-                          for="__BVID__48__BV_option_2_"
+                          for="__BVID__49__BV_option_2_"
                         >
                           <span>
                             Blue

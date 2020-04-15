@@ -88,4 +88,12 @@ describe('FilterContainer.vue', () => {
       done()
     })
   })
+
+  it('shows the filters in the correct order ( based on filtersToShow ) ', () => {
+    expect((wrapper.vm as any).listOfVisibleFilters[0].label).toBe('String')
+    expect((wrapper.vm as any).listOfVisibleFilters[1].label).toBe('Checkbox')
+    wrapper.setData({ filtersToShow: ['checkbox', 'string'] }) // flip order
+    expect((wrapper.vm as any).listOfVisibleFilters[0].label).toBe('Checkbox')
+    expect((wrapper.vm as any).listOfVisibleFilters[1].label).toBe('String')
+  })
 })

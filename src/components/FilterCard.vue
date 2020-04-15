@@ -4,6 +4,7 @@
     class="filter-card mb-2"
   >
     <b-card-header
+      class="drag-handle"
       :class="collapsable ? 'collapsable' : ''"
       @click="toggleState"
     >

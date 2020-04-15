@@ -21,8 +21,9 @@
     >
       <draggable
         v-model="filtersToShow"
-        :disabled="!doDragDrop"
+        handle=".drag-handle"
         :class="{'dragdrop': doDragDrop, 'dragging': drag}"
+        :disabled="!doDragDrop"
         @choose="drag=true"
         @end="drag=false"
         @input="selectionUpdate"
@@ -102,7 +103,7 @@ export default {
       return this.canEdit && !this.doCollapse
     },
     listOfVisibleFilters () {
-      return this.filters.filter(filter => this.filtersToShow.includes(filter.name))
+      return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id))
     },
     listOfInvisibleFilters () {
       return this.filters.filter(filter => !this.filtersToShow.includes(filter.name))
@@ -137,11 +138,12 @@ export default {
 }
 </script>
 
-<style scoped>
-  .dragdrop{
+<style>
+  .dragdrop .drag-handle {
     cursor: grab;
   }
-  .dragdrop.dragging{
+
+  .dragdrop.dragging .drag-handle {
     cursor: grabbing;
   }
 </style>
