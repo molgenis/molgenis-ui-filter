@@ -14,6 +14,7 @@
       />
       <b-input-group-append>
         <b-button
+          class="clear-from"
           variant="outline-secondary"
           @click.prevent="setSliderValue(0, null)"
         >
@@ -34,6 +35,7 @@
       />
       <b-input-group-append>
         <b-button
+          class="clear-to"
           variant="outline-secondary"
           @click.prevent="setSliderValue(1, null)"
         >

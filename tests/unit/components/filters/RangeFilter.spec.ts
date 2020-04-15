@@ -9,10 +9,6 @@ describe('RangeFilter.vue', () => {
     }
   })
 
-  it('matches the snapshot', () => {
-    expect(wrapper.element).toMatchSnapshot()
-  })
-
   it('sets value property on inner input', () => {
     const inputElement1 = wrapper.find('.range-from').element as HTMLInputElement
     expect(inputElement1.value).toBe('')
@@ -26,5 +22,16 @@ describe('RangeFilter.vue', () => {
     wrapper.find('.range-from').trigger('change')
     wrapper.find('.range-to').trigger('change')
     expect(wrapper.emitted()).toEqual({ 'input': [[[5, 20]], [[5, 20]]] })
+  })
+
+  it('can clear a value fields', () => {
+    wrapper.find('.range-from').setValue(5)
+    wrapper.find('.range-to').setValue(20)
+    wrapper.find('.range-from').trigger('change')
+    wrapper.find('.range-to').trigger('change')
+    expect(wrapper.emitted()).toEqual({ 'input': [[[5, 20]], [[5, 20]]] })
+    wrapper.find('button.clear-from').trigger('click')
+    wrapper.find('button.clear-to').trigger('click')
+    expect(wrapper.emitted()).toEqual({ 'input': [[[5, 20]], [[5, 20]], [[null, 20]], [[null, null]]] })
   })
 })
