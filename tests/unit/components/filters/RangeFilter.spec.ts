@@ -2,11 +2,15 @@ import { mount } from '@vue/test-utils'
 import { RangeFilter } from '@/components/filters/'
 
 describe('RangeFilter.vue', () => {
-  const wrapper = mount(RangeFilter, {
-    propsData: {
-      name: 'name',
-      label: 'label'
-    }
+  let wrapper:any = null
+
+  beforeEach(() => {
+    wrapper = mount(RangeFilter, {
+      propsData: {
+        name: 'name',
+        label: 'label'
+      }
+    })
   })
 
   it('sets value property on inner input', () => {
@@ -32,6 +36,6 @@ describe('RangeFilter.vue', () => {
     expect(wrapper.emitted().input[1]).toEqual([[5, 20]])
     wrapper.find('button.clear-from').trigger('click')
     wrapper.find('button.clear-to').trigger('click')
-    expect(wrapper.emitted().input[3]).toEqual([[5, 20]])
+    expect(wrapper.emitted().input[3]).toEqual([[null, null]])
   })
 })
