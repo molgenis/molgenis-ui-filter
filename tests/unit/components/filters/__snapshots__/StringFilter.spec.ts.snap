@@ -7,7 +7,6 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
   role="group"
 >
   <!---->
-  <!---->
   <input
     class="form-control"
     id="__BVID__4"
@@ -41,7 +40,6 @@ exports[`StringFilter.vue matches the snapshot 1`] = `
       </svg>
     </button>
   </div>
-  <!---->
   <!---->
 </div>
 `;
