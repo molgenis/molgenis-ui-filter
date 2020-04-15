@@ -21,7 +21,7 @@ describe('RangeFilter.vue', () => {
     wrapper.find('.range-to').setValue(20)
     wrapper.find('.range-from').trigger('change')
     wrapper.find('.range-to').trigger('change')
-    expect(wrapper.emitted()).toEqual({ 'input': [[[5, 20]], [[5, 20]]] })
+    expect(wrapper.emitted().input[1]).toEqual([[5, 20]])
   })
 
   it('can clear a value fields', () => {
@@ -29,9 +29,9 @@ describe('RangeFilter.vue', () => {
     wrapper.find('.range-to').setValue(20)
     wrapper.find('.range-from').trigger('change')
     wrapper.find('.range-to').trigger('change')
-    expect(wrapper.emitted()).toEqual({ 'input': [[[5, 20]], [[5, 20]]] })
+    expect(wrapper.emitted().input[1]).toEqual([[5, 20]])
     wrapper.find('button.clear-from').trigger('click')
     wrapper.find('button.clear-to').trigger('click')
-    expect(wrapper.emitted()).toEqual({ 'input': [[[5, 20]], [[5, 20]], [[null, 20]], [[null, null]]] })
+    expect(wrapper.emitted().input[3]).toEqual([[5, 20]])
   })
 })
