@@ -46,7 +46,7 @@
           </filter-card>
         </transition-group>
       </draggable>
-      <add-filter-modal
+      <add-filters-list
         v-if="canEdit && listOfInvisibleFilters.length > 0"
         v-model="filtersToShow"
         :filters="listOfInvisibleFilters"
@@ -57,14 +57,14 @@
 </template>
 
 <script>
-import AddFilterModal from './AddFilterModal.vue'
+import AddFiltersList from './AddFiltersList.vue'
 import { FilterCard } from '.'
 import * as components from '../components/filters'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'FilterContainer',
-  components: { AddFilterModal, draggable, FilterCard, ...components },
+  components: { AddFiltersList, draggable, FilterCard, ...components },
   props: {
     filters: {
       type: Array,

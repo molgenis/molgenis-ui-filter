@@ -41,11 +41,12 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['datetime', 'disease', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filtersShown: ['datetime', 'disease'],
       filters: [
         {
           name: 'datetime',
           label: 'Datetime',
+          description: 'Date and Time of some data',
           collapsed: false,
           max: null,
           min: null,
@@ -56,7 +57,8 @@ export default Vue.extend({
         },
         {
           name: 'disease', // attribute name
-          label: 'Filter with multiple options',
+          label: 'Disease',
+          description: 'Filter with multiple options',
           collapsed: false,
           options: mockData.multifilterOptions,
           type: 'multi-filter'
