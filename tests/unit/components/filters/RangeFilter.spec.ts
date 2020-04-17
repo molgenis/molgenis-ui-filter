@@ -8,16 +8,16 @@ describe('RangeFilter.vue', () => {
     wrapper = mount(RangeFilter, {
       propsData: {
         name: 'name',
-        label: 'label'
+        value: [1, 2]
       }
     })
   })
 
   it('sets value property on inner input', () => {
     const inputElement1 = wrapper.find('.range-from').element as HTMLInputElement
-    expect(inputElement1.value).toBe('')
+    expect(inputElement1.value).toBe('1')
     const inputElement2 = wrapper.find('.range-to').element as HTMLInputElement
-    expect(inputElement2.value).toBe('')
+    expect(inputElement2.value).toBe('2')
   })
 
   it('triggers event after value change', () => {
@@ -37,5 +37,11 @@ describe('RangeFilter.vue', () => {
     wrapper.find('button.clear-from').trigger('click')
     wrapper.find('button.clear-to').trigger('click')
     expect(wrapper.emitted().input[3]).toEqual([[null, null]])
+  })
+
+  it('reacts to having its filters cleared', () => {
+    expect(wrapper.vm.rangeValue).toEqual([1, 2])
+    wrapper.setProps({ value: [null, null] })
+    expect(wrapper.vm.rangeValue).toEqual([null, null])
   })
 })

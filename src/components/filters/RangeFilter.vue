@@ -99,7 +99,7 @@ export default Vue.extend({
   },
   data: function () {
     return {
-      rangeValue: [null, null]
+      rangeValue: this.value
     }
   },
   watch: {
