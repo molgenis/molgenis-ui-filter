@@ -3,20 +3,20 @@
   <div>
     <b-input-group class="mb-1">
       <b-form-input
-        v-model="sliderValue[0]"
+        v-model="rangeValue[0]"
         type="number"
         :min="min"
         :max="max"
         placeholder="from"
         :step="step"
         class="text-center range-from"
-        @change="handleChange"
+        @change="handleRangeValueChange"
       />
       <b-input-group-append>
         <b-button
           class="clear-from"
           variant="outline-secondary"
-          @click.prevent="setSliderValue(0, null)"
+          @click.prevent="setRangeValue(0, null)"
         >
           <font-awesome-icon icon="times" />
         </b-button>
@@ -24,20 +24,20 @@
     </b-input-group>
     <b-input-group>
       <b-form-input
-        v-model="sliderValue[1]"
+        v-model="rangeValue[1]"
         type="number"
         :min="min"
         :max="max"
         placeholder="to"
         :step="step"
         class="text-center range-to"
-        @change="handleChange"
+        @change="handleRangeValueChange"
       />
       <b-input-group-append>
         <b-button
           class="clear-to"
           variant="outline-secondary"
-          @click.prevent="setSliderValue(1, null)"
+          @click.prevent="setRangeValue(1, null)"
         >
           <font-awesome-icon icon="times" />
         </b-button>
@@ -45,13 +45,14 @@
     </b-input-group>
     <vue-slider
       v-if="useSlider"
-      v-model="sliderValue"
+      v-model="rangeValue"
       :min="min"
       :max="max"
       :interval="step"
       class="mt-2"
-      @change="handleChange"
+      @change="handleRangeValueChange"
     />
+    <small v-if="min != Number.MIN_SAFE_INTEGER && max != Number.MAX_SAFE_INTEGER" class="form-text text-muted">In a range of {{min}} and {{max}}</small>
   </div>
 </template>
 
@@ -95,34 +96,35 @@ export default Vue.extend({
   },
   data: function () {
     return {
-      sliderValue: [null, null]
+      rangeValue: [null, null]
     }
   },
   watch: {
     value (newValue) {
       if (newValue[0] == null && newValue[1] == null) {
-        this.sliderValue = [null, null]
+        this.rangeValue = [null, null]
       }
     }
   },
   methods: {
-    setSliderValue (id, value) {
-      this.sliderValue[id] = value
-      this.handleChange()
+    setRangeValue (id, value) {
+      this.rangeValue[id] = value
+      this.handleRangeValueChange()
     },
-    handleChange () {
-      let minVal = null
-      let maxVal = null
-      if (this.sliderValue[0] != null) {
-        minVal = parseFloat(Math.min(Math.max(this.sliderValue[0], this.min), this.max))
+    clampValue (value, max, min) {
+      return Math.min(Math.max(value, min), max)
+    },
+    handleRangeValueChange () {
+      if (this.rangeValue[0] != null) {
+        this.rangeValue[0] = this.clampValue(this.rangeValue[0], this.max, this.min)
       }
-      if (this.sliderValue[1] != null) {
-        maxVal = parseFloat(Math.min(Math.max(this.sliderValue[1], this.min), this.max))
+      if (this.rangeValue[1] != null) {
+        this.rangeValue[1] = this.clampValue(this.rangeValue[1], this.max, this.min)
       }
-      this.sliderValue = [minVal, maxVal]
+      this.rangeValue = [this.rangeValue[0], this.rangeValue[1]]
 
       // clone to break reactive loop
-      this.$emit('input', [...this.sliderValue])
+      this.$emit('input', [...this.rangeValue])
     }
   }
 })
