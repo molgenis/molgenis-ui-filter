@@ -52,7 +52,10 @@
       class="mt-2"
       @change="handleRangeValueChange"
     />
-    <small v-if="min != Number.MIN_SAFE_INTEGER && max != Number.MAX_SAFE_INTEGER" class="form-text text-muted">In a range of {{min}} and {{max}}</small>
+    <small
+      v-if="min != Number.MIN_SAFE_INTEGER && max != Number.MAX_SAFE_INTEGER"
+      class="form-text text-muted"
+    >In a range of {{ min }} and {{ max }}</small>
   </div>
 </template>
 
