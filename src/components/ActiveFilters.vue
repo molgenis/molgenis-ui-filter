@@ -104,7 +104,7 @@ export default Vue.extend({
                 value: `${current[0]} and more`,
                 label: filter.label
               })
-            } else if (current[0] != null && current[1] != null){
+            } else if (current[0] != null && current[1] != null) {
               activeValues.push({
                 key,
                 value: `${current[0]} to ${current[1]}`,
