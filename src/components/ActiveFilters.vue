@@ -92,11 +92,25 @@ export default Vue.extend({
           }
           // Range Filter
           if (filter.type === 'range-filter') {
-            activeValues.push({
-              key,
-              value: `${current[0]} to ${current[1]}`,
-              label: filter.label
-            })
+            if (current[0] == null && current[1] != null) {
+              activeValues.push({
+                key,
+                value: `${current[1]} and less`,
+                label: filter.label
+              })
+            } else if (current[0] != null && current[1] == null) {
+              activeValues.push({
+                key,
+                value: `${current[0]} and more`,
+                label: filter.label
+              })
+            } else if (current[0] != null && current[1] != null) {
+              activeValues.push({
+                key,
+                value: `${current[0]} to ${current[1]}`,
+                label: filter.label
+              })
+            }
           }
           if (filter.type === 'multi-filter') {
             const options = await filter.options(false, 'in', current.join(','))

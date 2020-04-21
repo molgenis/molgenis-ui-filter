@@ -55,6 +55,15 @@ export default Vue.extend({
           type: 'date-time-filter'
         },
         {
+          name: 'age',
+          label: 'Age',
+          collapsed: false,
+          min: -10,
+          max: 10,
+          step: 0.01,
+          type: 'range-filter'
+        },
+        {
           name: 'disease', // attribute name
           label: 'Filter with multiple options',
           collapsed: false,
@@ -87,15 +96,6 @@ export default Vue.extend({
           label: 'Number',
           collapsed: false,
           type: 'number-filter'
-        },
-        {
-          name: 'age',
-          label: 'Age',
-          collapsed: false,
-          min: -10,
-          max: 10,
-          step: 0.01,
-          type: 'range-filter'
         },
         {
           name: 'name',

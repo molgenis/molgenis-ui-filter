@@ -10,6 +10,7 @@ describe('ActiveFilters.vue', () => {
       }
     )
   }
+
   const wrapper = mount(ActiveFilters, {
     propsData: {
       value: {
@@ -62,5 +63,16 @@ describe('ActiveFilters.vue', () => {
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'checkbox', subKey: 'red' })
     expect(wrapper.emitted().input[1][0]).toEqual({ 'checkbox': [], 'range': [-5, 5], 'multi': ['blue', 'purple'], 'string': 'blah' })
+  })
+
+  describe('rangefilter', () => {
+    it('will show greater than and less than values', () => {
+      wrapper.setProps({ value: { range: [null, 2] } })
+      // @ts-ignore
+      expect(wrapper.vm.activeValues[0].value).toEqual('2 and less')
+      wrapper.setProps({ value: { range: [1, null] } })
+      // @ts-ignore
+      expect(wrapper.vm.activeValues[0].value).toEqual('1 and more')
+    })
   })
 })

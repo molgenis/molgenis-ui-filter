@@ -1,37 +1,61 @@
 
 <template>
   <div>
-    <b-input-group>
+    <b-input-group class="mb-1">
       <b-form-input
-        v-model="sliderValue[0]"
+        v-model="rangeValue[0]"
         type="number"
         :min="min"
         :max="max"
-        placeholder="min"
+        placeholder="from"
         :step="step"
         class="text-center range-from"
-        @change="handleChange"
+        @change="handleRangeValueChange"
       />
+      <b-input-group-append>
+        <b-button
+          class="clear-from"
+          variant="outline-secondary"
+          @click.prevent="setRangeValue(0, null)"
+        >
+          <font-awesome-icon icon="times" />
+        </b-button>
+      </b-input-group-append>
+    </b-input-group>
+    <b-input-group>
       <b-form-input
-        v-model="sliderValue[1]"
+        v-model="rangeValue[1]"
         type="number"
         :min="min"
         :max="max"
-        placeholder="max"
+        placeholder="to"
         :step="step"
         class="text-center range-to"
-        @change="handleChange"
+        @change="handleRangeValueChange"
       />
+      <b-input-group-append>
+        <b-button
+          class="clear-to"
+          variant="outline-secondary"
+          @click.prevent="setRangeValue(1, null)"
+        >
+          <font-awesome-icon icon="times" />
+        </b-button>
+      </b-input-group-append>
     </b-input-group>
     <vue-slider
       v-if="useSlider"
-      v-model="sliderValue"
+      v-model="rangeValue"
       :min="min"
       :max="max"
       :interval="step"
       class="mt-2"
-      @change="handleChange"
+      @change="handleRangeValueChange"
     />
+    <small
+      v-if="min != Number.MIN_SAFE_INTEGER && max != Number.MAX_SAFE_INTEGER"
+      class="form-text text-muted"
+    >In a range of {{ min }} and {{ max }}</small>
   </div>
 </template>
 
@@ -39,10 +63,14 @@
 import Vue from 'vue'
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/default.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faTimes)
 
 export default Vue.extend({
   name: 'RangeFilter',
-  components: { VueSlider },
+  components: { VueSlider, FontAwesomeIcon },
   props: {
     name: {
       type: String,
@@ -71,24 +99,35 @@ export default Vue.extend({
   },
   data: function () {
     return {
-      sliderValue: [null, null]
+      rangeValue: this.value
     }
   },
   watch: {
     value (newValue) {
-      this.sliderValue[0] = Math.min(newValue[0], newValue[1])
-      this.sliderValue[1] = Math.max(newValue[0], newValue[1])
+      if (newValue[0] == null && newValue[1] == null) {
+        this.rangeValue = [null, null]
+      }
     }
   },
   methods: {
-    handleChange () {
-      if (this.sliderValue[0] === this.min && this.sliderValue[1] === this.max) {
-        this.$emit('input', undefined)
-      } else {
-        this.sliderValue = [parseFloat(Math.max(this.min, this.sliderValue[0])), parseFloat(Math.min(this.max, this.sliderValue[1]))]
-        // clone to break reactive loop
-        this.$emit('input', [...this.sliderValue])
+    setRangeValue (id, value) {
+      this.rangeValue[id] = value
+      this.handleRangeValueChange()
+    },
+    clampValue (value, max, min) {
+      return Math.min(Math.max(value, min), max)
+    },
+    handleRangeValueChange () {
+      if (this.rangeValue[0] != null) {
+        this.rangeValue[0] = this.clampValue(this.rangeValue[0], this.max, this.min)
       }
+      if (this.rangeValue[1] != null) {
+        this.rangeValue[1] = this.clampValue(this.rangeValue[1], this.max, this.min)
+      }
+      this.rangeValue = [this.rangeValue[0], this.rangeValue[1]]
+
+      // clone to break reactive loop
+      this.$emit('input', [...this.rangeValue])
     }
   }
 })
