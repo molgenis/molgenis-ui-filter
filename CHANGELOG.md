@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.7.0...v1.8.0) (2020-04-21)
+
+
+### Bug Fixes
+
+* added unittest ([bd8f79e](https://github.com/molgenis/molgenis-ui-filter/commit/bd8f79e))
+
+
+### Features
+
+* Multifilter can now populate based on prefilled values. ([0c99ac5](https://github.com/molgenis/molgenis-ui-filter/commit/0c99ac5))
+
 # [1.7.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.2...v1.7.0) (2020-04-21)
 
 
