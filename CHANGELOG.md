@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.2...v1.7.0) (2020-04-21)
+
+
+### Bug Fixes
+
+* rangefilter will not force values on user ([6733c36](https://github.com/molgenis/molgenis-ui-filter/commit/6733c36))
+* review changes ([a0e55ef](https://github.com/molgenis/molgenis-ui-filter/commit/a0e55ef))
+* unit tests ([25f9fae](https://github.com/molgenis/molgenis-ui-filter/commit/25f9fae))
+
+
+### Features
+
+* clear range filter values and nice active filter ([ca0ac91](https://github.com/molgenis/molgenis-ui-filter/commit/ca0ac91))
+
 ## [1.6.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.6.1...v1.6.2) (2020-04-08)
 
 
