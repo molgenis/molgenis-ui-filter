@@ -140,11 +140,13 @@ export default {
           this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
-            const fetched = await this.options(this.query)
+            const fetched = await this.options(true, 'like', this.query)
             const valuesPresent = previousSelection.map(prev => prev.value)
 
             if (valuesPresent) {
-              const difference = fetched.filter(prev => !valuesPresent.includes(prev.value))
+              const difference = fetched.filter(
+                prev => !valuesPresent.includes(prev.value)
+              )
               this.inputOptions = previousSelection.concat(difference)
             } else {
               this.inputOptions = fetched
@@ -160,16 +162,24 @@ export default {
   created () {
     this.showCount = this.maxVisibleOptions
   },
+  beforeMount () {
+    if (this.value && this.value.length > 0) {
+      this.initializeFilter()
+    }
+  },
   methods: {
     showMore () {
       this.showCount += this.maxVisibleOptions
+    },
+    async initializeFilter () {
+      const fetched = await this.options(false, 'in', this.value.join(','))
+      this.inputOptions = fetched
     }
   }
 }
 </script>
 
 <style scoped>
-
 .warning:hover {
   cursor: pointer;
 }

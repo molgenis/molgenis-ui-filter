@@ -67,4 +67,24 @@ describe('MultiFilter.vue', () => {
     wrapper.find('input[type=checkbox]').trigger('click')
     expect(wrapper.emitted().input).toBeTruthy()
   })
+
+  it('shows the option as checked that has been given as a prop', () => {
+    const bmProps = {
+      name: 'multi-filter',
+      collapsed: false,
+      options: optionsPromise,
+      type: 'multi-filter',
+      value: ['red']
+    }
+
+    const wrapperFromBookmark = mount(MultiFilter, { propsData: bmProps })
+    wrapperFromBookmark.setData({ inputOptions: [mockData.checkboxLotsOptions.find(cb => cb.value === 'red')] })
+
+    const checkboxes = wrapperFromBookmark.findAll('input[type=checkbox]')
+    expect(checkboxes.length).toEqual(1)
+
+    const checkbox = wrapperFromBookmark.find('input[type=checkbox]').element as HTMLInputElement
+    expect(checkbox.value).toBe('red')
+    expect(checkbox.checked).toBeTruthy()
+  })
 })
