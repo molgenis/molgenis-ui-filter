@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.0...v1.8.1) (2020-04-21)
+
+
+### Bug Fixes
+
+* remove errors shown when a filter is still loading ([7827fe2](https://github.com/molgenis/molgenis-ui-filter/commit/7827fe2))
+
 # [1.8.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.7.0...v1.8.0) (2020-04-21)
 
 
