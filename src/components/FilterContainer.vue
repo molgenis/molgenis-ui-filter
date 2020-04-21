@@ -103,7 +103,7 @@ export default {
       return this.canEdit && !this.doCollapse
     },
     listOfVisibleFilters () {
-      return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id))
+      return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id)).filter(item => item !== undefined)
     },
     listOfInvisibleFilters () {
       return this.filters.filter(filter => !this.filtersToShow.includes(filter.name))
