@@ -41,8 +41,14 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['datetime', 'disease', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filtersShown: ['datetime', 'disease'],
       filters: [
+        {
+          name: 'name',
+          label: 'Label',
+          description: 'description',
+          collapsed: false
+        },
         {
           name: 'datetime',
           label: 'Datetime',
@@ -98,7 +104,7 @@ export default Vue.extend({
           type: 'number-filter'
         },
         {
-          name: 'name',
+          name: 'name1',
           label: 'Name',
           description: 'Name of object',
           type: 'string-filter',

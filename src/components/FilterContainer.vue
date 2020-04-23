@@ -47,9 +47,9 @@
         </transition-group>
       </draggable>
       <add-filter-modal
-        v-if="canEdit && listOfInvisibleFilters.length > 0"
+        v-if="canEdit && filters.length > 0"
         v-model="filtersToShow"
-        :filters="listOfInvisibleFilters"
+        :filters="filters"
         @input="selectionUpdate"
       />
     </b-collapse>

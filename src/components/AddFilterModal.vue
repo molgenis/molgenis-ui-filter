@@ -1,44 +1,34 @@
 <template>
   <div>
-    <b-button
-      v-b-modal.modal-add-filter
-      variant="outline-secondary"
-      class="w-100 mt-2 add-button"
-    >
-      Add a filter
-      <font-awesome-icon
-        class="ml-1"
-        icon="plus"
-      />
-    </b-button>
-
-    <b-modal
-      id="modal-add-filter"
-      title="Add filter"
-      :static="true"
-      @ok="addFilter"
-      @show="resetModal"
-    >
-      <b-form-select
-        v-model="selected"
-        name="filter"
-        :options="options"
-      />
-    </b-modal>
+    <b-dropdown text="Set filters" block variant="primary" boundary="window">
+      <b-dropdown-text>Set filters</b-dropdown-text>
+      <b-dropdown-form>
+        <b-form-checkbox-group stacked v-model="selected" @input="changeFilters">
+          <b-form-checkbox v-for="option in options" :key="option.name" :value="option.name">
+            <span v-if="option.label">
+              <span class="text-nowrap">{{option.label}} </span>
+              <span class="text-secondary">
+                <small><span class="text-nowrap">( {{option.name}} )</span></small>
+              </span>
+            </span>
+            <span v-else>
+              <span class="text-nowrap">{{option.name}} </span>
+            </span>
+            <span class="text-secondary">
+              <small v-if="option.description"> - {{option.description}}</small>
+            </span>
+          </b-form-checkbox>
+        </b-form-checkbox-group>
+      </b-dropdown-form>
+    </b-dropdown>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faPlus)
-
 export default Vue.extend({
   name: 'AddFilterModal',
-  components: { FontAwesomeIcon },
   props: {
     filters: {
       type: Array,
@@ -51,25 +41,21 @@ export default Vue.extend({
   },
   data () {
     return {
-      selected: null
+      selected: this.value
     }
   },
   computed: {
     options () {
       return this.filters.map(it => ({
-        value: it.name,
-        text: it.label
+        name: it.name,
+        label: it.label,
+        description: it.description
       }))
     }
   },
   methods: {
-    resetModal () {
-      this.selected = this.filters[0].name
-    },
-    addFilter () {
-      if (this.selected != null) {
-        this.$emit('input', [ ...this.value, this.selected ])
-      }
+    changeFilters () {
+      this.$emit('input', this.selected)
     }
   }
 })
