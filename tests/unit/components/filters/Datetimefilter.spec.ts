@@ -71,24 +71,27 @@ describe('DateTimeFilter.vue', () => {
     wrapper = mount(DateTimeFilter, { localVue, propsData: noTimeProps })
 
     const dateToStringify = new Date(1588068623458)
+    const comparisonDate = dateToStringify.toLocaleDateString()
     // @ts-ignore
     const dateString = vm.dateString(dateToStringify)
-    expect(dateString).toEqual('4/28/2020')
+    expect(dateString).toEqual(comparisonDate)
   })
 
   it('creates a representable date with time string, when time is set to true', () => {
     const dateTimeToStringify = new Date(1588068623458)
+    const comparisonDate = dateTimeToStringify.toLocaleString()
     // @ts-ignore
     const dateTimeToString = vm.dateTimeString(dateTimeToStringify)
-    expect(dateTimeToString).toEqual('4/28/2020, 10:10:23')
+    expect(dateTimeToString).toEqual(comparisonDate)
   })
 
   it('returns a single date time string when startDate and EndDate are the same', () => {
     const startDate = new Date(1588068623458)
     const endDate = new Date(1588068623458)
+    const comparisonDate = startDate.toLocaleString()
     wrapper.setProps({ value: [startDate, endDate] })
     // @ts-ignore
     const dateTimeString = vm.formattedDate
-    expect(dateTimeString).toEqual('4/28/2020, 10:10:23')
+    expect(dateTimeString).toEqual(comparisonDate)
   })
 })
