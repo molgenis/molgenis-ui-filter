@@ -6,7 +6,7 @@
       v-model="dateRange"
       class="flex-grow-1"
       :opens="opens"
-      :locale-data="{ firstDay: 1, format: 'yyyy-mm-dd HH:MM:ss' }"
+      :locale-data="{ firstDay: 1, format: pickerFormat }"
       :single-date-picker="!range"
       :time-picker="time"
       :time-picker24hour="true"
@@ -80,17 +80,15 @@ export default Vue.extend({
       default: () => true
     },
     value: {
-      type: Object,
-      default: () => {
-        return emptyDateRange
-      }
+      type: Array,
+      default: () => [undefined, undefined]
     }
   },
   data: function () {
     return {
       dateRange: {
-        startDate: this.value.startDate,
-        endDate: this.value.endDate
+        startDate: null,
+        endDate: null
       }
     }
   },
@@ -99,16 +97,25 @@ export default Vue.extend({
       const date = this.dateRange
       if (!date.startDate || !date.endDate) return 'Select...'
       if (date.startDate.toISOString() === date.endDate.toISOString()) {
-        return date.startDate.toLocaleString()
+        return this.beautifyDateTime(date.startDate)
       } else {
-        return `${date.startDate.toLocaleString()} - ${date.endDate.toLocaleString()}`
+        return `${this.beautifyDateTime(date.startDate)} - ${this.beautifyDateTime(date.endDate)}`
       }
+    },
+    pickerFormat () {
+      if (this.time) return 'yyyy-mm-dd HH:MM:ss'
+      else return 'yyyy-mm-dd'
     }
   },
   watch: {
     value (newValue) {
-      this.dateRange = newValue
+      this.dateRange.startDate = this.createDateFromValue(this.value[0])
+      this.dateRange.endDate = this.createDateFromValue(this.value[1])
     }
+  },
+  beforeMount () {
+    this.dateRange.startDate = this.createDateFromValue(this.value[0])
+    this.dateRange.endDate = this.createDateFromValue(this.value[1])
   },
   methods: {
     clearValue: function () {
@@ -116,15 +123,35 @@ export default Vue.extend({
       this.$emit('input', undefined)
     },
     updateValues: function () {
-      this.$emit('input', this.dateRange)
+      this.$emit('input', [this.dateRange.startDate, this.dateRange.endDate])
+    },
+    createDateFromValue (value) {
+      if (value) {
+        if (!isNaN(value)) return new Date(value)
+        return new Date(Date.parse(value))
+      }
+    },
+    beautifyDateTime (dateTime) {
+      if (this.time) return this.dateTimeString(dateTime)
+      else return this.dateString(dateTime)
+    },
+    dateString (dateTime) {
+      return dateTime.toLocaleDateString()
+    },
+    dateTimeString (dateTime) {
+      return dateTime.toLocaleString()
     }
   }
 })
 </script>
 <style lang="css">
-  .form-control.reportrange-text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+.form-control.reportrange-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.drp-selected{
+  text-align: center;
+}
 </style>
