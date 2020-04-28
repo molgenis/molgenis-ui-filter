@@ -10,8 +10,8 @@ describe('ActiveFilters.vue', () => {
       }
     )
   }
-  const startDate = new Date(1588068623458)
-  const endDate = new Date(1588068624000)
+  const startDate = new Date('10/20/2019')
+  const endDate = new Date('10/10/2019')
 
   const wrapper = mount(ActiveFilters, {
     propsData: {
