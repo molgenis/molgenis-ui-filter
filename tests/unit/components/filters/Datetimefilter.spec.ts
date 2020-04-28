@@ -48,14 +48,12 @@ describe('DateTimeFilter.vue', () => {
 
   it('creates a date from a given string', () => {
     const value = '1/1/2000'
-    // @ts-ignore
     const date = vm.createDateFromValue(value)
     expect(date).toEqual(new Date(Date.parse(value)))
   })
 
   it('creates a date from a given amount of milliseconds from epoch', () => {
     const epochValue = 1588068623458
-    // @ts-ignore
     const date = vm.createDateFromValue(epochValue)
     expect(date).toEqual(new Date(epochValue))
   })
@@ -69,19 +67,20 @@ describe('DateTimeFilter.vue', () => {
       type: 'date-time-filter'
     }
     wrapper = mount(DateTimeFilter, { localVue, propsData: noTimeProps })
+    vm = wrapper.vm
 
-    const dateToStringify = new Date(1588068623458)
-    const comparisonDate = dateToStringify.toLocaleDateString()
-    // @ts-ignore
-    const dateString = vm.dateString(dateToStringify)
+    const date = new Date(1588068623458)
+    const comparisonDate = date.toLocaleDateString()
+    const dateString = vm.formatDate(date)
+
     expect(dateString).toEqual(comparisonDate)
   })
 
   it('creates a representable date with time string, when time is set to true', () => {
     const dateTimeToStringify = new Date(1588068623458)
     const comparisonDate = dateTimeToStringify.toLocaleString()
-    // @ts-ignore
-    const dateTimeToString = vm.dateTimeString(dateTimeToStringify)
+    const dateTimeToString = vm.formatDate(dateTimeToStringify)
+
     expect(dateTimeToString).toEqual(comparisonDate)
   })
 
@@ -89,8 +88,9 @@ describe('DateTimeFilter.vue', () => {
     const startDate = new Date(1588068623458)
     const endDate = new Date(1588068623458)
     const comparisonDate = startDate.toLocaleString()
+
     wrapper.setProps({ value: [startDate, endDate] })
-    // @ts-ignore
+
     const dateTimeString = vm.formattedDate
     expect(dateTimeString).toEqual(comparisonDate)
   })

@@ -46,11 +46,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faTimes)
 
-const emptyDateRange = {
-  startDate: null,
-  endDate: null
-}
-
 export default Vue.extend({
   name: 'DateTimeFilter',
   components: { DateRangePicker, FontAwesomeIcon },
@@ -81,7 +76,7 @@ export default Vue.extend({
     },
     value: {
       type: Array,
-      default: () => [undefined, undefined]
+      default: () => [null, null]
     }
   },
   data: function () {
@@ -97,9 +92,9 @@ export default Vue.extend({
       const date = this.dateRange
       if (!date.startDate || !date.endDate) return 'Select...'
       if (date.startDate.toISOString() === date.endDate.toISOString()) {
-        return this.beautifyDateTime(date.startDate)
+        return this.formatDate(date.startDate)
       } else {
-        return `${this.beautifyDateTime(date.startDate)} - ${this.beautifyDateTime(date.endDate)}`
+        return `${this.formatDate(date.startDate)} - ${this.formatDate(date.endDate)}`
       }
     },
     pickerFormat () {
@@ -109,18 +104,24 @@ export default Vue.extend({
   },
   watch: {
     value (newValue) {
-      this.dateRange.startDate = this.createDateFromValue(this.value[0])
-      this.dateRange.endDate = this.createDateFromValue(this.value[1])
+      this.setDateRange(this.newValue)
     }
   },
   beforeMount () {
-    this.dateRange.startDate = this.createDateFromValue(this.value[0])
-    this.dateRange.endDate = this.createDateFromValue(this.value[1])
+    this.setDateRange(this.value)
   },
   methods: {
     clearValue: function () {
-      this.dateRange = emptyDateRange
+      this.dateRange = {
+        startDate: null,
+        endDate: null
+      }
+
       this.$emit('input', undefined)
+    },
+    setDateRange (value) {
+      this.dateRange.startDate = this.createDateFromValue(this.value[0])
+      this.dateRange.endDate = this.createDateFromValue(this.value[1])
     },
     updateValues: function () {
       this.$emit('input', [this.dateRange.startDate, this.dateRange.endDate])
@@ -131,15 +132,9 @@ export default Vue.extend({
         return new Date(Date.parse(value))
       }
     },
-    beautifyDateTime (dateTime) {
-      if (this.time) return this.dateTimeString(dateTime)
-      else return this.dateString(dateTime)
-    },
-    dateString (dateTime) {
-      return dateTime.toLocaleDateString()
-    },
-    dateTimeString (dateTime) {
-      return dateTime.toLocaleString()
+    formatDate (dateTime) {
+      if (this.time) return dateTime.toLocaleString()
+      else return dateTime.toLocaleDateString()
     }
   }
 })
@@ -149,9 +144,5 @@ export default Vue.extend({
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-}
-
-.drp-selected{
-  text-align: center;
 }
 </style>
