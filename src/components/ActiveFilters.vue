@@ -62,10 +62,10 @@ export default Vue.extend({
         if (filter.type === 'date-time-filter') {
           let value
 
-          if (current.startDate.toISOString() === current.endDate.toISOString()) {
-            value = current.startDate.toLocaleDateString()
+          if (current[0].toISOString() === current[1].toISOString()) {
+            value = current[0].toLocaleDateString()
           } else {
-            value = `${current.startDate.toLocaleDateString()} - ${current.endDate.toLocaleDateString()}`
+            value = `${current[0].toLocaleDateString()} - ${current[1].toLocaleDateString()}`
           }
 
           activeValues.push({ key, value, label: filter.label })
