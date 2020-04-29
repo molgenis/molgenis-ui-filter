@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-dropdown text="Set filters" block variant="primary" boundary="window">
+    <b-dropdown text="Set filters" block variant="primary" boundary="viewport" dropright>
       <b-dropdown-text>Set filters</b-dropdown-text>
       <b-dropdown-form>
         <b-form-checkbox-group stacked v-model="selected" @input="changeFilters">
