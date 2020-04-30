@@ -1,24 +1,26 @@
 // @ts-ignore
-import { createLocalVue, mount } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import { DateTimeFilter } from '@/components/filters/'
 
 const localVue = createLocalVue()
+let wrapper: any
+let vm: any
 
-describe('Datetimefilter.vue', () => {
-  const propsData = {
-    name: 'datetime',
-    label: 'Datetime',
-    collapsed: false,
-    max: null,
-    min: null,
-    opens: 'right',
-    range: true,
-    time: true,
-    type: 'date-time-filter'
-  }
+describe('DateTimeFilter.vue', () => {
+  beforeEach(() => {
+    const propsData = {
+      name: 'datetime',
+      label: 'Datetime',
+      collapsed: false,
+      max: null,
+      min: null,
+      opens: 'right',
+      type: 'date-time-filter'
+    }
 
-  const wrapper = mount(DateTimeFilter, { localVue, propsData })
-  const vm:any = wrapper.vm
+    wrapper = mount(DateTimeFilter, { localVue, propsData })
+    vm = wrapper.vm
+  })
 
   it('matches the snapshot', () => {
     expect(wrapper.element).toMatchSnapshot()
@@ -42,5 +44,63 @@ describe('Datetimefilter.vue', () => {
     wrapper.find('.t-btn-clear').trigger('click')
     expect(vm.dateRange.startDate).toBe(null)
     expect(vm.dateRange.endDate).toBe(null)
+  })
+
+  it('creates a date from a given string', () => {
+    const value = '1/1/2000'
+    const date = vm.createDateFromValue(value)
+    expect(date).toEqual(new Date(Date.parse(value)))
+  })
+
+  it('creates a date from a given amount of milliseconds from epoch', () => {
+    const epochValue = 1588068623458
+    const date = vm.createDateFromValue(epochValue)
+    expect(date).toEqual(new Date(epochValue))
+  })
+
+  it('creates a representable date string without the time component, if time is set to false', () => {
+    const noTimeProps = {
+      name: 'datetime',
+      label: 'Datetime',
+      collapsed: false,
+      time: false,
+      type: 'date-time-filter'
+    }
+    wrapper = mount(DateTimeFilter, { localVue, propsData: noTimeProps })
+    vm = wrapper.vm
+
+    const date = new Date(1588068623458)
+    const comparisonDate = date.toLocaleDateString()
+    const dateString = vm.formatDate(date)
+
+    expect(dateString).toEqual(comparisonDate)
+  })
+
+  it('creates a representable date with time string, when time is set to true', () => {
+    const dateTimeToStringify = new Date(1588068623458)
+    const comparisonDate = dateTimeToStringify.toLocaleString()
+    const dateTimeToString = vm.formatDate(dateTimeToStringify)
+
+    expect(dateTimeToString).toEqual(comparisonDate)
+  })
+
+  it('returns a single date time string when startDate and EndDate are the same', () => {
+    const startDate = new Date(1588068623458)
+    const endDate = new Date(1588068623458)
+    const comparisonDate = startDate.toLocaleString()
+
+    wrapper.setProps({ value: [startDate, endDate] })
+
+    const dateTimeString = vm.formattedDate
+    expect(dateTimeString).toEqual(comparisonDate)
+  })
+
+  it('sets a daterange when given an array of dates', () => {
+    const startDate = new Date(1588068623458)
+    const endDate = new Date(1588068623458)
+    const value = [startDate, endDate]
+
+    vm.setDateRange(value)
+    expect(vm.$data.dateRange).toEqual({ startDate, endDate })
   })
 })
