@@ -1,3 +1,18 @@
+## [1.8.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.1...v1.8.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* active filters not adjusted to array input ([1ac7c94](https://github.com/molgenis/molgenis-ui-filter/commit/1ac7c94))
+* collapsed date picker for snapshot, added test and refactored cde ([2e4349e](https://github.com/molgenis/molgenis-ui-filter/commit/2e4349e))
+* fixed values not being updated correctly when set in App.vue ([36a7034](https://github.com/molgenis/molgenis-ui-filter/commit/36a7034))
+* probably some date thing breaks jenkins ([bf719dd](https://github.com/molgenis/molgenis-ui-filter/commit/bf719dd))
+* removed snapshot for now, this is broken and needs manual intervention https://medium.com/front-end-weekly/jest-snapshot-testing-with-dates-and-times-f3badb8f1d87 ([0c24408](https://github.com/molgenis/molgenis-ui-filter/commit/0c24408))
+* removed snapshot, because locale is not easiliy settable ([8d6a57d](https://github.com/molgenis/molgenis-ui-filter/commit/8d6a57d))
+* restored snapshot ([a80779a](https://github.com/molgenis/molgenis-ui-filter/commit/a80779a))
+* tests not taking locales into account ([001a981](https://github.com/molgenis/molgenis-ui-filter/commit/001a981))
+* updated component, according to feedback. ([0814527](https://github.com/molgenis/molgenis-ui-filter/commit/0814527))
+
 ## [1.8.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.0...v1.8.1) (2020-04-21)
 
 
