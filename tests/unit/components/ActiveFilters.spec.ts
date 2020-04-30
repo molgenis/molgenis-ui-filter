@@ -62,10 +62,6 @@ describe('ActiveFilters.vue', () => {
     }
   })
 
-  it('matches the snapshot', () => {
-    expect(wrapper.element).toMatchSnapshot()
-  })
-
   it('removes filter values on click', () => {
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'string' })
