@@ -104,7 +104,7 @@ export default Vue.extend({
   },
   watch: {
     value (newValue) {
-      this.setDateRange(this.newValue)
+      this.setDateRange(newValue)
     }
   },
   beforeMount () {
@@ -120,8 +120,8 @@ export default Vue.extend({
       this.$emit('input', undefined)
     },
     setDateRange (value) {
-      this.dateRange.startDate = this.createDateFromValue(this.value[0])
-      this.dateRange.endDate = this.createDateFromValue(this.value[1])
+      this.dateRange.startDate = this.createDateFromValue(value[0])
+      this.dateRange.endDate = this.createDateFromValue(value[1])
     },
     updateValues: function () {
       this.$emit('input', [this.dateRange.startDate, this.dateRange.endDate])

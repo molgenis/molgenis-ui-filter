@@ -55,17 +55,16 @@ describe('ActiveFilters.vue', () => {
       {
         name: 'datetime',
         label: 'Datetime',
-        collapsed: false,
+        collapsed: true,
         opens: 'right',
         type: 'date-time-filter'
       }]
     }
   })
 
-  // it('matches the snapshot', () => {
-  //   expect(wrapper.element).toMatchSnapshot()
-  // })
-  // broken, due to different timezones. see: https://medium.com/front-end-weekly/jest-snapshot-testing-with-dates-and-times-f3badb8f1d87
+  it('matches the snapshot', () => {
+    expect(wrapper.element).toMatchSnapshot()
+  })
 
   it('removes filter values on click', () => {
     // @ts-ignore

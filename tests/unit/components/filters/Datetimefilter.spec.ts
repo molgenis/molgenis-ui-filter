@@ -94,4 +94,13 @@ describe('DateTimeFilter.vue', () => {
     const dateTimeString = vm.formattedDate
     expect(dateTimeString).toEqual(comparisonDate)
   })
+
+  it('sets a daterange when given an array of dates', () => {
+    const startDate = new Date(1588068623458)
+    const endDate = new Date(1588068623458)
+    const value = [startDate, endDate]
+
+    vm.setDateRange(value)
+    expect(vm.$data.dateRange).toEqual({ startDate, endDate })
+  })
 })
