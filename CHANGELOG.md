@@ -1,3 +1,10 @@
+## [1.8.3](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.2...v1.8.3) (2020-04-30)
+
+
+### Bug Fixes
+
+* let the range filter react to all user interaction like the other filters ([b844652](https://github.com/molgenis/molgenis-ui-filter/commit/b844652))
+
 ## [1.8.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.1...v1.8.2) (2020-04-30)
 
 
