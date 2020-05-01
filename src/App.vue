@@ -82,7 +82,8 @@ export default Vue.extend({
           description: 'search by string',
           placeholder: 'placeholder',
           type: 'string-filter',
-          collapsable: false
+          collapsable: false,
+          compound: true
         },
         {
           name: 'color',
@@ -95,13 +96,15 @@ export default Vue.extend({
                 resolve(mockData.checkboxOptions)
               })
           },
-          type: 'checkbox-filter'
+          type: 'checkbox-filter',
+          compound: true
         },
         {
           name: 'number',
           label: 'Number',
           collapsed: false,
-          type: 'number-filter'
+          type: 'number-filter',
+          compound: true
         },
         {
           name: 'name1',
