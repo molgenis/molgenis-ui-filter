@@ -78,15 +78,9 @@ describe('FilterContainer.vue', () => {
     expect(wrapper.find('.add-button').exists()).toBe(false)
   })
 
-  it('can add filters when editable', (done) => {
+  it('can add filters when editable', () => {
     wrapper.setProps({ canEdit: true })
-    wrapper.find('.add-button').trigger('click')
-    wrapper.vm.$nextTick(() => {
-      wrapper.find('#modal-add-filter select[name=filter]').setValue('checkbox2')
-      wrapper.find('#modal-add-filter .modal-footer button.btn-primary').trigger('click')
-      expect(wrapper.emitted().update[0]).toEqual([ [ 'string', 'checkbox', 'checkbox2' ] ])
-      done()
-    })
+    expect(wrapper.find('button.dropdown-toggle')).toBeTruthy()
   })
 
   it('shows the filters in the correct order ( based on filtersToShow ) ', () => {
