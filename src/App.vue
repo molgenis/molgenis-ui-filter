@@ -77,13 +77,20 @@ export default Vue.extend({
           type: 'multi-filter'
         },
         {
+          name: 'compound-id',
+          label: 'compound',
+          description: 'Compound description of a compound',
+          type: 'compound-title',
+          collapsable: false
+        },
+        {
           name: 'search',
           label: 'Search',
           description: 'search by string',
           placeholder: 'placeholder',
           type: 'string-filter',
           collapsable: false,
-          compound: true
+          compound: 'compound-id'
         },
         {
           name: 'color',
@@ -97,14 +104,14 @@ export default Vue.extend({
               })
           },
           type: 'checkbox-filter',
-          compound: true
+          compound: 'compound-id'
         },
         {
           name: 'number',
           label: 'Number',
           collapsed: false,
           type: 'number-filter',
-          compound: true
+          compound: 'compound-id'
         },
         {
           name: 'name1',

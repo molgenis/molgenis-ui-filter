@@ -2,115 +2,170 @@
 
 exports[`AddFilterModal.vue matches snapshot 1`] = `
 <div>
-  <button
-    class="btn w-100 mt-2 add-button btn-outline-secondary"
-    type="button"
-  >
-    
-    Add a filter
-    
-    <svg
-      aria-hidden="true"
-      class="ml-1 svg-inline--fa fa-plus fa-w-14"
-      data-icon="plus"
-      data-prefix="fas"
-      focusable="false"
-      role="img"
-      viewBox="0 0 448 512"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        class=""
-        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
-   
   <div
-    id="modal-add-filter___BV_modal_outer_"
-    style="position: absolute; z-index: 1040;"
+    class="dropdown b-dropdown dropright position-static"
+    id="__BVID__4"
   >
-    <div
-      aria-describedby="modal-add-filter___BV_modal_body_"
-      aria-hidden="true"
-      aria-labelledby="modal-add-filter___BV_modal_title_"
-      class="modal fade"
-      id="modal-add-filter"
-      role="dialog"
-      style="display: none;"
+    <!---->
+    <button
+      aria-expanded="false"
+      aria-haspopup="true"
+      class="btn dropdown-toggle btn-primary btn-block dropdown-toggle-no-caret"
+      id="__BVID__4__BV_toggle_"
+      type="button"
     >
-      <div
-        class="modal-dialog modal-md"
+      
+      Set filters 
+      <svg
+        aria-hidden="true"
+        class="ml-2 svg-inline--fa fa-caret-right fa-w-6"
+        data-icon="caret-right"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 192 512"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <!---->
-        <div
-          class="modal-content"
-          id="modal-add-filter___BV_modal_content_"
-          role="document"
+        <path
+          class=""
+          d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+    <ul
+      aria-labelledby="__BVID__4__BV_toggle_"
+      class="dropdown-menu shadow ml-2"
+      role="menu"
+      tabindex="-1"
+    >
+       
+      <li
+        role="presentation"
+      >
+        <p
+          class="b-dropdown-text"
+        >
+          
+      Set filters
+      
+          <span
+            class="float-right remove-button"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-times fa-w-11"
+              data-icon="times"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 352 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </p>
+      </li>
+       
+      <li
+        role="presentation"
+      >
+        <form
+          class="b-dropdown-form"
           tabindex="-1"
         >
-          <header
-            class="modal-header"
-            id="modal-add-filter___BV_modal_header_"
-          >
-            <h5
-              class="modal-title"
-              id="modal-add-filter___BV_modal_title_"
-            >
-              Add filter
-            </h5>
-            <button
-              aria-label="Close"
-              class="close"
-              type="button"
-            >
-              ×
-            </button>
-          </header>
           <div
-            class="modal-body"
-            id="modal-add-filter___BV_modal_body_"
+            class="custom-control custom-checkbox"
           >
-            <select
-              class="custom-select"
-              id="__BVID__6"
-              name="filter"
+            <input
+              autocomplete="off"
+              class="custom-control-input"
+              id="__BVID__5"
+              type="checkbox"
+              value="true"
+            />
+            <label
+              class="custom-control-label"
+              for="__BVID__5"
             >
-              <option
-                value="string"
+              <span>
+                <span
+                  class="text-nowrap"
+                >
+                  String String String String String 
+                </span>
+                 
+                <span
+                  class="text-secondary"
+                >
+                  <small>
+                    <span
+                      class="text-nowrap"
+                    >
+                      ( string )
+                    </span>
+                  </small>
+                </span>
+              </span>
+               
+              <span
+                class="text-secondary"
               >
-                String String String String String
-              </option>
-              <option
-                value="checkbox"
-              >
-                Checkbox
-              </option>
-            </select>
+                <small>
+                   - search by string
+                </small>
+              </span>
+            </label>
           </div>
-          <footer
-            class="modal-footer"
-            id="modal-add-filter___BV_modal_footer_"
+          <div
+            class="custom-control custom-checkbox"
           >
-            <button
-              class="btn btn-secondary"
-              type="button"
+            <input
+              autocomplete="off"
+              class="custom-control-input"
+              id="__BVID__6"
+              type="checkbox"
+              value="true"
+            />
+            <label
+              class="custom-control-label"
+              for="__BVID__6"
             >
-              Cancel
-            </button>
-            <button
-              class="btn btn-primary"
-              type="button"
-            >
-              OK
-            </button>
-          </footer>
-        </div>
-        <!---->
-      </div>
-    </div>
-    <!---->
+              <span>
+                <span
+                  class="text-nowrap"
+                >
+                  Checkbox 
+                </span>
+                 
+                <span
+                  class="text-secondary"
+                >
+                  <small>
+                    <span
+                      class="text-nowrap"
+                    >
+                      ( checkbox )
+                    </span>
+                  </small>
+                </span>
+              </span>
+               
+              <span
+                class="text-secondary"
+              >
+                <!---->
+              </span>
+            </label>
+          </div>
+        </form>
+      </li>
+    </ul>
   </div>
 </div>
 `;

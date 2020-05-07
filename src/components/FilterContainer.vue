@@ -103,7 +103,9 @@ export default {
       return this.canEdit && !this.doCollapse
     },
     listOfVisibleFilters () {
-      return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id)).filter(item => item !== undefined)
+      return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id))
+        .filter(item => item !== undefined)
+        .filter(item => item.type !== 'compound-title')
     },
     listOfInvisibleFilters () {
       return this.filters.filter(filter => !this.filtersToShow.includes(filter.name))
