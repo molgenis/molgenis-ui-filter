@@ -2,10 +2,10 @@
   <div>
     <b-dropdown variant="primary" boundary="viewport" menu-class="shadow ml-2" ref="addFilter" dropright no-caret block>
       <template v-slot:button-content>
-        Set filters <font-awesome-icon icon="caret-right" class="ml-2" />
+        Change filters <font-awesome-icon icon="caret-right" class="ml-2" />
       </template>
       <b-dropdown-text>
-        Set filters
+        Change filters
         <span class="float-right remove-button"
               @click.stop="$refs.addFilter.hide(true)"
         ><font-awesome-icon icon="times" /></span>

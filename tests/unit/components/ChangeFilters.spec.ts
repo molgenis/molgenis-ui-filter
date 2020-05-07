@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { AddFilterModal } from '@/components'
 
-describe('AddFilterModal.vue', () => {
+describe('ChangeFilters.vue', () => {
   const wrapper = mount(AddFilterModal, {
     propsData: {
       filters: [ {
@@ -21,10 +21,6 @@ describe('AddFilterModal.vue', () => {
       }],
       value: ['string']
     }
-  })
-
-  it('matches snapshot', () => {
-    expect(wrapper.element).toMatchSnapshot()
   })
 
   it('can add filter', (done) => {
