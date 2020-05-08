@@ -57,8 +57,9 @@ export default Vue.extend({
           min: null,
           opens: 'right',
           range: true,
-          time: true,
-          type: 'date-time-filter'
+          time: false,
+          type: 'date-time-filter',
+          value: ['01/03/2037', '01/03/2038']
         },
         {
           name: 'age',

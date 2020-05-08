@@ -6,7 +6,7 @@
       v-model="dateRange"
       class="flex-grow-1"
       :opens="opens"
-      :locale-data="{ firstDay: 1, format: 'yyyy-mm-dd HH:MM:ss' }"
+      :locale-data="{ firstDay: 1, format: pickerFormat }"
       :single-date-picker="!range"
       :time-picker="time"
       :time-picker24hour="true"
@@ -46,11 +46,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faTimes)
 
-const emptyDateRange = {
-  startDate: null,
-  endDate: null
-}
-
 export default Vue.extend({
   name: 'DateTimeFilter',
   components: { DateRangePicker, FontAwesomeIcon },
@@ -80,17 +75,15 @@ export default Vue.extend({
       default: () => true
     },
     value: {
-      type: Object,
-      default: () => {
-        return emptyDateRange
-      }
+      type: Array,
+      default: () => [null, null]
     }
   },
   data: function () {
     return {
       dateRange: {
-        startDate: this.value.startDate,
-        endDate: this.value.endDate
+        startDate: null,
+        endDate: null
       }
     }
   },
@@ -99,32 +92,57 @@ export default Vue.extend({
       const date = this.dateRange
       if (!date.startDate || !date.endDate) return 'Select...'
       if (date.startDate.toISOString() === date.endDate.toISOString()) {
-        return date.startDate.toLocaleString()
+        return this.formatDate(date.startDate)
       } else {
-        return `${date.startDate.toLocaleString()} - ${date.endDate.toLocaleString()}`
+        return `${this.formatDate(date.startDate)} - ${this.formatDate(date.endDate)}`
       }
+    },
+    pickerFormat () {
+      if (this.time) return 'yyyy-mm-dd HH:MM:ss'
+      else return 'yyyy-mm-dd'
     }
   },
   watch: {
     value (newValue) {
-      this.dateRange = newValue
+      this.setDateRange(newValue)
     }
+  },
+  beforeMount () {
+    this.setDateRange(this.value)
   },
   methods: {
     clearValue: function () {
-      this.dateRange = emptyDateRange
+      this.dateRange = {
+        startDate: null,
+        endDate: null
+      }
+
       this.$emit('input', undefined)
     },
+    setDateRange (value) {
+      this.dateRange.startDate = this.createDateFromValue(value[0])
+      this.dateRange.endDate = this.createDateFromValue(value[1])
+    },
     updateValues: function () {
-      this.$emit('input', this.dateRange)
+      this.$emit('input', [this.dateRange.startDate, this.dateRange.endDate])
+    },
+    createDateFromValue (value) {
+      if (value) {
+        if (!isNaN(value)) return new Date(value)
+        return new Date(Date.parse(value))
+      }
+    },
+    formatDate (dateTime) {
+      if (this.time) return dateTime.toLocaleString()
+      else return dateTime.toLocaleDateString()
     }
   }
 })
 </script>
 <style lang="css">
-  .form-control.reportrange-text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+.form-control.reportrange-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 </style>

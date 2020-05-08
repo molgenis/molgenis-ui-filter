@@ -10,7 +10,7 @@
         placeholder="from"
         :step="step"
         class="text-center range-from"
-        @change="handleRangeValueChange"
+        @input="handleRangeValueChange"
       />
       <b-input-group-append>
         <b-button
@@ -31,7 +31,7 @@
         placeholder="to"
         :step="step"
         class="text-center range-to"
-        @change="handleRangeValueChange"
+        @input="handleRangeValueChange"
       />
       <b-input-group-append>
         <b-button

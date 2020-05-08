@@ -59,7 +59,7 @@ describe('FilterContainer.vue', () => {
     wrapper.find('input[value="red"]').trigger('click')
     expect(wrapper.emitted().input).toEqual([
       [{ 'checkbox': ['red'], 'string': 'test' }],
-      [{ 'checkbox': undefined, 'string': 'blah' }]
+      [{ 'checkbox': ['red'], 'string': 'blah' }]
     ])
   })
 

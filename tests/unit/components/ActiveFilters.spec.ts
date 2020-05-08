@@ -10,6 +10,8 @@ describe('ActiveFilters.vue', () => {
       }
     )
   }
+  const startDate = new Date('10/20/2019')
+  const endDate = new Date('10/10/2019')
 
   const wrapper = mount(ActiveFilters, {
     propsData: {
@@ -17,7 +19,8 @@ describe('ActiveFilters.vue', () => {
         string: 'blah',
         checkbox: ['red'],
         multi: ['blue', 'purple'],
-        range: [-5, 5]
+        range: [-5, 5],
+        datetime: [startDate, endDate]
       },
       filters: [ {
         name: 'string',
@@ -48,21 +51,24 @@ describe('ActiveFilters.vue', () => {
         collapsed: false,
         options: optionsPromise,
         type: 'range-filter'
+      },
+      {
+        name: 'datetime',
+        label: 'Datetime',
+        collapsed: true,
+        opens: 'right',
+        type: 'date-time-filter'
       }]
     }
-  })
-
-  it('matches snapshot', () => {
-    expect(wrapper.element).toMatchSnapshot()
   })
 
   it('removes filter values on click', () => {
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'string' })
-    expect(wrapper.emitted().input[0][0]).toEqual({ checkbox: [ 'red' ], 'range': [-5, 5], 'multi': ['blue', 'purple'] })
+    expect(wrapper.emitted().input[0][0]).toEqual({ checkbox: [ 'red' ], 'datetime': [startDate, endDate], 'range': [-5, 5], 'multi': ['blue', 'purple'] })
     // @ts-ignore
     wrapper.vm.removeFilter({ key: 'checkbox', subKey: 'red' })
-    expect(wrapper.emitted().input[1][0]).toEqual({ 'checkbox': [], 'range': [-5, 5], 'multi': ['blue', 'purple'], 'string': 'blah' })
+    expect(wrapper.emitted().input[1][0]).toEqual({ 'checkbox': [], 'datetime': [startDate, endDate], 'range': [-5, 5], 'multi': ['blue', 'purple'], 'string': 'blah' })
   })
 
   describe('rangefilter', () => {
