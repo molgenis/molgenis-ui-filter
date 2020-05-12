@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.0...v1.9.1) (2020-05-12)
+
+
+### Bug Fixes
+
+* make sure that de add-filter dialog is always reachable ([731db6f](https://github.com/molgenis/molgenis-ui-filter/commit/731db6f))
+
 # [1.9.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.3...v1.9.0) (2020-05-12)
 
 
