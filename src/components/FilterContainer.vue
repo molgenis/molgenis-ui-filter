@@ -46,10 +46,10 @@
           </filter-card>
         </transition-group>
       </draggable>
-      <add-filter-modal
-        v-if="canEdit && listOfInvisibleFilters.length > 0"
+      <change-filters
+        v-if="canEdit && filters.length > 0"
         v-model="filtersToShow"
-        :filters="listOfInvisibleFilters"
+        :filters="filters"
         @input="selectionUpdate"
       />
     </b-collapse>
@@ -57,14 +57,14 @@
 </template>
 
 <script>
-import AddFilterModal from './AddFilterModal.vue'
+import ChangeFilters from './ChangeFilters.vue'
 import { FilterCard } from '.'
 import * as components from '../components/filters'
 import draggable from 'vuedraggable'
 
 export default {
   name: 'FilterContainer',
-  components: { AddFilterModal, draggable, FilterCard, ...components },
+  components: { ChangeFilters, draggable, FilterCard, ...components },
   props: {
     filters: {
       type: Array,
@@ -103,10 +103,9 @@ export default {
       return this.canEdit && !this.doCollapse
     },
     listOfVisibleFilters () {
-      return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id)).filter(item => item !== undefined)
-    },
-    listOfInvisibleFilters () {
-      return this.filters.filter(filter => !this.filtersToShow.includes(filter.name))
+      return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id))
+        .filter(item => item !== undefined)
+        .filter(item => item.type !== 'compound-title')
     }
   },
   created () {

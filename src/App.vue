@@ -41,8 +41,14 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['datetime', 'disease', 'search', 'color', 'name', 'age', 'number', 'checkbox-options'],
+      filtersShown: ['datetime', 'disease'],
       filters: [
+        {
+          name: 'name',
+          label: 'Label',
+          description: 'description',
+          collapsed: false
+        },
         {
           name: 'datetime',
           label: 'Datetime',
@@ -72,12 +78,20 @@ export default Vue.extend({
           type: 'multi-filter'
         },
         {
+          name: 'compound-id',
+          label: 'compound',
+          description: 'Compound description of a compound',
+          type: 'compound-title',
+          collapsable: false
+        },
+        {
           name: 'search',
           label: 'Search',
           description: 'search by string',
           placeholder: 'placeholder',
           type: 'string-filter',
-          collapsable: false
+          collapsable: false,
+          compound: 'compound-id'
         },
         {
           name: 'color',
@@ -90,16 +104,18 @@ export default Vue.extend({
                 resolve(mockData.checkboxOptions)
               })
           },
-          type: 'checkbox-filter'
+          type: 'checkbox-filter',
+          compound: 'compound-id'
         },
         {
           name: 'number',
           label: 'Number',
           collapsed: false,
-          type: 'number-filter'
+          type: 'number-filter',
+          compound: 'compound-id'
         },
         {
-          name: 'name',
+          name: 'name1',
           label: 'Name',
           description: 'Name of object',
           type: 'string-filter',
