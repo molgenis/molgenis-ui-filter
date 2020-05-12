@@ -1,3 +1,20 @@
+# [1.9.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.3...v1.9.0) (2020-05-12)
+
+
+### Bug Fixes
+
+* bind to viewport ([4bc63aa](https://github.com/molgenis/molgenis-ui-filter/commit/4bc63aa))
+* e2e test ([2b43787](https://github.com/molgenis/molgenis-ui-filter/commit/2b43787))
+* e2e test ([1ac8d21](https://github.com/molgenis/molgenis-ui-filter/commit/1ac8d21))
+* run linter ([f725c80](https://github.com/molgenis/molgenis-ui-filter/commit/f725c80))
+
+
+### Features
+
+* add filters checkbox selections ([509a808](https://github.com/molgenis/molgenis-ui-filter/commit/509a808))
+* add styling and compound indenting ([2f214e2](https://github.com/molgenis/molgenis-ui-filter/commit/2f214e2))
+* compound handeling in add filter dialog ([ae436f7](https://github.com/molgenis/molgenis-ui-filter/commit/ae436f7))
+
 ## [1.8.3](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.2...v1.8.3) (2020-04-30)
 
 
