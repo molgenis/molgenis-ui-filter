@@ -106,7 +106,7 @@ export default {
       return this.filtersToShow.map(id => this.filters.find(filter => filter.name === id))
         .filter(item => item !== undefined)
         .filter(item => item.type !== 'compound-title')
-    },
+    }
   },
   created () {
     window.addEventListener('resize', this.handleResize)

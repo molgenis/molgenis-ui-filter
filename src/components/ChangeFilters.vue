@@ -1,35 +1,48 @@
 <template>
   <div>
-    <b-dropdown variant="primary" boundary="viewport" menu-class="shadow ml-2" ref="addFilter" dropright no-caret block>
+    <b-dropdown
+      ref="addFilter"
+      variant="primary"
+      boundary="viewport"
+      menu-class="shadow ml-2"
+      dropright
+      no-caret
+      block
+    >
       <template v-slot:button-content>
-        Change filters <font-awesome-icon icon="caret-right" class="ml-2" />
+        Change filters <font-awesome-icon
+          icon="caret-right"
+          class="ml-2"
+        />
       </template>
       <b-dropdown-text>
         Change filters
-        <span class="float-right remove-button"
-              @click.stop="$refs.addFilter.hide(true)"
+        <span
+          class="float-right remove-button"
+          @click.stop="$refs.addFilter.hide(true)"
         ><font-awesome-icon icon="times" /></span>
       </b-dropdown-text>
       <b-dropdown-form>
-          <b-form-checkbox
-              v-for="option in filters"
-              :key="option.name"
-              :checked="selected.includes(option.name)"
-              :class="{'ml-4':option.compound}"
-              @change="checkboxHandler(option, $event)">
-            <span v-if="option.label">
-              <span class="text-nowrap">{{option.label}} </span>
-              <span class="text-secondary">
-                <small><span class="text-nowrap">( {{option.name}} )</span></small>
-              </span>
-            </span>
-            <span v-else>
-              <span class="text-nowrap">{{option.name}} </span>
-            </span>
+        <b-form-checkbox
+          v-for="option in filters"
+          :key="option.name"
+          :checked="selected.includes(option.name)"
+          :class="{'ml-4':option.compound}"
+          @change="checkboxHandler(option, $event)"
+        >
+          <span v-if="option.label">
+            <span class="text-nowrap">{{ option.label }} </span>
             <span class="text-secondary">
-              <small v-if="option.description"> - {{option.description}}</small>
+              <small><span class="text-nowrap">( {{ option.name }} )</span></small>
             </span>
-          </b-form-checkbox>
+          </span>
+          <span v-else>
+            <span class="text-nowrap">{{ option.name }} </span>
+          </span>
+          <span class="text-secondary">
+            <small v-if="option.description"> - {{ option.description }}</small>
+          </span>
+        </b-form-checkbox>
       </b-dropdown-form>
     </b-dropdown>
   </div>
