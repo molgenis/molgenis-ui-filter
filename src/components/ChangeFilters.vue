@@ -3,7 +3,7 @@
     <b-dropdown
       ref="addFilter"
       variant="primary"
-      boundary="viewport"
+      boundary="window"
       menu-class="shadow ml-2"
       dropright
       no-caret
