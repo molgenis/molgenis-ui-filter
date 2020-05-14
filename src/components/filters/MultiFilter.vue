@@ -163,17 +163,20 @@ export default {
     this.showCount = this.maxVisibleOptions
   },
   beforeMount () {
-    if (this.value && this.value.length > 0) {
-      this.initializeFilter()
-    }
+    this.initializeFilter()
+  },
+  beforeUpdate () {
+    this.initializeFilter()
   },
   methods: {
     showMore () {
       this.showCount += this.maxVisibleOptions
     },
     async initializeFilter () {
-      const fetched = await this.options(false, 'in', this.value.join(','))
-      this.inputOptions = fetched
+      if (this.value && this.value.length > 0) {
+        const fetched = await this.options(false, 'in', this.value.join(','))
+        this.inputOptions = fetched
+      }
     }
   }
 }
