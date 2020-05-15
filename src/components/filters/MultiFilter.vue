@@ -165,9 +165,6 @@ export default {
   beforeMount () {
     this.initializeFilter()
   },
-  beforeUpdate () {
-    this.initializeFilter()
-  },
   methods: {
     showMore () {
       this.showCount += this.maxVisibleOptions
