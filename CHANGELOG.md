@@ -1,3 +1,11 @@
+## [1.9.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.1...v1.9.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* remove unnecessary updating trigger ([4281572](https://github.com/molgenis/molgenis-ui-filter/commit/4281572))
+* updated how multifilter reacts, reverted a fix in filtercontainer ([8f15929](https://github.com/molgenis/molgenis-ui-filter/commit/8f15929))
+
 ## [1.9.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.0...v1.9.1) (2020-05-12)
 
 
