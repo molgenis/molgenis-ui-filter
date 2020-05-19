@@ -15,6 +15,7 @@ The filter container takes a descriptive input array to create a set of filters.
   :can-edit="true"
 />
 ```
+
 ### Properties
 
 - `selections`: Will hold the settings set in filters.
