@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.2...v1.9.3) (2020-05-19)
+
+
+### Bug Fixes
+
+* jenkins publish to npm ([e1ddf36](https://github.com/molgenis/molgenis-ui-filter/commit/e1ddf36))
+
 ## [1.9.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.1...v1.9.2) (2020-05-15)
 
 
