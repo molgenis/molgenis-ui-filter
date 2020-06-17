@@ -17,6 +17,7 @@ describe('MultiFilter.vue', () => {
     label: 'Filter with multiple options',
     collapsed: false,
     maxVisibleOptions: 3,
+    initialDisplayItems: 3,
     options: optionsPromise,
     type: 'multi-filter'
   }
@@ -27,9 +28,14 @@ describe('MultiFilter.vue', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('does not show checkbox fields when input options are not set', () => {
-    const background = wrapper.find('.checkbox-list')
-    expect(background.exists()).toBeFalsy()
+  it('shows "initialDisplayItems" checkbox fields when input options are not set', () => {
+    wrapper.vm.$nextTick(() => {
+      const background = wrapper.find('.checkbox-list')
+      expect(background.exists()).toBeTruthy()
+
+      const checkboxes = wrapper.findAll('input[type=checkbox]')
+      expect(checkboxes.length).toEqual(propsData.initialDisplayItems)
+    })
   })
 
   it('shows checkbox fields when input options are set', () => {
