@@ -39,7 +39,7 @@
             <component
               :is="filter.type"
               :name="filter.name"
-              :value="filter.value"
+              :value="value[filter.name]"
               v-bind="filter"
               @input="value => selectionChange(filter.name, value)"
             />

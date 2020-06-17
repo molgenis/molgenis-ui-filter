@@ -1,3 +1,25 @@
+## [1.9.3](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.2...v1.9.3) (2020-05-19)
+
+
+### Bug Fixes
+
+* jenkins publish to npm ([e1ddf36](https://github.com/molgenis/molgenis-ui-filter/commit/e1ddf36))
+
+## [1.9.2](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.1...v1.9.2) (2020-05-15)
+
+
+### Bug Fixes
+
+* remove unnecessary updating trigger ([4281572](https://github.com/molgenis/molgenis-ui-filter/commit/4281572))
+* updated how multifilter reacts, reverted a fix in filtercontainer ([8f15929](https://github.com/molgenis/molgenis-ui-filter/commit/8f15929))
+
+## [1.9.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.0...v1.9.1) (2020-05-12)
+
+
+### Bug Fixes
+
+* make sure that de add-filter dialog is always reachable ([731db6f](https://github.com/molgenis/molgenis-ui-filter/commit/731db6f))
+
 # [1.9.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.8.3...v1.9.0) (2020-05-12)
 
 

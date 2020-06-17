@@ -145,7 +145,7 @@ export default {
           this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
-            const fetched = await this.options({ nameAttribute: true, queryType: 'like', query: this.query })
+            const fetched = await this.options({ nameAttribute: false, queryType: 'int', query: this.value.join(',') })
             const valuesPresent = previousSelection.map(prev => prev.value)
 
             if (valuesPresent) {
@@ -168,22 +168,19 @@ export default {
     this.showCount = this.maxVisibleOptions
   },
   beforeMount () {
-    if (this.value && this.value.length > 0) {
-      this.reloadPreciousFilter()
-    } else {
-      this.initializeFilter()
-    }
+    this.initializeFilter()
   },
   methods: {
     showMore () {
       this.showCount += this.maxVisibleOptions
     },
-    async reloadPreciousFilter () {
-      const fetched = await this.options({ nameAttribute: false, queryType: 'int', query: this.value.join(',') })
-      this.inputOptions = fetched
-    },
     async initializeFilter () {
-      const fetched = await this.options({ count: this.initialDisplayItems })
+      let fetched = {}
+      if (this.value && this.value.length > 0) {
+        fetched = await this.options(false, 'in', this.value.join(','))
+      } else {
+        fetched = await this.options({ count: this.initialDisplayItems })
+      }
       this.inputOptions = fetched
     }
   }

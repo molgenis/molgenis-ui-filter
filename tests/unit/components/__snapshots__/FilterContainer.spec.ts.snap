@@ -253,7 +253,7 @@ exports[`FilterContainer.vue matches the snapshot 1`] = `
                         target="_self"
                       >
                         
-      Select all
+      Deselect all
     
                       </a>
                     </span>
