@@ -75,6 +75,7 @@ export default Vue.extend({
           label: 'Filter with multiple options',
           collapsed: false,
           options: mockData.multifilterOptions,
+          initialDisplayItems: 5,
           type: 'multi-filter'
         },
         {
