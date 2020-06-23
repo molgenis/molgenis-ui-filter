@@ -36,7 +36,7 @@
     />
 
     <b-link
-      v-if="showCount < inputOptions.length"
+      v-if="showCount < multifilterOptions.length"
       class="card-link"
       @click="showMore"
     >
@@ -71,7 +71,7 @@ export default {
     placeholder: {
       type: String,
       required: false,
-      default: () => ''
+      default: () => 'Type to search more'
     },
     label: {
       type: String,
@@ -102,6 +102,7 @@ export default {
       isLoading: false,
       triggerQuery: Number,
       inputOptions: [],
+      initialOptions: [],
       query: ''
     }
   },
@@ -114,11 +115,15 @@ export default {
         this.$emit('input', value.length === 0 ? undefined : value)
       }
     },
-    slicedOptions: function () {
-      return this.inputOptions.slice(0, this.showCount)
+    multifilterOptions () {
+      if (this.inputOptions.length > 0) return this.inputOptions
+      else return this.initialOptions
+    },
+    slicedOptions () {
+      return this.multifilterOptions.slice(0, this.showCount)
     },
     foundOptionCount () {
-      return this.inputOptions.length
+      return this.multifilterOptions.length
     },
     showMoreText () {
       const remaining = this.foundOptionCount - this.showCount
@@ -145,10 +150,10 @@ export default {
           this.showCount = this.maxVisibleOptions
           this.isLoading = true
           try {
-            const fetched = await this.options({ nameAttribute: false, queryType: 'int', query: this.value.join(',') })
+            const fetched = await this.options({ nameAttribute: true, queryType: 'like', query: this.query })
             const valuesPresent = previousSelection.map(prev => prev.value)
 
-            if (valuesPresent) {
+            if (valuesPresent.length) {
               const difference = fetched.filter(
                 prev => !valuesPresent.includes(prev.value)
               )
@@ -177,11 +182,11 @@ export default {
     async initializeFilter () {
       let fetched = {}
       if (this.value && this.value.length > 0) {
-        fetched = await this.options(false, 'in', this.value.join(','))
+        fetched = await this.options({ nameAttribute: false, queryType: 'in', query: this.value.join(',') })
       } else {
         fetched = await this.options({ count: this.initialDisplayItems })
       }
-      this.inputOptions = fetched
+      this.initialOptions = fetched
     }
   }
 }
