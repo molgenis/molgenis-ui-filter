@@ -3,7 +3,7 @@
 exports[`CheckboxFilter.vue matches the snapshot 1`] = `
 <div>
   <div
-    class="bv-no-focus-ring"
+    class=""
     id="__BVID__4"
     role="group"
     tabindex="-1"

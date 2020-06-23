@@ -9,11 +9,12 @@ exports[`MultiFilter.vue matches the snapshot 1`] = `
     role="group"
   >
     <!---->
+    <!---->
     <input
       class="form-control"
       id="__BVID__4"
       name="multi-filter"
-      placeholder=""
+      placeholder="Type to search more"
       type="text"
     />
      
@@ -43,10 +44,11 @@ exports[`MultiFilter.vue matches the snapshot 1`] = `
       </button>
     </div>
     <!---->
+    <!---->
   </div>
    
   <div
-    class="checkbox-list bv-no-focus-ring"
+    class="checkbox-list"
     id="__BVID__5"
     role="group"
     tabindex="-1"

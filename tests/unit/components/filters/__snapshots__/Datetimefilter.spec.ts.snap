@@ -8,6 +8,7 @@ exports[`DateTimeFilter.vue matches the snapshot 1`] = `
   type="date-time-filter"
 >
   <!---->
+  <!---->
   <div
     class="vue-daterange-picker flex-grow-1"
     data-v-fffebcea=""
@@ -48,6 +49,7 @@ exports[`DateTimeFilter.vue matches the snapshot 1`] = `
       </svg>
     </button>
   </div>
+  <!---->
   <!---->
 </div>
 `;
