@@ -14,7 +14,7 @@ let cache:any = { query: '', results: null }
 const multifilterOptions = async (queryOptions : any) => {
   if (queryOptions === undefined) queryOptions = {}
 
-  const nameAttribute = queryOptions.nameAttribute ? queryOptions.nameAttribute : true
+  const nameAttribute = queryOptions.nameAttribute
   const queryType = queryOptions.queryType ? queryOptions.queryType : 'like'
   const query = queryOptions.query ? queryOptions.query : undefined
   const count = queryOptions.count ? queryOptions.count : 0

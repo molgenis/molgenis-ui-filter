@@ -136,7 +136,7 @@ export default {
   },
   watch: {
     query: function (newVal) {
-      const previousSelection = this.inputOptions.filter(
+      const previousSelection = this.multifilterOptions.filter(
         option => this.selection.indexOf(option.value) >= 0
       )
       this.inputOptions = previousSelection
@@ -180,7 +180,7 @@ export default {
       this.showCount += this.maxVisibleOptions
     },
     async initializeFilter () {
-      let fetched = {}
+      let fetched = []
       if (this.value && this.value.length > 0) {
         fetched = await this.options({ nameAttribute: false, queryType: 'in', query: this.value.join(',') })
       } else {
