@@ -41,7 +41,7 @@ export default Vue.extend({
       selections: {
         search: 'test'
       },
-      filtersShown: ['datetime', 'disease'],
+      filtersShown: ['datetime', 'disease', 'age'],
       filters: [
         {
           name: 'name',
