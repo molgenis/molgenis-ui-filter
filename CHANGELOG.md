@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.10.0...v1.10.1) (2020-06-25)
+
+
+### Bug Fixes
+
+* make the range input react correctly to number that use a dot ([a214ba4](https://github.com/molgenis/molgenis-ui-filter/commit/a214ba4))
+
 # [1.10.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.3...v1.10.0) (2020-06-25)
 
 
