@@ -113,7 +113,7 @@ export default Vue.extend({
             }
           }
           if (filter.type === 'multi-filter') {
-            const options = await filter.options(false, 'in', current.join(','))
+            const options = await filter.options({ nameAttribute: false, queryType: 'in', query: current.join(',') })
             current.forEach(subKey => {
               const findTextFromValue = options.filter(
                 filter => filter.value === subKey

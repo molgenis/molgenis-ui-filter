@@ -11,8 +11,20 @@ const api = axios.create({
 // Prevent triggering options multiple times.
 let cache:any = { query: '', results: null }
 
-const multifilterOptions = async (nameAttribute:boolean = true, queryType: string = 'like', query?: string) => {
-  let params = {}
+const multifilterOptions = async (queryOptions : any) => {
+  if (queryOptions === undefined) queryOptions = {}
+
+  const nameAttribute = queryOptions.nameAttribute
+  const queryType = queryOptions.queryType ? queryOptions.queryType : 'like'
+  const query = queryOptions.query ? queryOptions.query : undefined
+  const count = queryOptions.count ? queryOptions.count : 0
+
+  let params:any = {}
+
+  if (queryOptions && queryOptions.count > 0) {
+    params.size = queryOptions.count
+  }
+
   if (query) {
     params = { q: `${nameAttribute ? 'disease' : 'id'}=${queryType}=${queryType === 'in' ? `(${query})` : toRsqlValue(query)}` }
     if (query === cache.query) return cache.results

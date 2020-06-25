@@ -100,6 +100,7 @@ The usecase is to generate a list of checkboxes based on a user query (capped to
 | options              | true     | *na* `: Function` | describe the checkboxes. This is a function returns a promise which can query and return options (see example below) |
 | placeholder          | false    | empty `: String` | fill the placeholder in the searchbox | 
 | maxVisibleOptions    | false    | 10 `: Number` | limit the amount of initially shown options by _n_ | 
+| initialDisplayItems  | false    | 5 `: Number` | Initial set of items to be displayed | 
 
 *options example*
 ```
