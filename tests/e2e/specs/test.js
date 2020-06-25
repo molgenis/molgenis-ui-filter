@@ -7,7 +7,7 @@ module.exports = {
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
       .assert.elementPresent('.filter-container')
-      .assert.elementCount('.filter-card', 2)
+      .assert.elementCount('.filter-card', 3)
       .end()
   }
 }
