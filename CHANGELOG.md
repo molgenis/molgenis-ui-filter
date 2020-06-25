@@ -1,3 +1,15 @@
+# [1.10.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.3...v1.10.0) (2020-06-25)
+
+
+### Bug Fixes
+
+* **search:** query was not working. ([54c2a38](https://github.com/molgenis/molgenis-ui-filter/commit/54c2a38))
+
+
+### Features
+
+* add initial items to display to multifilter ([3ff67a8](https://github.com/molgenis/molgenis-ui-filter/commit/3ff67a8))
+
 ## [1.9.3](https://github.com/molgenis/molgenis-ui-filter/compare/v1.9.2...v1.9.3) (2020-05-19)
 
 
