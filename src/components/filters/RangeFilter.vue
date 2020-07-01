@@ -118,8 +118,12 @@ export default Vue.extend({
       return Math.min(Math.max(value, min), max)
     },
     handleRangeValueChange () {
-      if (this.rangeValue[0] === '') this.rangeValue[0] = null
-      if (this.rangeValue[1] === '') this.rangeValue[1] = null
+      if (this.rangeValue[0] === '') {
+        this.rangeValue[0] = null
+      }
+      if (this.rangeValue[1] === '') {
+        this.rangeValue[1] = null
+      }
 
       if (this.rangeValue[0] != null) {
         this.rangeValue[0] = this.clampValue(this.rangeValue[0], this.max, this.min)

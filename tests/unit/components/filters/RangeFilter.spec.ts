@@ -44,4 +44,12 @@ describe('RangeFilter.vue', () => {
     wrapper.setProps({ value: [null, null] })
     expect(wrapper.vm.rangeValue).toEqual([null, null])
   })
+
+  it('cleans erroneous data entries', () => {
+    wrapper.find('.range-from').setValue('')
+    wrapper.find('.range-to').setValue('--')
+    wrapper.find('.range-from').trigger('change')
+    wrapper.find('.range-to').trigger('change')
+    expect(wrapper.emitted().input[1]).toEqual([[null, null]])
+  })
 })
