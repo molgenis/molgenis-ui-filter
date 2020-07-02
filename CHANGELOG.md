@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.10.1...v1.11.0) (2020-07-02)
+
+
+### Features
+
+* release new version ([eb62b47](https://github.com/molgenis/molgenis-ui-filter/commit/eb62b47))
+
 ## [1.10.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.10.0...v1.10.1) (2020-06-25)
 
 
