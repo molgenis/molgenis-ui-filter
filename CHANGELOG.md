@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/molgenis/molgenis-ui-filter/compare/v1.11.0...v1.11.1) (2020-07-02)
+
+
+### Bug Fixes
+
+* fixed empty string for one input field not resulting in a 'or less, or more' . Added stronger typing. ([5067c04](https://github.com/molgenis/molgenis-ui-filter/commit/5067c04))
+
 # [1.11.0](https://github.com/molgenis/molgenis-ui-filter/compare/v1.10.1...v1.11.0) (2020-07-02)
 
 
