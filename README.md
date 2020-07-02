@@ -181,4 +181,4 @@ git commit file.ext -m "fix(file.ext): fixes something"
 ### How to publish
 Each time a PR is merged a release will be done to NPM. The CHANGELOG.md and GitHub release will be ammended. 
 
-The version of the package is based upon convential commits. Check: http://commitizen.github.io/cz-cli/.
+The version of the package is based upon convential commits. Check: http://commitizen.github.io/cz-cli/. 
