@@ -92,19 +92,19 @@ export default Vue.extend({
           }
           // Range Filter
           if (filter.type === 'range-filter') {
-            if (current[0] == null && current[1] != null) {
+            if ((current[0] === null || current[0] === '') && current[1] != null) {
               activeValues.push({
                 key,
                 value: `${current[1]} and less`,
                 label: filter.label
               })
-            } else if (current[0] != null && current[1] == null) {
+            } else if (current[0] !== null && (current[1] === null || current[1] === '')) {
               activeValues.push({
                 key,
                 value: `${current[0]} and more`,
                 label: filter.label
               })
-            } else if (current[0] != null && current[1] != null) {
+            } else if (current[0] !== null && current[1] !== null) {
               activeValues.push({
                 key,
                 value: `${current[0]} to ${current[1]}`,
