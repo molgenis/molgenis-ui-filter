@@ -1,3 +1,5 @@
+This repository is archived and moved to the [components-library](https://github.com/molgenis/molgenis-frontend/tree/master/packages/components-library)
+
 [![codecov](https://codecov.io/gh/molgenis/molgenis-ui-form/branch/master/graph/badge.svg)](https://codecov.io/gh/molgenis/molgenis-ui-form)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
